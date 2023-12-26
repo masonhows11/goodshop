@@ -19,6 +19,7 @@ class MailViewProvider extends Mailable
 
     public function __construct($details,$subject,$from,$attachment_files = null)
     {
+
         $this->details = $details;
         $this->subject = $subject;
         $this->from = $from;

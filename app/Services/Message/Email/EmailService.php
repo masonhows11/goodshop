@@ -40,7 +40,6 @@ class EmailService implements MessageInterface
     {
         return $this->from;
     }
-
     public function setFrom($address,$name)
     {
         $this->from = [
@@ -62,6 +61,7 @@ class EmailService implements MessageInterface
         $this->to = $to;
     }
 
+    //// files
     private $emailFiles;
     public function getEmailFiles()
     {
@@ -73,7 +73,8 @@ class EmailService implements MessageInterface
     }
 
 
-    // for send email to determine address
+    // for send email to given address
+    // this fire() method define in MessageInterface
     public function fire()
     {
             //           Mail::to($this->to)

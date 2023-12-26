@@ -78,6 +78,7 @@ class AdminEmailNoticesController extends Controller
     {
                 $users = User::whereNotNull('email')->where('activate',1)->select('email')->get();
                 foreach ($users as $user){
+                    // l.v 1
                     $emailService = new EmailService();
                     $details = [
                         'title' => $mail->subject,
@@ -93,6 +94,7 @@ class AdminEmailNoticesController extends Controller
                     $emailService->setFrom('goodshop@gmail.com','goodShopSupport');
                     $emailService->setSubject($mail->subject);
                     $emailService->setTo($user->email);
+                    // l.v 2
                     $messageService = new MessageService($emailService);
                     $messageService->send();
                 }

@@ -4,9 +4,10 @@ namespace App\Http\Controllers\Dash\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
-use App\Notifications\AdminAuthNotification;
 use App\Notifications\AdminLoginNotification;
 use App\Services\GenerateToken;
+use App\Services\Message\Email\EmailService;
+use App\Services\Message\MessageService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -32,9 +33,20 @@ class AdminLoginController extends Controller
             $admin = Admin::where('email', $request->email)->first();
             $admin->code = $code;
             $admin->save();
+            
 
-           // admin login with notification  not worked test with normal email
-           // $admin->notify(new AdminLoginNotification($admin->email,$code));
+            $emailService = new EmailService();
+            $details = [
+                'title' => 'کد  ورود به پنل میدیریت',
+                'body' => $admin->code,
+            ];
+            $emailService->setDetails($details);
+            $emailService->setFrom('goodshop@gmail.com','goodShopSupport');
+            $emailService->setSubject('کد ورود به پنل میدیریت');
+            $emailService->setTo($admin->email);
+            // l.v 2
+            $messageService = new MessageService($emailService);
+            $messageService->send();
 
             session()->flash('success', 'کد فعال سازی به ایمیل ارسال شد');
             return redirect()->route('admin.validate.email.form');

@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notification;
 
 class AdminLoginNotification extends Notification
 {
+    use Queueable;
     public $admin;
     public $code;
 

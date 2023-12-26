@@ -26,7 +26,7 @@
                     <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">پرسش و پاسخ</a></li>
                     <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">درباره ما</a></li>
                 </ul>
-                <p class="text-center"><strong>&copy; 2023 Websolo.ir</strong></p>
+                <p class="text-center"><strong>&copy; 2023 Websolo.ir goodshop.ir</strong></p>
             </div>
         </div>
         <div class="row d-flex justify-content-between">
