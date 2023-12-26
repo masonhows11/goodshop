@@ -33,8 +33,7 @@ class AdminLoginController extends Controller
             $admin = Admin::where('email', $request->email)->first();
             $admin->code = $code;
             $admin->save();
-            
-
+            // l.v 1
             $emailService = new EmailService();
             $details = [
                 'title' => 'کد  ورود به پنل میدیریت',
