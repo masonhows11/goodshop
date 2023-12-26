@@ -7,10 +7,8 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class AdminAuthNotification extends Notification implements shouldQueue
+class AdminLoginNotification extends Notification
 {
-    use Queueable;
-
     public $admin;
     public $code;
 
@@ -49,7 +47,7 @@ class AdminAuthNotification extends Notification implements shouldQueue
     {
         return (new MailMessage)
             ->subject('دیلی شاپ تاییدیه ورود پنل مدیریت')
-            ->from('admin_onlineshop@mail.ir')
+            ->from('goodshop@gmail.com')
             ->greeting('onlineshop')
             ->line('Dear User')
             ->line('admin panel active code for admin user :')
@@ -61,10 +59,9 @@ class AdminAuthNotification extends Notification implements shouldQueue
     /**
      * Get the array representation of the notification.
      *
-     * @param  mixed  $notifiable
-     * @return array
+     * @return array<string, mixed>
      */
-    public function toArray($notifiable)
+    public function toArray(object $notifiable): array
     {
         return [
             //

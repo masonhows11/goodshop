@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dash\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use App\Notifications\AdminAuthNotification;
+use App\Notifications\AdminLoginNotification;
 use App\Services\GenerateToken;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -33,7 +34,7 @@ class AdminLoginController extends Controller
             $admin->save();
 
 
-            // $admin->notify(new AdminAuthNotification($admin->email,$code));
+           $admin->notify(new AdminLoginNotification($admin->email,$code));
 
             session()->flash('success', 'کد فعال سازی به ایمیل ارسال شد');
             return redirect()->route('admin.validate.email.form');

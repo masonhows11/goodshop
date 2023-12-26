@@ -29,7 +29,7 @@
                                    type="text"
                                    dir="ltr"
                                    style="direction: ltr"
-                                   name="email" autocomplete="off"/>
+                                   name="email"/>
                             @error('email')
                             <div class="alert alert-danger mt-2">
                                 {{ $message }}
