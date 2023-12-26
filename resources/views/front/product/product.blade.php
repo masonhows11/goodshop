@@ -56,8 +56,8 @@
                                                 data-bs-placement="top"
                                                 title="{{ __('messages.add_to_favorites') }}"></i>
                                         </span>
-                                @endif
-                            @endauth
+                                    @endif
+                                @endauth
                             <!-- end add to Favorites -->
                                 <span data-bs-toggle="modal" data-bs-target="#share-modal"><i
                                         class="fa fa-share-alt share d-block my-4" data-bs-toggle="tooltip"
@@ -67,7 +67,8 @@
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <p class="modal-title font-13">اشتراک گذاری</p>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                                <button type="button" class="btn-close"
+                                                        data-bs-dismiss="modal"></button>
                                             </div>
                                             <div class="modal-body">
                                                 <p class="font-12">این کالا را با دوستان خود به اشتراک بگذارید!</p>
@@ -86,9 +87,9 @@
                                         </div>
                                     </div>
                                 </div>
-                            <!-- end share modal -->
+                                <!-- end share modal -->
 
-                            <!-- add to compare -->
+                                <!-- add to compare -->
                                 @guest
                                     <span style="font-size: 1.2em;" class="my-4">
                                          <i class="add-to-compare-list fas fa-random random text-dark d-block  my-4"
@@ -129,37 +130,56 @@
                                         </span>
                                 @endif
                             @endauth
-                             <!-- end add to compare -->
+                            <!-- end add to compare -->
 
                             </div>
                             <div class="col-11 pb-5 mb-3">
                                 <!-- start product slider pic -->
-                                @if( $images !== null )
+                                @if ( $images !== null )
                                     <div class="carousel slide pb-5 product-slider-2" id="product-slider"
                                          data-bs-ride="carousel">
                                         <div class="carousel-indicators carousel-indicator-custom">
                                             @foreach ( $images as  $key => $slide)
-                                                <button type="button" data-bs-target="#product-slider" data-bs-slide-to="{{ $loop->index }}" class="active">
+                                                <button type="button" data-bs-target="#product-slider"
+                                                        data-bs-slide-to="{{ $loop->index }}" class="active">
+                                                    @if( $slide->image_path && \Illuminate\Support\Facades\Storage::disk('public')->exists('storage/images/product/gallery/'. $slide->image_path) )
+                                                        <img
+                                                            src="{{ asset('storage/images/product/gallery/'. $slide->image_path) }}"
+                                                            alt="{{ asset('storage/images/product/gallery/'. $slide->image_path). '-' .( $key + 1) }}"
+                                                            class="d-block w-100">
+                                                    @else
 
-                                                    <img src="{{ asset('storage/images/product/gallery/'. $slide->image_path) }}"
-                                                         alt="{{ asset('storage/images/product/gallery/'. $slide->image_path). '-' .( $key + 1) }}" class="d-block w-100">
+                                                        <img src="{{ asset('default_image/no-image-icon-23494.png') }}"
+                                                             alt="{{  asset('default_image/no-image-icon-23494.png')  }}"
+                                                             class="d-block w-100">
+                                                    @endif
                                                 </button>
                                             @endforeach
                                         </div>
-                                        <div class="carousel-inner">
+                                        <div class="carousel-inner mt-2">
                                             @foreach ( $images as $key =>  $slide)
                                                 <div class="carousel-item @if( $loop->first ) active @endif">
+                                                    @if( $slide->image_path && \Illuminate\Support\Facades\Storage::disk('public')->exists('storage/images/product/gallery/'. $slide->image_path) )
                                                     <img
                                                         src="{{ asset('storage/images/product/gallery/'. $slide->image_path) }}"
                                                         alt="{{ asset('storage/images/product/gallery/'. $slide->image_path) . '-' . ($key + 1) }}"
                                                         class="d-block w-100">
+                                                    @else
+
+                                                        <img src="{{ asset('default_image/no-image-icon-23494.png') }}"
+                                                             alt="{{  asset('default_image/no-image-icon-23494.png')  }}"
+                                                             class="d-block w-100">
+                                                    @endif
                                                 </div>
                                             @endforeach
                                         </div>
                                     </div>
                                 @else
-                                    <div class="carousel slide pb-5 product-slider-2" id="product-slider" data-bs-ride="carousel">
-                                        <img src="{{ asset('default_image/no-image-icon-23494.png') }}" alt="{{  asset('default_image/no-image-icon-23494.png')  }}" class="d-block w-100">
+                                    <div class="carousel slide pb-5 product-slider-2" id="product-slider"
+                                         data-bs-ride="carousel">
+                                        <img src="{{ asset('default_image/no-image-icon-23494.png') }}"
+                                             alt="{{  asset('default_image/no-image-icon-23494.png')  }}"
+                                             class="d-block w-100">
                                     </div>
                                 @endif
                             </div>
@@ -190,8 +210,8 @@
 
 
             <!-- start product delivery icons -->
-            @include('front.product.partials.services_banner')
-            <!-- end product delivery icons -->
+        @include('front.product.partials.services_banner')
+        <!-- end product delivery icons -->
 
             <div class="product-tab-content">
                 <div class="row pb-3">
@@ -222,7 +242,7 @@
             </div>
 
             <!-- product slider related products -->
-           <div class="product-slider related-products">
+            <div class="product-slider related-products">
                 @include('front.product.partials.related_products',['related_products' => $productCategories ])
             </div>
             <!--end product slider related products -->
@@ -233,7 +253,8 @@
 
 
     {{-- toast section for add to favorites    --}}
-    <div class="toast position-fixed ms-4" data-delay="7000" style="z-index: 9999999;left:1.5rem;top:3rem;width: 24rem;max-width: 80%">
+    <div class="toast position-fixed ms-4" data-delay="7000"
+         style="z-index: 9999999;left:1.5rem;top:3rem;width: 24rem;max-width: 80%">
         <div class="toast-header">
             <strong class="me-auto">{{ __('messages.site_name') }}</strong>
             <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
@@ -266,7 +287,7 @@
                     data: {
                         product: product
                     }
-                }).done( function ( result ) {
+                }).done(function (result) {
 
                     if (result.status === 1)    // for add to compare
                     {
@@ -275,8 +296,8 @@
                         $(element).removeClass('far');
                         $(element).addClass('fa-solid');
                         // below code for add style with rule:value like color:tomato
-                        $(element).attr('style',"color:tomato");
-                        $(element).attr('title',"{{ __('messages.remove_from_compare') }}");
+                        $(element).attr('style', "color:tomato");
+                        $(element).attr('title', "{{ __('messages.remove_from_compare') }}");
 
                     } else if (result.status === 2)   // for remove from compare
                     {
@@ -285,7 +306,7 @@
                         $(element).removeClass('fa-solid');
                         $(element).addClass('far');
                         $(element).removeAttr('style');
-                        $(element).attr('title',"{{ __('messages.add_to_compare') }}");
+                        $(element).attr('title', "{{ __('messages.add_to_compare') }}");
 
                     } else if (result.status === 3) {
                         // for user not login
@@ -296,7 +317,7 @@
 
         })
     </script>
-   <script>
+    <script>
         $(document).ready(function () {
             //  add to favorites
             $('.add-to-fav-product').click(function () {
@@ -315,7 +336,7 @@
                     data: {
                         product: product
                     }
-                }).done( function ( result ) {
+                }).done(function (result) {
 
                     if (result.status === 1)    // for add to fave
                     {
@@ -324,8 +345,8 @@
                         $(element).removeClass('far');
                         $(element).addClass('fa-solid');
                         // below code for add style with rule:value like color:tomato
-                        $(element).attr('style',"color:tomato");
-                        $(element).attr('title',"{{ __('messages.remove_from_favorites') }}");
+                        $(element).attr('style', "color:tomato");
+                        $(element).attr('title', "{{ __('messages.remove_from_favorites') }}");
 
                     } else if (result.status === 2)   // for remove from fave
                     {
@@ -334,11 +355,11 @@
                         $(element).removeClass('fa-solid');
                         $(element).addClass('far');
                         $(element).removeAttr('style');
-                        $(element).attr('title',"{{ __('messages.add_to_favorites') }}");
+                        $(element).attr('title', "{{ __('messages.add_to_favorites') }}");
 
                     } else if (result.status === 3)  // for user not login
                     {
-                      // $('.toast').toast('show');
+                        // $('.toast').toast('show');
                     }
                 })
             })
