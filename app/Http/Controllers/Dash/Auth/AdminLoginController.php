@@ -32,7 +32,10 @@ class AdminLoginController extends Controller
             $admin = Admin::where('email', $request->email)->first();
             $admin->code = $code;
             $admin->save();
-            $admin->notify(new AdminLoginNotification($admin->email,$code));
+
+           // admin login with notification  not worked test with normal email
+           // $admin->notify(new AdminLoginNotification($admin->email,$code));
+
             session()->flash('success', 'کد فعال سازی به ایمیل ارسال شد');
             return redirect()->route('admin.validate.email.form');
         } catch (\Exception $ex) {

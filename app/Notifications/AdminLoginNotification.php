@@ -45,6 +45,7 @@ class AdminLoginNotification extends Notification
      */
     public function toMail($notifiable)
     {
+
         return (new MailMessage)
             ->subject('گوود شاپ تاییدیه ورود پنل مدیریت')
             ->from(env('MAIL_FROM_ADDRESS'))
