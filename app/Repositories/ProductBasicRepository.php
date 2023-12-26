@@ -18,19 +18,22 @@ class ProductBasicRepository
 
     public function store($request)
     {
+
         $thumbImagePatch = '';
-        $createdProduct = '';
+        $createdProduct = null;
+        $author = Auth::guard('admin')->id();
+
 
         $realTimestamp = substr($request->published_at, 0, 10);
         $published_at = date("Y-m-d H:i:s", (int)$realTimestamp);
 
         // for save product public info
-        DB::transaction(function () use ($thumbImagePatch, $published_at, $request) {
+        DB::transaction(function () use ($author, $thumbImagePatch, $published_at, $request) {
 
             $createdProduct = Product::create([
                 'brand_id' => $request->brand_id,
-                'status' => $request->is_active,
-                'admin_id' => Auth::guard('admin')->id(),
+                'status' => $request->status,
+                'admin_id' => $author,
                 'title_english' => $request->title_english,
                 'title_persian' => $request->title_persian,
                 'sku' => $request->sku,
@@ -48,48 +51,35 @@ class ProductBasicRepository
                 'available_in_stock' => $request->available_in_stock,
                 'marketable' => $request->marketable,
             ]);
+
             $createdProduct->categories()->sync($request->categories);
+
+            // for save product thumbnail image
+            if ($request->hasFile('thumbnail_image')) {
+                if (!$this->uploadImages($createdProduct, $request)) {
+                    session()->flash('warning', __('messages.An_error_occurred_while_updated'));
+                    return redirect()->back();
+                }
+            }
+            return $createdProduct;
         });
 
-        // for save product thumbnail image
-        if ($request->hasFile('thumbnail_image')) {
-            if (!$this->uploadImages($createdProduct, $request)) {
-                session()->flash('warning', __('messages.An_error_occurred_while_updated'));
-                return redirect()->back();
-            }
-
-            // get image filename with the extension
-            $fileNameWithExt = $request->file('thumbnail_image')->getClientOriginalName();
-
-            // get just filename
-            $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
-            // get just extension
-            $extension = $request->file('thumbnail_image')->getClientOriginalExtension();
-            // filename for store
-            $fileNameToStore = 'thumbnail' . $fileName . '_' . time() . '.' . $extension;
-            // path image for store
-            $thumbImagePatch = "images/product/thumbnail/" . $fileNameToStore;
-        }
-
-
-        return $createdProduct;
-
     }
-
 
     public function update($request)
     {
 
-        //dd($request);
+
+        $author = Auth::guard('admin')->id();
         $current_product = Product::findOrFail($request->product);
         $realTimestamp = substr($request->published_at, 0, 10);
         $published_at = date("Y-m-d H:i:s", (int)$realTimestamp);
 
-        DB::transaction(function () use ($current_product, $published_at, $request) {
+        DB::transaction(function () use ($author, $current_product, $published_at, $request) {
             $current_product->sku = $request->sku;
             $current_product->brand_id = $request->brand_id;
-            $current_product->status = $request->is_active;
-            $current_product->admin_id = Auth::guard('admin')->id();
+            $current_product->status = $request->status;
+            $current_product->admin_id = $author;
             $current_product->title_english = $request->title_english;
             $current_product->title_persian = $request->title_persian;
             $current_product->short_description = $request->short_description;
@@ -128,7 +118,6 @@ class ProductBasicRepository
         }
         return $current_product;
     }
-
 
     private function uploadImages($createdProduct, $request)
     {

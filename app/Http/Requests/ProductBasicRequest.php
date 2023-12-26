@@ -32,7 +32,7 @@ class ProductBasicRequest extends FormRequest
             'full_description' => ['required', 'min:2','string','max:5000'],
             'seo_desc' => ['required', 'min:2','string','max:150'],
             //  'categories' => ['required'],
-            'is_active' => ['required'],
+            'status' => ['required'],
             'brand_id' => ['required'],
             'product_tags' => ['required'],
             'sku' => ['required', 'min:1', 'max:30'],

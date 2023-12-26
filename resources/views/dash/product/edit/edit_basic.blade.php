@@ -52,13 +52,13 @@
                         </div>
                         <div class="col mt-5 mb-5">
                             <label for="active" class="form-label">وضعیت نمایش کالا</label>
-                            <select name="is_active" id="active" class="form-select">
+                            <select name="status" id="active" class="form-select">
                                 <option
                                     {{ $product->status == 0 ? 'selected' : '' }} value="0">{{ __('messages.unpublished') }}</option>
                                 <option
                                     {{ $product->status == 1 ? 'selected' : '' }} value="1">{{ __('messages.published') }}</option>
                             </select>
-                            @error('is_active')
+                            @error('status')
                             <div class="alert alert-danger mt-3">
                                 {{ $message }}
                             </div>

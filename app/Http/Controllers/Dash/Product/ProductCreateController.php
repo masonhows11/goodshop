@@ -28,13 +28,13 @@ class ProductCreateController extends Controller
 
     public function store(ProductBasicRequest $request)
     {
-           $validatedData = $request->validated();
+
+
         try {
-            $this->productBasicRepository->store($validatedData);
+            $this->productBasicRepository->store($request);
             session()->flash('success', __('messages.New_record_saved_successfully'));
             return redirect()->route('admin.product.index');
         } catch (\Exception $ex) {
-           // return $ex->getMessage();
             return view('errors_custom.model_store_error');
         }
 

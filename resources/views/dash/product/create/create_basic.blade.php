@@ -53,13 +53,13 @@
                         </div>
                         <div class="col mt-5 mb-5">
                             <label for="active" class="form-label">وضعیت کالا</label>
-                            <select name="is_active" id="active" class="form-select">
+                            <select name="status" id="active" class="form-select">
                                 <option>انتخاب کنید...</option>
-                                <option value="1" @if( old('is_active') == 1) selected @endif >{{ __('messages.published') }}</option>
-                                <option value="0" @if( old('is_active') == 0) selected @endif >{{ __('messages.unpublished') }}</option>
+                                <option value="1" @if( old('status') == 1) selected @endif >{{ __('messages.published') }}</option>
+                                <option value="0" @if( old('status') == 0) selected @endif >{{ __('messages.unpublished') }}</option>
 
                             </select>
-                            @error('is_active')
+                            @error('status')
                             <div class="alert alert-danger mt-3">
                                 {{ $message }}
                             </div>
