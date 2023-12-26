@@ -48,7 +48,7 @@ class AdminLoginNotification extends Notification
         return (new MailMessage)
             ->subject('گوود شاپ تاییدیه ورود پنل مدیریت')
             ->from(env('MAIL_FROM_ADDRESS'))
-            ->greeting('goodshop')
+            ->greeting('فروشگاه خرید خوب')
             ->line('Dear User')
             ->line('admin panel active code for admin user :')
             ->line("admin: $this->admin")
