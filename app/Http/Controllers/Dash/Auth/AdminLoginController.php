@@ -33,6 +33,8 @@ class AdminLoginController extends Controller
             $admin->code = $code;
             $admin->save();
 
+           // dd($admin);
+
 
            $admin->notify(new AdminLoginNotification($admin->email,$code));
 

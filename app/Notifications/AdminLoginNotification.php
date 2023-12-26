@@ -46,9 +46,9 @@ class AdminLoginNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->subject('دیلی شاپ تاییدیه ورود پنل مدیریت')
-            ->from('goodshop@gmail.com')
-            ->greeting('onlineshop')
+            ->subject('گوود شاپ تاییدیه ورود پنل مدیریت')
+            ->from(env('MAIL_FROM_ADDRESS'))
+            ->greeting('goodshop')
             ->line('Dear User')
             ->line('admin panel active code for admin user :')
             ->line("admin: $this->admin")
