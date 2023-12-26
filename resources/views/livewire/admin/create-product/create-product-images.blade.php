@@ -47,13 +47,13 @@
             <div class="col-sm-8 list-product-image mt-4">
                 <div class="row row-cols-1 row-cols-md-4 g-4">
                     @if($images)
-                        @foreach($images as $image)
+                        @foreach( $images as $image)
                             <div class="col ">
                                 <div class="card border border-2 border-active-secondary">
                                     @if ( $image->image_path != null && \Illuminate\Support\Facades\Storage::disk('public')->exists('storage/images/product/gallery/'.$image->image_path) )
                                     <img src="{{ asset('storage/images/product/gallery/'.$image->image_path) }}" class="card-img-top " alt="image-product">
                                     @else
-                                        <image src="{{ asset('dash/images/no-image-icon-23494.png') }}"  id="image_view" class="img-thumbnail" height="300" width="300" alt="image">
+                                        <img src="{{ asset('dash/images/no-image-icon-23494.png') }}"  id="image_view" class="img-thumbnail" height="300" width="300" alt="image">
                                     @endif
                                     <div class="card-footer">
                                         <div class="d-flex justify-content-between">

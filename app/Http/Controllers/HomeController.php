@@ -141,7 +141,7 @@ class HomeController extends Controller
                 $direction = "desc";
                 break;
             case "5":
-                $column = "sold_number";
+                $column = "number_sold";
                 $direction = "desc";
                 break;
             default:
@@ -155,7 +155,8 @@ class HomeController extends Controller
 
         /// get products by category by eloquent query
         $category = Category::where('slug', $category_slug)->select('id')->first();
-        $products = $category->products()->select('products.id','products.title_persian','thumbnail_image','products.created_at')->orderBy($column, $direction);
+        $products = $category->products()
+            ->select('products.id','products.title_persian','thumbnail_image','products.created_at')->orderBy($column, $direction);
 
         //// request min_price max_price
         //// filter by price
