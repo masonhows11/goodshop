@@ -139,12 +139,10 @@
                                          data-bs-ride="carousel">
                                         <div class="carousel-indicators carousel-indicator-custom">
                                             @foreach ( $images as  $key => $slide)
-                                                <button type="button" data-bs-target="#product-slider"
-                                                        data-bs-slide-to="{{ $loop->index }}" class="active">
-                                                    <img
-                                                        src="{{ asset('storage/images/product/gallery/'. $slide->image_path) }}"
-                                                        alt="{{ asset('storage/images/product/gallery/'. $slide->image_path). '-' .( $key + 1) }}"
-                                                        class="d-block w-100">
+                                                <button type="button" data-bs-target="#product-slider" data-bs-slide-to="{{ $loop->index }}" class="active">
+
+                                                    <img src="{{ asset('storage/images/product/gallery/'. $slide->image_path) }}"
+                                                         alt="{{ asset('storage/images/product/gallery/'. $slide->image_path). '-' .( $key + 1) }}" class="d-block w-100">
                                                 </button>
                                             @endforeach
                                         </div>
