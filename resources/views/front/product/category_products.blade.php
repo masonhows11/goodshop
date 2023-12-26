@@ -125,9 +125,11 @@
                                                              style="background-color:{{ $color->color_code }}"></div>
                                                     @endforeach
                                                 </div>
-                                               <img src="{{ asset('storage/' . $product->thumbnail_image) }}"
-                                                    alt="{{ asset('storage/' . $product->thumbnail_image) . '-' . ( $product->id ) }}"
-                                                    class="slider-pic" loading="lazy">
+                                               @if( $product->thumbnail_image && \Illuminate\Support\Facades\Storage::disk('public')->exists($product->thumbnail_image ) )
+                                               <img src="{{ asset('storage/' . $product->thumbnail_image) }}" alt="{{ asset('storage/' . $product->thumbnail_image) . '-' . ( $product->id ) }}" class="slider-pic" loading="lazy">
+                                               @else
+                                                   <img class="img-thumbnail" width="200" height="200" src="{{ asset('dash/images/no-image-icon-23494.png') }}" alt="product_image">
+                                               @endif
                                             </div>
                                             <!-- description section in product card -->
                                             <div class="card-body">
