@@ -8,7 +8,7 @@ use App\Http\Requests\ProductBasicRequest;
 use Illuminate\Support\Facades\DB;
 
 
-class ProductCreateBasicController extends Controller
+class ProductCreateController extends Controller
 {
 
     public ProductBasicRepository $productBasicRepository;
@@ -28,8 +28,9 @@ class ProductCreateBasicController extends Controller
 
     public function store(ProductBasicRequest $request)
     {
+           $validatedData = $request->validated();
         try {
-            $this->productBasicRepository->store($request);
+            $this->productBasicRepository->store($validatedData);
             session()->flash('success', __('messages.New_record_saved_successfully'));
             return redirect()->route('admin.product.index');
         } catch (\Exception $ex) {

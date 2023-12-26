@@ -16,7 +16,6 @@ class ProductBasicRepository
 {
 
 
-
     public function store($request)
     {
         $thumbImagePatch = '';
@@ -25,6 +24,7 @@ class ProductBasicRepository
         $realTimestamp = substr($request->published_at, 0, 10);
         $published_at = date("Y-m-d H:i:s", (int)$realTimestamp);
 
+        // for save product public info
         DB::transaction(function () use ($thumbImagePatch, $published_at, $request) {
 
             $createdProduct = Product::create([
@@ -48,32 +48,31 @@ class ProductBasicRepository
                 'available_in_stock' => $request->available_in_stock,
                 'marketable' => $request->marketable,
             ]);
-
-
             $createdProduct->categories()->sync($request->categories);
-
-            if ($request->hasFile('thumbnail_image'))
-
-                if (!$this->uploadImages($createdProduct, $request)) {
-                    session()->flash('warning', __('messages.An_error_occurred_while_updated'));
-                    return redirect()->back();
-                }
-
-                // get image filename with the extension
-                $fileNameWithExt = $request->file('thumbnail_image')->getClientOriginalName();
-
-                // get just filename
-                $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
-                // get just extension
-                $extension = $request->file('thumbnail_image')->getClientOriginalExtension();
-                // filename for store
-                $fileNameToStore = 'thumbnail' . $fileName . '_' . time() . '.' . $extension;
-                // path image for store
-                $thumbImagePatch = "images/product/thumbnail/" . $fileNameToStore;
-                
-
-            return $createdProduct;
         });
+
+        // for save product thumbnail image
+        if ($request->hasFile('thumbnail_image')) {
+            if (!$this->uploadImages($createdProduct, $request)) {
+                session()->flash('warning', __('messages.An_error_occurred_while_updated'));
+                return redirect()->back();
+            }
+
+            // get image filename with the extension
+            $fileNameWithExt = $request->file('thumbnail_image')->getClientOriginalName();
+
+            // get just filename
+            $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+            // get just extension
+            $extension = $request->file('thumbnail_image')->getClientOriginalExtension();
+            // filename for store
+            $fileNameToStore = 'thumbnail' . $fileName . '_' . time() . '.' . $extension;
+            // path image for store
+            $thumbImagePatch = "images/product/thumbnail/" . $fileNameToStore;
+        }
+
+
+        return $createdProduct;
 
     }
 
@@ -84,13 +83,45 @@ class ProductBasicRepository
 
         $current_product = Product::findOrFail($request->product);
 
+        $realTimestamp = substr($request->published_at, 0, 10);
+        $published_at = date("Y-m-d H:i:s", (int)$realTimestamp);
+
+        DB::transaction(function () use ($current_product, $published_at, $request) {
+            $current_product->sku = $request->sku;
+            $current_product->brand_id = $request->brand_id;
+            $current_product->status = $request->is_active;
+            $current_product->admin_id = Auth::guard('admin')->id();
+            $current_product->title_english = $request->title_english;
+            $current_product->title_persian = $request->title_persian;
+            $current_product->short_description = $request->short_description;
+            $current_product->full_description = $request->full_description;
+            $current_product->tags = $request->product_tags;
+            $current_product->seo_desc = $request->seo_desc;
+            $current_product->origin_price = $request->origin_price;
+            $current_product->published_at = $published_at;
+            $current_product->weight = $request->weight;
+            $current_product->length = $request->length;
+            $current_product->width = $request->width;
+            $current_product->height = $request->height;
+            $current_product->available_in_stock = $request->available_in_stock;
+            $current_product->marketable = $request->marketable;
+            $current_product->save();
+
+            $current_product->categories()->sync($request->categories);
+        });
+
         if ($request->hasFile('thumbnail_image')) {
 
-            if($current_product->thumbnail_image != null ){
+            if ($current_product->thumbnail_image != null) {
                 if (Storage::disk('public')->exists($current_product->thumbnail_image)) {
                     Storage::disk('public')->delete($current_product->thumbnail_image);
                 }
-            } else{
+            } else {
+
+                if (!$this->uploadImages($current_product, $request)) {
+                    session()->flash('warning', __('messages.An_error_occurred_while_updated'));
+                    return redirect()->back();
+                }
                 // get filename with the extension
                 $fileNameWithExt = $request->file('thumbnail_image')->getClientOriginalName();
                 // get just filename
@@ -110,38 +141,36 @@ class ProductBasicRepository
 
         }
 
-        $realTimestamp = substr($request->published_at, 0, 10);
-        $published_at = date("Y-m-d H:i:s", (int)$realTimestamp);
 
-        DB::transaction(function () use ($current_product, $published_at, $request) {
-
-
-        $current_product->sku = $request->sku;
-        $current_product->brand_id = $request->brand_id;
-        $current_product->status = $request->is_active;
-        $current_product->admin_id = Auth::guard('admin')->id();
-        $current_product->title_english = $request->title_english;
-        $current_product->title_persian = $request->title_persian;
-        $current_product->short_description = $request->short_description;
-        $current_product->full_description = $request->full_description;
-        $current_product->tags = $request->product_tags;
-        $current_product->seo_desc = $request->seo_desc;
-        $current_product->origin_price = $request->origin_price;
-        $current_product->published_at = $published_at;
-        $current_product->weight = $request->weight;
-        $current_product->length = $request->length;
-        $current_product->width = $request->width;
-        $current_product->height = $request->height;
-        $current_product->available_in_stock = $request->available_in_stock;
-        $current_product->marketable = $request->marketable;
-        $current_product->save();
-
-
-        $current_product->categories()->sync($request->categories);
-
-         });
         return $current_product;
     }
+
+
+
+
+    private function uploadImages($createdProduct, $validateData)
+    {
+        $sourceImagePath = null;
+        $data = null;
+        $basPath = 'products/' . $createdProduct->id . '/';
+        try {
+            if (isset($validateData['thumbnail_image'])) {
+                $full_path = $basPath . 'thumbnail_image' . '_' . $validateData['thumbnail_image']->getClientOriginalName();
+                ImageUploader::upload($validateData['thumbnail_path'], $full_path, 'public');
+                $data = ['thumbnail_image' => $full_path];
+            }
+            $updated = $createdProduct->update($data);
+            if (!$updated) {
+                session()->flash('warning', __('messages.An_error_occurred_while_uploading_images'));
+                return redirect()->back();
+            }
+            return true;
+        } catch (\Exception $ex) {
+            return false;
+        }
+
+    }
+
 
     public function delete($request)
     {
@@ -172,46 +201,6 @@ class ProductBasicRepository
         //                $images->each->delete();
         //            }
         //        }
-    }
-
-
-    private function uploadImages($createdProduct, $validateData)
-    {
-        $sourceImagePath = null;
-        $data = [];
-        $basPath = 'products/' . $createdProduct->id . '/';
-
-        try {
-
-            if (isset($validateData['source_url'])) {
-                $sourceImagePath = $basPath . 'source_url_' . $validateData['source_url']->getClientOriginalName();
-                ImageUploader::upload($validateData['source_url'], $sourceImagePath, 'local_storage');
-                $data += ['source_url' => $sourceImagePath];
-            }
-            if (isset($validateData['thumbnail_path'])) {
-                $full_path = $basPath . 'thumbnail_path' . '_' . $validateData['thumbnail_path']->getClientOriginalName();
-                ImageUploader::upload($validateData['thumbnail_path'], $full_path, 'public');
-                $data += ['thumbnail_path' => $full_path];
-
-            }
-            if (isset($validateData['demo_url'])) {
-                $full_path = $basPath . 'demo_url' . '_' . $validateData['demo_url']->getClientOriginalName();
-                ImageUploader::upload($validateData['demo_url'], $full_path, 'public');
-                $data += ['demo_url' => $full_path];
-
-            }
-            $updated = $createdProduct->update($data);
-            if (!$updated) {
-                session()->flash('warning', __('messages.An_error_occurred_while_uploading_images'));
-                return redirect()->back();
-            }
-            return true;
-            //            session()->flash('success', __('messages.The_update_was_completed_successfully'));
-            //            return redirect()->route('admin.product.index');
-        } catch (\Exception $ex) {
-            return false;
-        }
-
     }
 
 

@@ -19,12 +19,12 @@ use App\Http\Controllers\Dash\NotificationController;
 use App\Http\Controllers\Dash\Notifications\AdminEmailNoticeFileController;
 use App\Http\Controllers\Dash\Notifications\AdminEmailNoticesController;
 use App\Http\Controllers\Dash\Notifications\AdminSMSNoticeController;
-use App\Http\Controllers\Dash\Product\ProductCreateBasicController;
+use App\Http\Controllers\Dash\Product\ProductCreateController;
 use App\Http\Controllers\Dash\Product\ProductCreateColorController;
 use App\Http\Controllers\Dash\Product\ProductCreateImageController;
 use App\Http\Controllers\Dash\Product\ProductCreateTagController;
 use App\Http\Controllers\Dash\Product\ProductMetaController;
-use App\Http\Controllers\Dash\Product\ProductEditBasicController;
+use App\Http\Controllers\Dash\Product\ProductEditController;
 use App\Http\Controllers\Dash\Discount\AmazingSalesController;
 use App\Http\Controllers\Dash\Discount\CommonDiscountController;
 use App\Http\Controllers\Dash\Discount\CouponDiscountController;
@@ -360,11 +360,11 @@ Route::prefix('admin')->name('admin.')->middleware(['auth:admin', 'verify_admin'
 
     Route::get('/product/index', IndexProduct::class)->name('product.index');
     // new product
-    Route::get('/product/create/basic', [ProductCreateBasicController::class, 'create'])->name('product.create.basic');
-    Route::post('/product/store/basic', [ProductCreateBasicController::class, 'store'])->name('product.store.basic');
+    Route::get('/product/create/basic', [ProductCreateController::class, 'create'])->name('product.create.basic');
+    Route::post('/product/store/basic', [ProductCreateController::class, 'store'])->name('product.store.basic');
     // edit product
-    Route::get('/product/edit/basic/{product}', [ProductEditBasicController::class, 'edit'])->name('product.edit.basic');
-    Route::post('/product/update/basic', [ProductEditBasicController::class, 'update'])->name('product.update.basic');
+    Route::get('/product/edit/basic/{product}', [ProductEditController::class, 'edit'])->name('product.edit.basic');
+    Route::post('/product/update/basic', [ProductEditController::class, 'update'])->name('product.update.basic');
     // crud other product feathers
     Route::get('/product/create/meta/{product}', [ProductMetaController::class, 'index'])->name('product.create.meta');
     Route::get('/product/create/images/{product}', [ProductCreateImageController::class, 'create'])->name('product.create.images');

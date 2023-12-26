@@ -9,7 +9,7 @@ use App\Repositories\ProductBasicRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class ProductEditBasicController extends Controller
+class ProductEditController extends Controller
 {
 
 
@@ -44,8 +44,10 @@ class ProductEditBasicController extends Controller
 
     public function update(ProductBasicRequest $request)
     {
+        $validatedData = $request->validated();
+        
         try {
-            $this->productBasicRepository->update($request);
+            $this->productBasicRepository->update($validatedData);
             session()->flash('success', __('messages.The_update_was_completed_successfully'));
             return redirect()->route('admin.product.index');
         } catch (\Exception $ex) {
