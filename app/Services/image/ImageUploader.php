@@ -11,6 +11,7 @@ class ImageUploader
 {
     public static function upload($image, $path, $disk)
     {
+        // $image parameter means source image for save
         if(!is_null($image)){
             Storage::disk($disk)->put($path, File::get($image));
         }

@@ -225,14 +225,15 @@
                     {{--  image section  --}}
                     <div class="col-sm-4 mt-5 mb-5">
 
-                        <div class="row d-flex flex-column justify-content-center align-content-center product-image">
-                            <div class="col-lg-8">
+                        <div class="row d-flex flex-column   product-image">
+                            <div class="col-lg-10 d-flex justify-content-center ">
                                 @if( $product->thumbnail_image != null && Storage::disk('public')->exists($product->thumbnail_image))
-                                <img src="{{  asset('storage/'.$product->thumbnail_image)  }}" id="image_view" class="img-thumbnail" height="300" width="300" alt="image"></div>
+                                <img src="{{  asset('storage/'.$product->thumbnail_image)  }}" id="image_view" class="img-thumbnail" height="300" width="300" alt="image">
                                @else
                                 <img src="{{ asset('dash/images/no-image-icon-23494.png') }}"  id="image_view" class="img-thumbnail" height="300" width="300" alt="image">
                                 @endif
-                            <div class="col-lg-11">
+                            </div>
+                            <div class="col-lg-10">
                                 <label for="image_label" class="mt-5 form-label">{{ __('messages.thumbnail_image') }}</label>
                                 <input type="file" class="form-control" accept="image/png, image/jpeg" id="image_select"
                                        name="thumbnail_image" value="{{ asset('storage/'.$product->thumbnail_image) }}"

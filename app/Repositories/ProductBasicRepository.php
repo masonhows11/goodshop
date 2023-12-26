@@ -80,7 +80,7 @@ class ProductBasicRepository
     public function update($request)
     {
 
-       //dd($request);
+        //dd($request);
         $current_product = Product::findOrFail($request->product);
         $realTimestamp = substr($request->published_at, 0, 10);
         $published_at = date("Y-m-d H:i:s", (int)$realTimestamp);
@@ -111,47 +111,34 @@ class ProductBasicRepository
 
         if ($request->hasFile('thumbnail_image')) {
 
-            if ($current_product->thumbnail_image != null) {
-                if (Storage::disk('public')->exists($current_product->thumbnail_image)) {
-                    Storage::disk('public')->delete($current_product->thumbnail_image);
-                }
-            } else {
-
-                if (!$this->uploadImages($current_product, $request)) {
+            if ($current_product->thumbnail_image != null && Storage::disk('public')->exists($current_product->thumbnail_image)) {
+                Storage::disk('public')->delete($current_product->thumbnail_image);
+                $result = $this->uploadImages($current_product, $request);
+                if ($result = false) {
                     session()->flash('warning', __('messages.An_error_occurred_while_updated'));
                     return redirect()->back();
                 }
-//                // get filename with the extension
-//                $fileNameWithExt = $request->file('thumbnail_image')->getClientOriginalName();
-//                // get just filename
-//                $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
-//                // get just extension
-//                $extension = $request->file('thumbnail_image')->getClientOriginalExtension();
-//                // filename to store
-//                $fileNameToStore = $fileName . '_' . time() . '.' . $extension;
-//                // path image to store
-//                $pathToStore = "images/product/thumbnail/" . $fileNameToStore;
-//                // store normal image to storage system file
-//                $request->file('thumbnail_image')->storeAs('public/images/product/thumbnail/', $fileNameToStore);
-//
-//                $current_product->thumbnail_image = $pathToStore;
+            } else {
+                $result = $this->uploadImages($current_product, $request);
+                if ($result = false) {
+                    session()->flash('warning', __('messages.An_error_occurred_while_updated'));
+                    return redirect()->back();
+                }
             }
         }
         return $current_product;
     }
 
 
-
-
     private function uploadImages($createdProduct, $request)
     {
         $sourceImagePath = null;
-        $data = null;
+        $data = [];
         $basPath = 'products/' . $createdProduct->id . '/';
         try {
-            if (isset($validateData->thumbnail_image)) {
+            if (isset($request->thumbnail_image)) {
                 $full_path = $basPath . 'thumbnail_image' . '_' . $request->thumbnail_image->getClientOriginalName();
-                ImageUploader::upload($validateData->thumbnail_path, $full_path, 'public');
+                ImageUploader::upload($request->thumbnail_image, $full_path, 'public');
                 $data = ['thumbnail_image' => $full_path];
             }
             $updated = $createdProduct->update($data);
