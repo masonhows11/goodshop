@@ -6,7 +6,7 @@ namespace App\Repositories;
 
 use App\Models\Product;
 use App\Models\ProductImage;
-use App\Services\Image\ImageUploader;
+use App\Services\image\ImageUploader;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
