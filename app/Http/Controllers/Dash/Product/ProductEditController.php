@@ -44,10 +44,9 @@ class ProductEditController extends Controller
 
     public function update(ProductBasicRequest $request)
     {
-        $validatedData = $request->validated();
-        
+
         try {
-            $this->productBasicRepository->update($validatedData);
+            $this->productBasicRepository->update($request);
             session()->flash('success', __('messages.The_update_was_completed_successfully'));
             return redirect()->route('admin.product.index');
         } catch (\Exception $ex) {

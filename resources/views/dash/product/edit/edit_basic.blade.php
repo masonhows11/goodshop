@@ -67,7 +67,7 @@
                         <div class="col mt-5 mb-5">
                             <label for="brands" class="form-label">برند کالا</label>
                             <select name="brand_id" class="form-select" id="brands">
-                                @foreach($brands as $brand)
+                                @foreach( $brands as $brand)
                                     <option value="{{ $brand->id }}"
                                             @if(old('brands',$product->brand_id) == $brand->id) selected @endif >{{ $brand->title_persian }}</option>
                                 @endforeach
@@ -227,9 +227,12 @@
 
                         <div class="row d-flex flex-column justify-content-center align-content-center product-image">
                             <div class="col-lg-8">
-                                <img src="{{ $product->thumbnail_image ?  asset('storage/'.$product->thumbnail_image) :   asset('dash/images/no-image-icon-23494.png') }}"
-                                     id="image_view" class="img-thumbnail" height="300" width="300" alt="image"></div>
-                            <div class="col-lg-8">
+                                @if( $product->thumbnail_image != null && Storage::disk('public')->exists($product->thumbnail_image))
+                                <img src="{{  asset('storage/'.$product->thumbnail_image)  }}" id="image_view" class="img-thumbnail" height="300" width="300" alt="image"></div>
+                               @else
+                                <img src="{{ asset('dash/images/no-image-icon-23494.png') }}"  id="image_view" class="img-thumbnail" height="300" width="300" alt="image">
+                                @endif
+                            <div class="col-lg-11">
                                 <label for="image_label" class="mt-5 form-label">{{ __('messages.thumbnail_image') }}</label>
                                 <input type="file" class="form-control" accept="image/png, image/jpeg" id="image_select"
                                        name="thumbnail_image" value="{{ asset('storage/'.$product->thumbnail_image) }}"
