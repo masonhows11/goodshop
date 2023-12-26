@@ -1,0 +1,40 @@
+<?php
+
+namespace App\Http\Requests;
+
+use Illuminate\Foundation\Http\FormRequest;
+
+class CouponRequest extends FormRequest
+{
+    /**
+     * Determine if the user is authorized to make this request.
+     */
+    public function authorize(): bool
+    {
+        return true;
+    }
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
+     */
+    public function rules(): array
+    {
+        return [
+            'code' => 'required|min:2|max:125|regex:/^[ا-یa-zA-Z0-9\-۰-۹ء-ي.،]+$/u',
+            'discount_ceiling' => 'required|max:1000000000000|min:1|numeric',
+
+            'amount_type' => 'required|in:0,1',
+            'amount' => [ (request()->amount_type == 0) ? 'max:100' : '','numeric','required' ],
+
+
+            'coupon_type' => 'required|in:0,1',
+            'user_id' => 'required_if:type,==,1|min:1|exists:users,id',
+
+            'status' => 'required|in:0,1',
+            'start_date' => 'required|numeric',
+            'end_date' => 'required|numeric',
+        ];
+    }
+}

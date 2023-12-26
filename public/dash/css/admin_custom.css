@@ -1,0 +1,121 @@
+.admin-tag-list tbody .fa-trash,
+.attribute-list tbody .fa-trash,
+.brand-list .fa-trash,
+.category-list  .fa-unlink,
+.category-list  .fa-trash,
+.admin-list-perms table tbody .fa-trash,
+.admin-list-roles table tbody .fa-trash,
+.list-products tbody .fa-trash,
+.product-meta-list table tbody .fa-trash,
+.list-colors table tbody .fa-trash,
+.delivery-list table tbody .fa-trash,
+.common-discount-list table  tbody .fa-trash,
+.setting-list table tbody .fa-trash,
+.top-banner-list .fa-trash,
+.warranty-list table tbody .fa-trash,
+.category-attribute-value table tbody .fa-trash,
+.category-attribute table tbody .fa-trash,
+.email-notice-list table tbody .fa-trash,
+.sms-notice-list table tbody .fa-trash{
+    font-size: 1.3rem;
+    color:tomato;
+}
+.sms-notice-list table tbody .fa-edit,
+.email-notice-list table tbody  .fa-edit,
+.category-attribute-value table tbody .fa-edit,
+.category-attribute table tbody .fa-edit,
+.warranty-list table tbody .fa-edit,
+.delivery-list table tbody .fa-edit,
+.top-banner-list  .fa-edit,
+.setting-list table tbody .fa-edit,
+.common-discount-list table tbody .fa-edit,
+.list-products tbody .fa-edit,
+.admin-tag-list tbody .fa-edit,
+.attribute-list tbody .fa-edit,
+.brand-list .fa-edit,
+.category-list  .fa-edit,
+.category-list .fa-sync,
+.admin-list-perms table tbody .fa-edit,
+.admin-list-roles table tbody .fa-edit,
+.product-meta-list table tbody .fa-edit,
+.list-colors table tbody .fa-edit{
+    font-size: 1.3rem;
+    color:deepskyblue;
+}
+.list-products tbody .fa-tags,
+.list-products tbody .fa-shield-alt,
+.list-products tbody .fa-paint-brush,
+.list-products tbody .fa-images,
+.list-products tbody .fa-list{
+    color:deepskyblue;
+    font-size: 1.5rem;
+}
+
+.setting-edit-form .icon-section img,
+.setting-edit-form .logo-section img,
+.create-product-gallery .image-product-gallery-preview img{
+    height: 250px !important;
+    width: 250px !important;
+}
+.list-products tbody td img{
+    height: 80px !important;
+    width: 80px !important;
+}
+.top-banner-section img,
+.product-create-body .product-image img{
+    height: 300px !important;
+    width: 300px !important;
+}
+.admin-tag-list{
+    height: max-content;
+}
+
+/*.product-meta-section .title-product div{
+    font-size: 1.3rem;
+}*/
+
+.payment-wrapper .card-text,
+.comment-wrapper .card-text {
+line-height: 30px;
+}
+
+.payment-wrapper .card-body .card-text{
+    font-size: 1.2rem;
+}
+/* show order style */
+.show-order thead tr th{
+    text-align: center;
+}
+.show-order tbody tr th {
+    font-size: 1.2rem;
+}
+.show-order tbody tr .th-header{
+    padding-right:5px
+}
+.show-order tbody tr .th-btn{
+    text-align: left;padding-left:5px
+}
+.show-order tbody .tr-info th:nth-child(1){
+    padding-right:5px
+}
+.show-order tbody .tr-info td:nth-child(2){
+    text-align: left;
+    padding-left:10px
+}
+
+.setting-edit-form  textarea,
+.setting-create-form textarea{
+   padding-top: 0;
+    padding-left: 0;
+
+}
+.banner-list .card .card-footer{
+    background-color:#F7F7F7;
+}
+.admin-profile-section .admin-image-section .image-upload-btn{
+    margin-top:3.8rem;
+}
+.admin-profile-section .admin-image-section img{
+    width: 240px; !important;
+    height: 240px; !important;
+}
