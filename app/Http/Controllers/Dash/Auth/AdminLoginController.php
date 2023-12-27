@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Dash\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
-use App\Notifications\AdminLoginNotification;
 use App\Services\GenerateToken;
 use App\Services\Message\Email\EmailService;
 use App\Services\Message\MessageService;
