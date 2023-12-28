@@ -10,7 +10,7 @@
     <div class="container-fluid">
 
         <div class="row mt-4">
-            <div class="col-lg-5">
+            <div class="col">
                 <div class="alert alert-light mt-5">
                     <h4 class="h4 text-center"><strong>{{ __('messages.management_comments') }}</strong></h4>
                 </div>

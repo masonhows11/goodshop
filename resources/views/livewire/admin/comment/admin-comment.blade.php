@@ -3,25 +3,32 @@
         {{ Breadcrumbs::render('admin.product.comments.list',$product->title_persian) }}
     @endsection
     <div class="row product-section">
-        <div class="col-lg-8">
+
+        <div class="col">
             <div class="card mb-3" style="max-width:800px;">
                 <div class="row g-0">
-                    <div class="col-md-4 mt-2">
-                        <img
-                            src="{{ $product->thumbnail_image ? asset('storage/'.$product->thumbnail_image) : asset('dash/images/no-image-icon-23494.png') }}"
-                            class="img-fluid rounded-start" alt="image">
+                    <div class="col-md-4 d-flex justify-content-center mt-2 mb-2">
+                        @if( $product->thumbnail_image != null && \Illuminate\Support\Facades\Storage::disk('public')->exists($product->thumbnail_image ) )
+                        <img src="{{ asset('storage/'.$product->thumbnail_image) }}" class="img-fluid rounded-start" alt="product_image">
+                        @else
+                            <img src="{{ asset('dash/images/no-image-icon-23494.png') }}" class="img-fluid rounded-start" alt="product_image">
+                        @endif
                     </div>
                     <div class="col-md-8 d-flex justify-content-center align-items-center">
                         <div class="card-body my-5">
                             <h5 class="card-title">{{ $product->title_persian }}</h5>
                             <p class="card-text">{!! $product->short_description !!}</p>
-                            <p class="card-text"><span
-                                    class="text-muted"> تاریخ ایجاد : {{ jdate($product->created_at)->ago() }}</span>
+                            <p class="card-text">
+                                <span class="text-muted"> تاریخ ایجاد : {{ jdate($product->created_at)->ago() }}</span>
                             </p>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+
+        <div class="col mb-3 bg-white rounded-3">
+
         </div>
     </div>
 
@@ -40,7 +47,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($comments as $comment)
+                @foreach( $comments as $comment)
                     <tr class="text-center">
                         <td>{{ $comment->id }}</td>
                         <td>{{ $comment->user->id ? $comment->user->id : 0 }}</td>
