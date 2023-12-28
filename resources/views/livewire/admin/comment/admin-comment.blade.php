@@ -27,7 +27,7 @@
             </div>
         </div>
 
-        <div class="col mb-3 bg-white rounded-3">
+        <div class="col mb-3 bg-white rounded-3 d-none d-md-block d-lg-block d-xl-block ">
 
         </div>
     </div>
