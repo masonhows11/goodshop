@@ -14,6 +14,7 @@ return [
     'first_name' => 'نام',
     'last_name' => 'نام خانوادگی',
 
+    'admins_management' => 'مدیریت مدیران',
     'users_management' => 'مدیریت کاربران',
     'manage_roles' => 'مدیریت نقش ها',
     'manage_perms' => 'مدیریت مجوز ها',
