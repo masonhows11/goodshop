@@ -142,7 +142,7 @@
                                             @foreach ( $images as  $key => $slide)
                                                 <button type="button" data-bs-target="#product-slider"
                                                         data-bs-slide-to="{{ $loop->index }}" class="active">
-                                                    @if( $slide->image_path && \Illuminate\Support\Facades\Storage::disk('public')->exists('storage/images/product/gallery/'. $slide->image_path) )
+                                                    @if( $slide->image_path && \Illuminate\Support\Facades\Storage::disk('public')->exists('images/product/gallery/'. $slide->image_path) )
                                                         <img
                                                             src="{{ asset('storage/images/product/gallery/'. $slide->image_path) }}"
                                                             alt="{{ asset('storage/images/product/gallery/'. $slide->image_path). '-' .( $key + 1) }}"
@@ -159,7 +159,7 @@
                                         <div class="carousel-inner mt-2">
                                             @foreach ( $images as $key =>  $slide)
                                                 <div class="carousel-item @if( $loop->first ) active @endif">
-                                                    @if( $slide->image_path && \Illuminate\Support\Facades\Storage::disk('public')->exists('storage/images/product/gallery/'. $slide->image_path) )
+                                                    @if( $slide->image_path && \Illuminate\Support\Facades\Storage::disk('public')->exists('images/product/gallery/'. $slide->image_path) )
                                                     <img
                                                         src="{{ asset('storage/images/product/gallery/'. $slide->image_path) }}"
                                                         alt="{{ asset('storage/images/product/gallery/'. $slide->image_path) . '-' . ($key + 1) }}"

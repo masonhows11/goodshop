@@ -50,7 +50,7 @@
                         @foreach( $images as $image)
                             <div class="col ">
                                 <div class="card border border-2 border-active-secondary">
-                                    @if ( $image->image_path != null && \Illuminate\Support\Facades\Storage::disk('public')->exists('storage/images/product/gallery/'.$image->image_path) )
+                                    @if ( $image->image_path != null && \Illuminate\Support\Facades\Storage::disk('public')->exists('images/product/gallery/'.$image->image_path) )
                                     <img src="{{ asset('storage/images/product/gallery/'.$image->image_path) }}" class="card-img-top " alt="image-product">
                                     @else
                                         <img src="{{ asset('dash/images/no-image-icon-23494.png') }}"  id="image_view" class="img-thumbnail" height="300" width="300" alt="image">
