@@ -222,8 +222,8 @@ return [
 
 
     'order_final_amount' => 'مجموع مبلغ سفارش',
-    'order_discount_amount' => 'مجموع تمامی  تخفیفات :',
-    'order_discount_amazing_amount' => 'مجموع تخفیف شگفت انگیز :',
+    'order_discount_amount' => 'مجموع تمامی  تخفیفات ',
+    'order_discount_amazing_amount' => 'مجموع تخفیف شگفت انگیز ',
     'order_total_products_discount_amount' => 'مبلغ تخفیف روی تمام محصولات',
     'final_amount' => 'مبلغ نهایی',
     'delivery_status' => 'وضعیت ارسال',
