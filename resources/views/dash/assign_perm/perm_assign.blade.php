@@ -38,8 +38,8 @@
                         </div>
                     @endforeach
                     <div class="mb-3 mt-3">
-                        <button type="submit" class="btn btn-success">ذخیره نقش ها</button>
-                        <a href="{{ route('admin.perm.list.users') }}" class="btn btn-secondary">بازگشت</a>
+                        <button type="submit" class="btn btn-success">{{ __('messages.save') }}</button>
+                        <a href="{{ route('admin.perm.list.users') }}" class="btn btn-secondary">{{ __('messages.return') }}</a>
                     </div>
                 </form>
             </div>
