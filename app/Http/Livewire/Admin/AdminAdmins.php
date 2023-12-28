@@ -12,6 +12,7 @@ class AdminAdmins extends Component
 
     protected $paginationTheme = 'bootstrap';
     public $delete_id;
+    public $search = '';
     public $stateUser = true;
 
     // step 1 : confirm delete alert
@@ -42,6 +43,7 @@ class AdminAdmins extends Component
         return view('livewire.admin.admin-admins')
             ->extends('dash.include.master_dash')
             ->section('dash_main_content')
-            ->with(['admins'=> Admin::paginate(5)]);
+            ->with(['admins'=> Admin::where('name','like','%'.$this->search.'%')
+                ->Orwhere('first_name','like','%'.$this->search.'%')->paginate(5)]);
     }
 }

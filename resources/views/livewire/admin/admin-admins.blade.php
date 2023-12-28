@@ -86,7 +86,7 @@
                 {{ $admins->links() }}
             </div>
         </div>
-        
+
     </div>
 </div>
 @push('custom_script')
