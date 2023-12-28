@@ -58,6 +58,7 @@ class AdminUsers extends Component
         return view('livewire.admin.admin-users')
             ->extends('dash.include.master_dash')
             ->section('dash_main_content')
-            ->with(['users' => User::paginate(8)]);
+            ->with(['users' => User::where('name','like','%'.$this->search.'%')
+                ->Orwhere('first_name','like','%'.$this->search.'%')->paginate(8)]);
     }
 }
