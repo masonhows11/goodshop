@@ -5,10 +5,26 @@
         @section('breadcrumb')
             {{ Breadcrumbs::render('admin.users') }}
         @endsection
-    <div class="container">
-        <div class="row admin-list-users d-flex justify-content-center">
+    <div class="container-fluid">
 
-            <div class="col-xl-10 col-lg-7 col-md-7 bg-white rounded-3 list-content">
+        <div class="row d-flex justify-content-start my-4 bg-white">
+            <div class="col-lg-4 col-md-4 col  my-5  border-bottom title-add-to-stock">
+                <div class="alert my-4">
+                    <h3> {{ __('messages.users_management') }}</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="row d-flex justify-content-center search-category-section">
+            <div class="col">
+                <div class="mb-3 mt-3">
+                    <input wire:model.debounce.500ms="search" placeholder="{{ __('messages.search') }}" type="text" class="form-control" id="search">
+                </div>
+            </div>
+        </div>
+
+        <div class="row users-management bg-white">
+            <div class="my-5">
                 <table class="table">
                     <thead>
                     <tr class="text-center">
@@ -49,12 +65,14 @@
                     </tbody>
                 </table>
             </div>
+        </div>
 
-            <div class="col-xl-7 col-lg-7 col-md-7 mt-5">
+        <div class="row d-flex justify-content-center bg-white my-4 ">
+            <div class="col-lg-4 col-md-4 my-2 pt-2 pb-2">
                 {{ $users->links() }}
             </div>
-
         </div>
+
     </div>
 </div>
 @push('custom_script')

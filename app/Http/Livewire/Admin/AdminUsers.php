@@ -8,10 +8,12 @@ use Livewire\WithPagination;
 
 class AdminUsers extends Component
 {
+
     use WithPagination;
 
     protected $paginationTheme = 'bootstrap';
     public $delete_id;
+    public $search = '';
     public $stateUser = true;
 
     public function activeUser($id)
