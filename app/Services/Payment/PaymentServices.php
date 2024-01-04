@@ -34,14 +34,14 @@ class PaymentServices
 
         try {
 
-            // send to bank for payment
+            // send to bank for pay the order payment
             $response = $zarinpal->request($payment);
             $code = $response['data']['code'];
             $message = $zarinpal->getCodeMessage($code);
             if ($code === 100) {
                 $onlinePayment->update(['bank_first_response' => $response]);
                 $authority = $response['data']['authority'];
-                // for callback after payment to check payment
+                //  callback after bank to check payment is done or failed
                 return $zarinpal->redirect($authority);
             }
 
