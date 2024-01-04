@@ -11,7 +11,6 @@ use App\Models\OnlinePayment;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Payment;
-use App\Models\Product;
 use App\Services\Payment\PaymentServices;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -141,7 +140,6 @@ class PaymentController extends Controller
                     'user_id' => $user,
                     'order_id' => $order->id,
                     'pay_date' => now(),
-                    'gateway' =>  __('messages.zarrinpal')  ,
                     'transaction_id' => '',
                     'bank_first_response' => '',
                     'status' => 1
