@@ -4,7 +4,6 @@
 namespace App\Services\Payment;
 
 
-use App\Models\OnlinePayment;
 use GuzzleHttp\Exception\RequestException;
 use Illuminate\Support\Facades\Config;
 use Zarinpal\Clients\GuzzleClient;
@@ -15,7 +14,7 @@ class PaymentServices
 
 
     // lv.1
-    public function zarinpal($amount, $order, $onlinePayment)
+    public function payment($amount, $order, $onlinePayment)
     {
 
         $merchantID = Config::get('payment.zarinpal_api_key');
@@ -26,19 +25,20 @@ class PaymentServices
         $lang = 'fa';
         $zarinpal = new Zarinpal($merchantID, $client, $lang, $sandbox, $zarinpalGate, $zarinpalGatePSP);
 
+        //// dd($zarinpal);
+
         $payment = [
             'amount' => (int)$amount * 10,
-            // for callback after payment
+            //// callback user for verify payment
             'callback_url' => route('payment.callback', [$order, $onlinePayment]),
             'description' => 'product order test payment',
         ];
 
+        //// dd($payment);
+
         try {
-
-
-            // send to bank for pay the order payment
+            //// send to bank for pay the order payment
             $response = $zarinpal->request($payment);
-          
             $code = $response['data']['code'];
             $message = $zarinpal->getCodeMessage($code);
             if ($code === 100) {
@@ -55,7 +55,7 @@ class PaymentServices
 
 
     // lv.3
-    public function zarinpalVerify($amount, $onlinePayment)
+    public function paymentVerify($amount, $onlinePayment)
     {
         // get Authority for verify
         $authority = $_GET['Authority'];

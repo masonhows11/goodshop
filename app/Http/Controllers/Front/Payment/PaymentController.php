@@ -104,12 +104,14 @@ class PaymentController extends Controller
 
     public function paymentSubmit(Request $request, PaymentServices $paymentServices)
     {
+        ////
         $request->validate([
             'paymentType' => 'required'
         ], $messages = [
             'paymentType.required' => 'نوع پرداخت را انتخاب کنید',
         ]);
 
+        ////
         $user = auth()->user()->id;
         $order = Order::where('user_id', '=', $user)->where('order_status', '=', 0)->first();
         $cartItems = CartItems::where('user_id', $user)->get();
@@ -170,7 +172,7 @@ class PaymentController extends Controller
 
              // session()->flash('warning',__('messages.internet_pay_is_being_prepared'));
               // return redirect()->back();
-            $paymentServices->zarinpal($order->order_final_amount, $order,$paymentTable);
+            $paymentServices->payment($order->order_final_amount, $order,$paymentTable);
 
         }
 
@@ -191,25 +193,20 @@ class PaymentController extends Controller
         DB::transaction(function () use ($user, $request, $cartItems, $type, $order) {
             // lv 4
             if ($request->paymentType == 2) {
-
                 $order->update(
                     ['order_status' => 2,
                         'payment_status' => 1,
                         'payment_type' => $type]
                 );
-
             } elseif ($request->paymentType == 3) {
-
                 $order->update(
                     ['order_status' => 2,
                         'payment_status' => 0,
                         'payment_type' => $type]
                 );
-
             }
             // lv 5
             foreach ($cartItems as $cartItem) {
-
                 // create order item
                 OrderItem::create([
                     'order_id' => $order->id,
@@ -229,7 +226,6 @@ class PaymentController extends Controller
                         ( $cartItem->cartItemProductPriceWithOutNumber() -
                             $cartItem->cartItemProductPriceWithOutNumber() * (  $cartItem->product->activeAmazingSale()->precentage / 100))  * ($cartItem->number),
                 ]);
-
                 // increase number of products from stock product
                 // and stock color product
                 if( $cartItem->product_color_id != null )
@@ -237,7 +233,6 @@ class PaymentController extends Controller
                     $cartItem->color()->decrement('available_in_stock',$cartItem->number);
                     DB::table('products')->where('id',$cartItem->product_id)
                         ->decrement('available_in_stock',$cartItem->number);
-
                 }elseif ($cartItem->product_color_id == null){
                     DB::table('products')->where('id',$cartItem->product_id)
                         ->decrement('available_in_stock',$cartItem->number);
@@ -254,10 +249,10 @@ class PaymentController extends Controller
     // lv.2
     public function paymentCallback(Order $order, OnlinePayment $onlinePayment, PaymentServices $paymentServices)
     {
-
+        // return 'from call back';
         $user = auth()->user()->id;
         $amount = $onlinePayment->amount * 10;
-        $result = $paymentServices->zarinpalVerify($amount, $onlinePayment);
+        $result = $paymentServices->paymentVerify($amount, $onlinePayment);
         $cartItems = CartItems::where('user_id', $user )->get();
 
 
