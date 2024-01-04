@@ -172,7 +172,7 @@ class PaymentController extends Controller
 
              // session()->flash('warning',__('messages.internet_pay_is_being_prepared'));
               // return redirect()->back();
-            $paymentServices->zarinpal($order->order_final_amount, $order, $paymentable);
+            $paymentServices->zarinpal($order->order_final_amount, $order,$paymentTable);
 
         }
 
