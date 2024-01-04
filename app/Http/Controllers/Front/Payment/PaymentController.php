@@ -168,7 +168,7 @@ class PaymentController extends Controller
         // for pay the payment online
         if($request->paymentType == 1){
 
-            $paymentServices->zarinpal()
+            $paymentServices->zarinpal();
         }
 
 
