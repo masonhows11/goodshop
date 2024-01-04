@@ -18,7 +18,7 @@ class PaymentServices
     {
 
         $merchantID = Config::get('payment.zarinpal_api_key');
-        $sandbox = true;
+        $sandbox = false;
         $zarinpalGate = false;
         $client = new GuzzleClient($sandbox);
         $zarinpalGatePSP = '';

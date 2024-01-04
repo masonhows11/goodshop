@@ -12,6 +12,7 @@ use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Payment;
 use App\Services\Payment\PaymentServices;
+use App\Services\Payment\SandboxService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -124,14 +125,14 @@ class PaymentController extends Controller
                 $paymentTable = OnlinePayment::updateOrCreate(
                     ['user_id' => $user, 'order_id' => $order->id],
                     ['amount' => $order->order_final_amount,
-                    'user_id' => $user,
-                    'order_id' => $order->id,
-                    'gateway' =>  __('messages.zarrinpal') ,
-                    'transaction_id' => '',
-                    'bank_first_response' => '',
-                    'bank_second_response' => '',
-                    'status' => 1
-                ]);
+                        'user_id' => $user,
+                        'order_id' => $order->id,
+                        'gateway' => __('messages.zarrinpal'),
+                        'transaction_id' => '',
+                        'bank_first_response' => '',
+                        'bank_second_response' => '',
+                        'status' => 1
+                    ]);
                 $type = 0;
                 break;
             case '2' :
@@ -139,13 +140,13 @@ class PaymentController extends Controller
                 $paymentTable = OfflinePayment::updateOrCreate(
                     ['user_id' => $user, 'order_id' => $order->id],
                     ['amount' => $order->order_final_amount,
-                    'user_id' => $user,
-                    'order_id' => $order->id,
-                    'pay_date' => now(),
-                    'transaction_id' => '',
-                    'bank_first_response' => '',
-                    'status' => 1
-                ]);
+                        'user_id' => $user,
+                        'order_id' => $order->id,
+                        'pay_date' => now(),
+                        'transaction_id' => '',
+                        'bank_first_response' => '',
+                        'status' => 1
+                    ]);
                 $type = 1;
                 break;
             case  '3':
@@ -153,12 +154,12 @@ class PaymentController extends Controller
                 $paymentTable = CashPayment::updateOrCreate(
                     ['user_id' => $user, 'order_id' => $order->id],
                     ['amount' => $order->order_final_amount,
-                    'user_id' => $user,
-                    'order_id' => $order->id,
-                    'pay_date' => now(),
-                    'cash_receiver' => $request->cash_receiver ? $request->cash_receiver : null,
-                    'status' => 1
-                ]);
+                        'user_id' => $user,
+                        'order_id' => $order->id,
+                        'pay_date' => now(),
+                        'cash_receiver' => $request->cash_receiver ? $request->cash_receiver : null,
+                        'status' => 1
+                    ]);
                 $type = 2;
                 break;
             default :
@@ -170,24 +171,21 @@ class PaymentController extends Controller
         // send user to bank gateway for pay order
         if ($request->paymentType == 1) {
 
-             // session()->flash('warning',__('messages.internet_pay_is_being_prepared'));
-              // return redirect()->back();
-            $paymentServices->payment($order->order_final_amount, $order,$paymentTable);
-
+             session()->flash('warning',__('messages.internet_pay_is_being_prepared'));
+             return redirect()->back();
+            // $paymentServices->payment($order->order_final_amount, $order, $paymentTable);
         }
 
         // lv 3
-         Payment::create([
+        Payment::create([
             'user_id' => $user,
             'amount' => $order->order_final_amount,
             'pay_date' => now(),
             'type' => $type,
-            'paymentable_id' =>  $paymentTable->id,
+            'paymentable_id' => $paymentTable->id,
             'paymentable_type' => $targetModel,
             'status' => 1,
         ]);
-
-
 
 
         DB::transaction(function () use ($user, $request, $cartItems, $type, $order) {
@@ -211,31 +209,30 @@ class PaymentController extends Controller
                 OrderItem::create([
                     'order_id' => $order->id,
                     'user_id' => $user,
-                    'product_id'=> $cartItem->product_id,
+                    'product_id' => $cartItem->product_id,
                     'amazing_sale_id' => $cartItem->product->activeAmazingSale()->id ?? null,
-                    'amazing_sale_discount_amount' => empty( $cartItem->product->activeAmazingSale()) ? 0 :
-                        $cartItem->cartItemProductPriceWithOutNumber() * (  $cartItem->product->activeAmazingSale()->precentage / 100),
-                    'product_color_id' => $cartItem->product_color_id ,
-                    'guarantee_id' => $cartItem->guarantee_id ,
-                    'number' => $cartItem->number ,
-                    'final_product_price' => empty( $cartItem->product->activeAmazingSale()) ? $cartItem->cartItemProductPriceWithOutNumber() :
-                       ( $cartItem->cartItemProductPriceWithOutNumber() -
-                         $cartItem->cartItemProductPriceWithOutNumber() * (  $cartItem->product->activeAmazingSale()->precentage / 100)),
+                    'amazing_sale_discount_amount' => empty($cartItem->product->activeAmazingSale()) ? 0 :
+                        $cartItem->cartItemProductPriceWithOutNumber() * ($cartItem->product->activeAmazingSale()->precentage / 100),
+                    'product_color_id' => $cartItem->product_color_id,
+                    'guarantee_id' => $cartItem->guarantee_id,
+                    'number' => $cartItem->number,
+                    'final_product_price' => empty($cartItem->product->activeAmazingSale()) ? $cartItem->cartItemProductPriceWithOutNumber() :
+                        ($cartItem->cartItemProductPriceWithOutNumber() -
+                            $cartItem->cartItemProductPriceWithOutNumber() * ($cartItem->product->activeAmazingSale()->precentage / 100)),
 
-                    'final_total_price' =>   empty( $cartItem->product->activeAmazingSale()) ? $cartItem->cartItemProductPriceWithOutNumber() * ($cartItem->number) :
-                        ( $cartItem->cartItemProductPriceWithOutNumber() -
-                            $cartItem->cartItemProductPriceWithOutNumber() * (  $cartItem->product->activeAmazingSale()->precentage / 100))  * ($cartItem->number),
+                    'final_total_price' => empty($cartItem->product->activeAmazingSale()) ? $cartItem->cartItemProductPriceWithOutNumber() * ($cartItem->number) :
+                        ($cartItem->cartItemProductPriceWithOutNumber() -
+                            $cartItem->cartItemProductPriceWithOutNumber() * ($cartItem->product->activeAmazingSale()->precentage / 100)) * ($cartItem->number),
                 ]);
                 // increase number of products from stock product
                 // and stock color product
-                if( $cartItem->product_color_id != null )
-                {
-                    $cartItem->color()->decrement('available_in_stock',$cartItem->number);
-                    DB::table('products')->where('id',$cartItem->product_id)
-                        ->decrement('available_in_stock',$cartItem->number);
-                }elseif ($cartItem->product_color_id == null){
-                    DB::table('products')->where('id',$cartItem->product_id)
-                        ->decrement('available_in_stock',$cartItem->number);
+                if ($cartItem->product_color_id != null) {
+                    $cartItem->color()->decrement('available_in_stock', $cartItem->number);
+                    DB::table('products')->where('id', $cartItem->product_id)
+                        ->decrement('available_in_stock', $cartItem->number);
+                } elseif ($cartItem->product_color_id == null) {
+                    DB::table('products')->where('id', $cartItem->product_id)
+                        ->decrement('available_in_stock', $cartItem->number);
                 }
                 $cartItem->delete();
             }
@@ -253,7 +250,7 @@ class PaymentController extends Controller
         $user = auth()->user()->id;
         $amount = $onlinePayment->amount * 10;
         $result = $paymentServices->paymentVerify($amount, $onlinePayment);
-        $cartItems = CartItems::where('user_id', $user )->get();
+        $cartItems = CartItems::where('user_id', $user)->get();
 
 
         if ($result['success']) {
@@ -263,32 +260,31 @@ class PaymentController extends Controller
                     OrderItem::create([
                         'order_id' => $order->id,
                         'user_id' => $user,
-                        'product_id'=> $cartItem->product_id,
+                        'product_id' => $cartItem->product_id,
                         'amazing_sale_id' => $cartItem->product->activeAmazingSale()->id ?? null,
-                        'amazing_sale_discount_amount' => empty( $cartItem->product->activeAmazingSale()) ? 0 :
-                            $cartItem->cartItemProductPriceWithOutNumber() * (  $cartItem->product->activeAmazingSale()->precentage / 100),
-                        'product_color_id' => $cartItem->product_color_id ,
-                        'guarantee_id' => $cartItem->guarantee_id ,
-                        'number' => $cartItem->number ,
-                        'final_product_price' => empty( $cartItem->product->activeAmazingSale()) ? $cartItem->cartItemProductPriceWithOutNumber() :
-                            ( $cartItem->cartItemProductPriceWithOutNumber() -
-                                $cartItem->cartItemProductPriceWithOutNumber() * (  $cartItem->product->activeAmazingSale()->precentage / 100)),
+                        'amazing_sale_discount_amount' => empty($cartItem->product->activeAmazingSale()) ? 0 :
+                            $cartItem->cartItemProductPriceWithOutNumber() * ($cartItem->product->activeAmazingSale()->precentage / 100),
+                        'product_color_id' => $cartItem->product_color_id,
+                        'guarantee_id' => $cartItem->guarantee_id,
+                        'number' => $cartItem->number,
+                        'final_product_price' => empty($cartItem->product->activeAmazingSale()) ? $cartItem->cartItemProductPriceWithOutNumber() :
+                            ($cartItem->cartItemProductPriceWithOutNumber() -
+                                $cartItem->cartItemProductPriceWithOutNumber() * ($cartItem->product->activeAmazingSale()->precentage / 100)),
 
-                        'final_total_price' =>   empty( $cartItem->product->activeAmazingSale()) ? $cartItem->cartItemProductPriceWithOutNumber() * ($cartItem->number) :
-                              ( $cartItem->cartItemProductPriceWithOutNumber() -
-                                $cartItem->cartItemProductPriceWithOutNumber() * (  $cartItem->product->activeAmazingSale()->precentage / 100))  * ($cartItem->number),
+                        'final_total_price' => empty($cartItem->product->activeAmazingSale()) ? $cartItem->cartItemProductPriceWithOutNumber() * ($cartItem->number) :
+                            ($cartItem->cartItemProductPriceWithOutNumber() -
+                                $cartItem->cartItemProductPriceWithOutNumber() * ($cartItem->product->activeAmazingSale()->precentage / 100)) * ($cartItem->number),
                     ]);
                     // increase number of products from stock product
                     // and stock color product
-                    if( $cartItem->product_color_id != null )
-                    {
-                        $cartItem->color()->decrement('available_in_stock',$cartItem->number);
-                        DB::table('products')->where('id',$cartItem->product_id)
-                            ->decrement('available_in_stock',$cartItem->number);
+                    if ($cartItem->product_color_id != null) {
+                        $cartItem->color()->decrement('available_in_stock', $cartItem->number);
+                        DB::table('products')->where('id', $cartItem->product_id)
+                            ->decrement('available_in_stock', $cartItem->number);
 
-                    }elseif ($cartItem->product_color_id == null){
-                        DB::table('products')->where('id',$cartItem->product_id)
-                            ->decrement('available_in_stock',$cartItem->number);
+                    } elseif ($cartItem->product_color_id == null) {
+                        DB::table('products')->where('id', $cartItem->product_id)
+                            ->decrement('available_in_stock', $cartItem->number);
                     }
 
                     $cartItem->delete();
@@ -303,7 +299,7 @@ class PaymentController extends Controller
             }, 1);
 
 
-            $order = Order::where('user_id',$user)
+            $order = Order::where('user_id', $user)
                 ->where('order_status', 2)
                 ->where('order_number', $order->order_number)->first();
 
@@ -318,20 +314,20 @@ class PaymentController extends Controller
                 OrderItem::create([
                     'order_id' => $order->id,
                     'user_id' => $user,
-                    'product_id'=> $cartItem->product_id,
+                    'product_id' => $cartItem->product_id,
                     'amazing_sale_id' => $cartItem->product->activeAmazingSale()->id ?? null,
-                    'amazing_sale_discount_amount' => empty( $cartItem->product->activeAmazingSale()) ? 0 :
-                        $cartItem->cartItemProductPriceWithOutNumber() * (  $cartItem->product->activeAmazingSale()->precentage / 100),
-                    'product_color_id' => $cartItem->product_color_id ,
-                    'guarantee_id' => $cartItem->guarantee_id ,
-                    'number' => $cartItem->number ,
-                    'final_product_price' => empty( $cartItem->product->activeAmazingSale()) ? $cartItem->cartItemProductPriceWithOutNumber() :
-                        ( $cartItem->cartItemProductPriceWithOutNumber() -
-                            $cartItem->cartItemProductPriceWithOutNumber() * (  $cartItem->product->activeAmazingSale()->precentage / 100)),
+                    'amazing_sale_discount_amount' => empty($cartItem->product->activeAmazingSale()) ? 0 :
+                        $cartItem->cartItemProductPriceWithOutNumber() * ($cartItem->product->activeAmazingSale()->precentage / 100),
+                    'product_color_id' => $cartItem->product_color_id,
+                    'guarantee_id' => $cartItem->guarantee_id,
+                    'number' => $cartItem->number,
+                    'final_product_price' => empty($cartItem->product->activeAmazingSale()) ? $cartItem->cartItemProductPriceWithOutNumber() :
+                        ($cartItem->cartItemProductPriceWithOutNumber() -
+                            $cartItem->cartItemProductPriceWithOutNumber() * ($cartItem->product->activeAmazingSale()->precentage / 100)),
 
-                    'final_total_price' =>   empty( $cartItem->product->activeAmazingSale()) ? $cartItem->cartItemProductPriceWithOutNumber()  * ($cartItem->number) :
-                           ( $cartItem->cartItemProductPriceWithOutNumber() -
-                            $cartItem->cartItemProductPriceWithOutNumber() * (  $cartItem->product->activeAmazingSale()->precentage / 100))  * ($cartItem->number),
+                    'final_total_price' => empty($cartItem->product->activeAmazingSale()) ? $cartItem->cartItemProductPriceWithOutNumber() * ($cartItem->number) :
+                        ($cartItem->cartItemProductPriceWithOutNumber() -
+                            $cartItem->cartItemProductPriceWithOutNumber() * ($cartItem->product->activeAmazingSale()->precentage / 100)) * ($cartItem->number),
                 ]);
                 // increase number of products from stock product
                 // and stock color product
@@ -345,7 +341,7 @@ class PaymentController extends Controller
                     'payment_type' => 0]
             );
 
-            $order = Order::where('user_id', $user )
+            $order = Order::where('user_id', $user)
                 ->where('order_status', 1)
                 ->where('order_number', $order->order_number)->first();
 
@@ -358,7 +354,7 @@ class PaymentController extends Controller
 
     public function paymentResult(Request $request, $orderNumber)
     {
-        if( $orderNumber != null ){
+        if ($orderNumber != null) {
             $order = Order::where('user_id', Auth::id())->where('order_number', $orderNumber)->first();
             return view('front.payment.payment_result', ['order' => $order]);
         }

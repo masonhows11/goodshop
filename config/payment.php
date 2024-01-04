@@ -3,5 +3,5 @@
 
 return [
     // add merchantID for zarinpal
-  'zarinpal_api_key' => 'dsadsfdsg465fd4gfd65gewrwer46',
+  'zarinpal_api_key' => 'dsadsfdsg465fd4gfd65gewrwer46dg2d6c3',
 ];
