@@ -13,9 +13,17 @@ use Zarinpal\Zarinpal;
 class PaymentServices
 {
 
+    public function paymentCallback()
+    {
+        $amount = 0;
+        $result = $this->zarinpalVerify($amount,);
+        if ($result['success']) {
+            return 'ok';
+        }
+    }
 
     // lv.1
-    public function zarinpal($amount,$order,$onlinePayment)
+    public function zarinpal($amount, $order, $onlinePayment)
     {
 
         $merchantID = Config::get('payment.zarinpal_api_key');
@@ -28,7 +36,7 @@ class PaymentServices
 
         $payment = [
             'amount' => (int)$amount * 10,
-            'callback_url' => route('payment.callback',[$order,$onlinePayment]),
+            'callback_url' => route('payment.callback', [$order, $onlinePayment]),
             'description' => 'product order test payment',
         ];
 
@@ -51,17 +59,20 @@ class PaymentServices
     }
 
 
-
     // lv.3
     public function zarinpalVerify($amount, $onlinePayment)
     {
+        // get Authority for verify
         $authority = $_GET['Authority'];
+        // get additional data for verify
         $data = ['merchantID' => Config::get('payment.zarinpal_api_key'), 'authority' => $authority, 'amount' => (int)$amount];
         $jsonData = json_encode($data);
 
+        https://sandbox.zarinpal.com/pg/v4/payment/verify.json
+        // https://api.zarinpal.com/pg/v4/payment/verify.json
         $curl = curl_init();
         curl_setopt_array($curl, array(
-            CURLOPT_URL => 'https://api.zarinpal.com/pg/v4/payment/verify.json',
+            CURLOPT_URL => 'https://sandbox.zarinpal.com/pg/v4/payment/verify.json',
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => '',
             CURLOPT_MAXREDIRS => 10,
@@ -93,7 +104,6 @@ class PaymentServices
 
 
     }
-
 
 
 }

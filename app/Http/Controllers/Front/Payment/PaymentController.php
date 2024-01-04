@@ -120,7 +120,7 @@ class PaymentController extends Controller
         switch ($request->paymentType) {
             case '1':
                 $targetModel = OnlinePayment::class;
-                $paymentable = OnlinePayment::updateOrCreate(
+                $paymentTable = OnlinePayment::updateOrCreate(
                     ['user_id' => $user, 'order_id' => $order->id],
                     ['amount' => $order->order_final_amount,
                     'user_id' => $user,
@@ -135,7 +135,7 @@ class PaymentController extends Controller
                 break;
             case '2' :
                 $targetModel = OfflinePayment::class;
-                $paymentable = OfflinePayment::updateOrCreate(
+                $paymentTable = OfflinePayment::updateOrCreate(
                     ['user_id' => $user, 'order_id' => $order->id],
                     ['amount' => $order->order_final_amount,
                     'user_id' => $user,
@@ -150,7 +150,7 @@ class PaymentController extends Controller
                 break;
             case  '3':
                 $targetModel = CashPayment::class;
-                $paymentable = CashPayment::updateOrCreate(
+                $paymentTable = CashPayment::updateOrCreate(
                     ['user_id' => $user, 'order_id' => $order->id],
                     ['amount' => $order->order_final_amount,
                     'user_id' => $user,
@@ -172,7 +172,7 @@ class PaymentController extends Controller
             'amount' => $order->order_final_amount,
             'pay_date' => now(),
             'type' => $type,
-            'paymentable_id' => $paymentable->id,
+            'paymentable_id' =>  $paymentTable->id,
             'paymentable_type' => $targetModel,
             'status' => 1,
         ]);
