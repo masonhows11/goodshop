@@ -28,6 +28,7 @@ class PaymentServices
 
         $payment = [
             'amount' => (int)$amount * 10,
+            // for callback after payment
             'callback_url' => route('payment.callback', [$order, $onlinePayment]),
             'description' => 'product order test payment',
         ];
@@ -58,9 +59,10 @@ class PaymentServices
         $authority = $_GET['Authority'];
         // get additional data for verify
         $data = ['merchantID' => Config::get('payment.zarinpal_api_key'), 'authority' => $authority, 'amount' => (int)$amount];
+       // convert to json format
         $jsonData = json_encode($data);
 
-        https://sandbox.zarinpal.com/pg/v4/payment/verify.json
+        // https://sandbox.zarinpal.com/pg/v4/payment/verify.json
         // https://api.zarinpal.com/pg/v4/payment/verify.json
         $curl = curl_init();
         curl_setopt_array($curl, array(
