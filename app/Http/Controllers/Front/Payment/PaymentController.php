@@ -165,14 +165,18 @@ class PaymentController extends Controller
                 return redirect()->back()->withErrors(['error' => __('messages.An_error_occurred')]);
         }
 
-        // for pay the payment online
-        if($request->paymentType == 1)
-        {
-            $paymentServices->zarinpal($order->order_final_amount,$order,$paymentTable);
+
+        // lv 2
+        // send user to bank gateway for pay order
+        if ($request->paymentType == 1) {
+
+             // session()->flash('warning',__('messages.internet_pay_is_being_prepared'));
+              // return redirect()->back();
+            $paymentServices->zarinpal($order->order_final_amount, $order, $paymentable);
+
         }
 
-
-        // lv2
+        // lv 3
          Payment::create([
             'user_id' => $user,
             'amount' => $order->order_final_amount,
@@ -184,15 +188,7 @@ class PaymentController extends Controller
         ]);
 
 
-        // lv 3
-        // send user to bank gateway for pay order
-        if ($request->paymentType == 1) {
 
-            session()->flash('warning',__('messages.internet_pay_is_being_prepared'));
-            return redirect()->back();
-            $paymentServices->zarinpal($order->order_final_amount, $order, $paymentable);
-
-        }
 
         DB::transaction(function () use ($user, $request, $cartItems, $type, $order) {
             // lv 4
@@ -268,12 +264,8 @@ class PaymentController extends Controller
 
 
         if ($result['success']) {
-
-
             DB::transaction(function () use ($user, $order, $cartItems) {
-
                 foreach ($cartItems as $cartItem) {
-
                     // create order item
                     OrderItem::create([
                         'order_id' => $order->id,

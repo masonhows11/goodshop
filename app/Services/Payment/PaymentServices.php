@@ -12,7 +12,7 @@ use Zarinpal\Zarinpal;
 
 class PaymentServices
 {
-    
+
 
     // lv.1
     public function zarinpal($amount, $order, $onlinePayment)
