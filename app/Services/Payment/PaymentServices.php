@@ -19,7 +19,7 @@ class PaymentServices
     {
 
         $merchantID = Config::get('payment.zarinpal_api_key');
-        $sandbox = false;
+        $sandbox = true;
         $zarinpalGate = false;
         $client = new GuzzleClient($sandbox);
         $zarinpalGatePSP = '';
@@ -29,17 +29,19 @@ class PaymentServices
         $payment = [
             'amount' => (int)$amount * 10,
             'callback_url' => route('payment.callback',[$order,$onlinePayment]),
-            'description' => 'some description',
+            'description' => 'product order test payment',
         ];
 
         try {
 
+            // send to bank for payment
             $response = $zarinpal->request($payment);
             $code = $response['data']['code'];
             $message = $zarinpal->getCodeMessage($code);
             if ($code === 100) {
                 $onlinePayment->update(['bank_first_response' => $response]);
                 $authority = $response['data']['authority'];
+                // for callback after payment to check payment
                 return $zarinpal->redirect($authority);
             }
 
