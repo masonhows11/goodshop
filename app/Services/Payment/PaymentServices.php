@@ -12,15 +12,7 @@ use Zarinpal\Zarinpal;
 
 class PaymentServices
 {
-
-    public function paymentCallback()
-    {
-        $amount = 0;
-        $result = $this->zarinpalVerify($amount,);
-        if ($result['success']) {
-            return 'ok';
-        }
-    }
+    
 
     // lv.1
     public function zarinpal($amount, $order, $onlinePayment)
