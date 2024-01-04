@@ -18,10 +18,5 @@
             @endif
         @endforeach
     @else
-        {{--<label class="select-color">
-            <span class="color-shape" style="background-color: rgb(3, 3, 3);"></span>
-            <input type="radio" name="color">
-            <span class="color-name">مشکی</span>
-        </label>--}}
     @endif
 </div>

@@ -14,7 +14,6 @@ class ColorSelector extends Component
     public $defaultColor = false;
     public function mount()
     {
-        //  $defaultColorName =  ProductColor::where('product_id', $this->product)->where('default',1)->exists();
         $this->colors = ProductColor::where('product_id', $this->product)
             ->where('available_in_stock','>',0)
             ->where('status',1)->get();

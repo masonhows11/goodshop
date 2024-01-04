@@ -6,17 +6,18 @@
             </div>
             <div>
                 <button type="button" class="btn btn-danger add-cart-btn">
-                    خبرم کن اگه موجود شد
+                   {{ __('messages.keep_me_update_if_exists') }}
                 </button>
             </div>
         </div>
     @else
-        {{--  <div class="col-lg-3 col-md-4">--}}
+
         <p class="text-danger text-center">{{ $product->activeAmazingSale() ? __('messages.amazing_sale') . ' ' . $product->activeAmazingSale()->percentage . '%' : '' }}</p>
+
         <div class="add-cart-box">
 
             <div class="product-seller-row">
-                <span>فروشنده :</span>
+                <span>{{ __('messages.seller') }}</span>
                 <span>{{ __('messages.site_name') }}</span>
             </div>
 

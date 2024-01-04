@@ -82,6 +82,7 @@ class CreateProductColor extends Component
                 $this->price_increase = '';
                 $this->status = '';
                 $this->default = '';
+                $this->available_in_stock = '';
                 $this->salable_quantity = '';
 
                 $this->dispatchBrowserEvent('show-result',
