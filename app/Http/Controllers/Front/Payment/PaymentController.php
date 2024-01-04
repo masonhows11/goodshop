@@ -165,6 +165,12 @@ class PaymentController extends Controller
                 return redirect()->back()->withErrors(['error' => __('messages.An_error_occurred')]);
         }
 
+        // for pay the payment online
+        if($request->paymentType == 1){
+
+            $paymentServices->zarinpal()
+        }
+
 
         // lv2
          Payment::create([
