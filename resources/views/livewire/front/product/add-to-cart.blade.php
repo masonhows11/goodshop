@@ -62,9 +62,6 @@
 
             {{--------------------------}}
             {{---- discount section ----}}
-            @php
-                $amazingSale =  $product->activeAmazingSale();
-            @endphp
             @if( $amazingSale != null && $defaultPriceByColor != null )
                 <div class="product-seller-row">
                     <span>{{ __('messages.cart_discount') }}:</span>
@@ -140,7 +137,7 @@
 
             <button type="button" wire:click="addToCart({{ $product->id }})"
                     class="btn btn-danger add-cart-btn {{ $product->available_in_stock == 0 ? 'disabled' : '' }}">
-                افزودن به سبد خرید
+               {{ __('messages.add_to_cart') }}
             </button>
 
             @if( session()->has('message'))

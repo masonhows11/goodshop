@@ -368,6 +368,7 @@ return [
     'yes' => 'بله',
     'no' => 'خیر',
     'default_color' => 'رنگ پیش فرض',
+    'select_color' => 'انتخاب رنگ',
     'add_to_favorites' => 'افزودن به علاقمه مندی ها',
     'remove_from_favorites' => 'حذف از علاقه مندی ها',
     'for_add_to_favorites_you_must_login' => 'برای افزودن به علاقه مندی ها باید وارد حساب کاربری خود شوید',

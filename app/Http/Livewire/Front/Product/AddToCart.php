@@ -21,8 +21,6 @@ class AddToCart extends Component
     public $changePrice = false;
     public $hasWarranty = false;
     public $warrantyPrice;
-
-
     // properties for add to cart
     public $final_product_id;
     public $final_color_id_for_cart;
@@ -46,7 +44,6 @@ class AddToCart extends Component
         }else{
             $this->final_product_id = $this->product->id;
         }
-
     }
 
     // event for  change price product by change color
@@ -83,17 +80,13 @@ class AddToCart extends Component
     public function addToCart($product)
     {
         if (Auth::check()) {
-
             $this->number;
-
 
             if ($this->warranty_id_for_cart == null) {
                 $this->warranty_id_for_cart = null;
             }
-
             $cartItems = CartItems::where('product_id', $this->final_product_id)->where('user_id', auth()->user()->id)->get();
             $cartCollect = collect($cartItems);
-
             if ($cartCollect->isNotEmpty())
             {
                 $product = $cartCollect->where('product_color_id', $this->final_color_id_for_cart)
@@ -120,10 +113,7 @@ class AddToCart extends Component
                 $inputs['number'] = $this->number;
                 CartItems::create($inputs);
             }
-
             $this->emitTo(CartHeader::class, 'addToCart', $this->number);
-
-
         } else {
             return redirect()->route('auth.login.form');
         }
@@ -133,6 +123,6 @@ class AddToCart extends Component
     public function render()
     {
         return view('livewire.front.product.add-to-cart')
-            ->with(['product' => $this->product]);
+            ->with(['product' => $this->product , 'amazingSale' => $this->product->activeAmazingSale()]);
     }
 }
