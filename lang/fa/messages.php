@@ -473,6 +473,8 @@ return [
     'products_compare' => 'مقایسه محصولات',
     'specifications' => 'مشخصات',
     'add_to_cart' => ' افزودن به سبد خرید',
+    'just' => 'فقط',
+    'number_left_in_stock' => 'عدد در انبار مانده',
     'weight' => 'وزن',
     'length' => 'طول',
     'width' => 'عرض',

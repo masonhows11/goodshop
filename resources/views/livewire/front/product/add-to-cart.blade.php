@@ -12,7 +12,9 @@
         </div>
     @else
 
-        <p class="text-danger text-center">{{ $product->activeAmazingSale() ? __('messages.amazing_sale') . ' ' . $product->activeAmazingSale()->percentage . '%' : '' }}</p>
+        <p class="text-danger text-center">
+            {{ $product->activeAmazingSale() ? __('messages.amazing_sale') . ' ' . $product->activeAmazingSale()->percentage . '%' : '' }}
+        </p>
 
         <div class="add-cart-box">
 
@@ -23,11 +25,11 @@
 
             {{-- availble stock from product table --}}
             <div class="product-seller-row">
-                <span>وضعیت :</span>
+                <span>{{ __('messages.status') }} :</span>
                 @if( $product->available_in_stock >= 3 )
                     <span>{{ __('messages.available_in_stock') }}</span>
                 @elseif( $product->available_in_stock > 1 && $product->available_in_stock < 5 )
-                    <span> فقط {{ $product->available_in_stock}} عدد در انبار مانده </span>
+                    <span> {{ __('messages.just') }} {{ $product->available_in_stock}} {{ __('messages.number_left_in_stock') }} </span>
                 @elseif( $product->available_in_stock == 0)
                     <span>{{ __('messages.out_of_stock') }}</span>
                 @endif
@@ -65,17 +67,23 @@
             @if( $amazingSale != null && $defaultPriceByColor != null )
                 <div class="product-seller-row">
                     <span>{{ __('messages.cart_discount') }}:</span>
-                    <span class="text-danger">{{ priceFormat( $defaultPriceByColor * ($amazingSale->percentage / 100)) }} {{ __('messages.toman') }} </span>
+                    <span class="text-danger">
+                        {{ priceFormat( $defaultPriceByColor * ($amazingSale->percentage / 100)) }} {{ __('messages.toman') }}
+                    </span>
                 </div>
             @elseif( $amazingSale != null && $newPriceByColor != null )
                 <div class="product-seller-row">
                     <span>{{ __('messages.cart_discount') }}:</span>
-                    <span class="text-danger">{{ priceFormat( $newPriceByColor * ($amazingSale->percentage / 100)) }} {{ __('messages.toman') }} </span>
+                    <span class="text-danger">
+                        {{ priceFormat( $newPriceByColor * ($amazingSale->percentage / 100)) }} {{ __('messages.toman') }}
+                    </span>
                 </div>
             @elseif( $amazingSale != null )
                 <div class="product-seller-row">
                     <span>{{ __('messages.cart_discount') }}:</span>
-                    <span class="text-danger">{{ priceFormat($product->origin_price * ($amazingSale->percentage / 100)) }} {{ __('messages.toman') }} </span>
+                    <span class="text-danger">
+                        {{ priceFormat($product->origin_price * ($amazingSale->percentage / 100)) }} {{ __('messages.toman') }}
+                    </span>
                 </div>
             @else
             @endif
@@ -107,11 +115,17 @@
                     <div class="product-seller-row">
                         <span> {{ __('messages.final_price') }}</span>
                         @if( $amazingSale != null && $hasWarranty == false )
-                            <span class="text-danger">{{  priceFormat($product->AmazingSaleOnDefaultColorPrice($defaultPriceByColor))   }} {{ __('messages.toman') }} </span>
+                            <span class="text-danger">
+                                {{  priceFormat($product->AmazingSaleOnDefaultColorPrice($defaultPriceByColor))   }} {{ __('messages.toman') }}
+                            </span>
                         @elseif( $amazingSale != null && $hasWarranty == true )
-                            <span class="text-danger">{{   priceFormat( $product->AmazingSaleOnDefaultColorPrice($defaultPriceByColor) + $warrantyPrice )  }} {{ __('messages.toman') }} </span>
+                            <span class="text-danger">
+                                {{   priceFormat( $product->AmazingSaleOnDefaultColorPrice($defaultPriceByColor) + $warrantyPrice )  }} {{ __('messages.toman') }}
+                            </span>
                         @else
-                            <span class="text-danger">{{  $warrantyPrice != null ? priceFormat($defaultPriceByColor + $warrantyPrice) : priceFormat($defaultPriceByColor) }} {{ __('messages.toman') }} </span>
+                            <span class="text-danger">
+                                {{  $warrantyPrice != null ? priceFormat($defaultPriceByColor + $warrantyPrice) : priceFormat($defaultPriceByColor) }} {{ __('messages.toman') }}
+                            </span>
                         @endif
                     </div>
                 @else
