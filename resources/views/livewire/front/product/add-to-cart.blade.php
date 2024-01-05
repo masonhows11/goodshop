@@ -147,8 +147,7 @@
                     @endif
                 </div>
             @endif
-
-
+            
             <button type="button" wire:click="addToCart({{ $product->id }})"
                     class="btn btn-danger add-cart-btn {{ $product->available_in_stock == 0 ? 'disabled' : '' }}">
                {{ __('messages.add_to_cart') }}
@@ -160,9 +159,7 @@
                 </div>
             @endif
 
-
         </div>
-
     @endif
         {{-- <span class="text-danger"> {{ priceFormat($product->origin_price - ($product->origin_price * ($amazingSale->percentage / 100))) }} {{ __('messages.toman') }} </span>--}}
         {{-- <span class="text-danger">{{  priceFormat( $defaultPriceByColor - ( $defaultPriceByColor * ($amazingSale->percentage / 100)))   }} تومان </span> --}}
