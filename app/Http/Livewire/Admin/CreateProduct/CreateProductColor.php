@@ -40,6 +40,10 @@ class CreateProductColor extends Component
         'available_in_stock' => ['required', 'numeric', 'gt:-1'],
     ];
 
+    public function saveDefault()
+    {
+
+    }
 
     public function save()
     {
@@ -176,6 +180,7 @@ class CreateProductColor extends Component
             ->extends('dash.include.master_dash')
             ->section('dash_main_content')
             ->with(['product' => $this->product,
+                'product_default_colors' => ProductColor::where('product_id', $this->product_id)->where('default',1)->get(),
                 'product_colors' => ProductColor::where('product_id', $this->product_id)->get(),
                 'colors' => Color::all()]);
     }

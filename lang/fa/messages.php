@@ -100,6 +100,7 @@ return [
     'product_meta_value' => 'مقدار مشخصه',
     'product_images' => ' مدیریت تصاویر',
     'product_colors' => 'مدیریت رنگها',
+    'product_default_color' => 'رنگ پیش فرض',
     'product_guarantee' => 'گارانتی کالا',
     'new_product' => 'کالای جدید',
     'search_product' => 'جستجوی کالا',
