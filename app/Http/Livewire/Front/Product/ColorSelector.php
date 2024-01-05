@@ -12,6 +12,7 @@ class ColorSelector extends Component
     public $colors;
     public $selectedColorName;
     public $selectedColor;
+    public $changeColor = false;
     public $defaultColor = false;
     public function mount()
     {
@@ -21,15 +22,22 @@ class ColorSelector extends Component
         $this->colors = ProductColor::where('product_id', $this->product)
             ->where('available_in_stock','>',0)
             ->where('status',1)->where('default',0)->get();
-        $hasDefaultColor = collect($this->colors)->where('default', 1);
 
-        if ($hasDefaultColor->isNotEmpty()) {
-            $defaultColorName = collect($this->colors)->where('default', 1)->first();
-            $this->selectedColorName = $defaultColorName->color_name;
+        if ($this->selectedColor != null ) {
+            $this->selectedColorName = $this->selectedColor->color_name;
             $this->defaultColor = true;
         } else {
             $this->defaultColor = false;
         }
+
+        // $hasDefaultColor = collect($this->colors)->where('default', 1);
+        //        if ($hasDefaultColor->isNotEmpty()) {
+        //            $defaultColorName = collect($this->selectedColor)->where('default', 1)->first();
+        //            $this->selectedColorName = $defaultColorName->color_name;
+        //            $this->defaultColor = true;
+        //        } else {
+        //            $this->defaultColor = false;
+        //        }
     }
 
     public function radioClick($color)
