@@ -101,6 +101,8 @@ return [
     'product_images' => ' مدیریت تصاویر',
     'product_colors' => 'مدیریت رنگها',
     'product_default_color' => 'رنگ پیش فرض',
+    'product_other_color' => 'سایر رنگ ها',
+    'the_product_can_only_have_one_default_color' => 'محصول فقط می تواند یک رنگ پیش فرض داشته باشد',
     'product_guarantee' => 'گارانتی کالا',
     'new_product' => 'کالای جدید',
     'search_product' => 'جستجوی کالا',

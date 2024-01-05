@@ -25,6 +25,7 @@
   'admin.comment.admin-comment' => 'App\\Http\\Livewire\\Admin\\Comment\\AdminComment',
   'admin.comment.admin-single-comment' => 'App\\Http\\Livewire\\Admin\\Comment\\AdminSingleComment',
   'admin.create-product.create-product-color' => 'App\\Http\\Livewire\\Admin\\CreateProduct\\CreateProductColor',
+  'admin.create-product.create-product-default-color' => 'App\\Http\\Livewire\\Admin\\CreateProduct\\CreateProductDefaultColor',
   'admin.create-product.create-product-images' => 'App\\Http\\Livewire\\Admin\\CreateProduct\\CreateProductImages',
   'admin.create-product.create-product-meta' => 'App\\Http\\Livewire\\Admin\\CreateProduct\\CreateProductMeta',
   'admin.create-product.create-product-tag' => 'App\\Http\\Livewire\\Admin\\CreateProduct\\CreateProductTag',

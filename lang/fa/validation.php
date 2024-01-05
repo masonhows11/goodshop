@@ -248,7 +248,7 @@ return [
         'subject' => 'عنوان',
         'priority' => 'اولویت',
         'available_in_stock' => 'موجود در انبار',
-
+        'salable_quantity' => 'تغداد قابل فروش',
 
     ],
 ];

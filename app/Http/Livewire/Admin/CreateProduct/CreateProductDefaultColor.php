@@ -7,9 +7,8 @@ use App\Models\Product;
 use App\Models\ProductColor;
 use Livewire\Component;
 
-class CreateProductColor extends Component
+class CreateProductDefaultColor extends Component
 {
-
     public $product;
     public $product_id;
     public $color_id;
@@ -40,32 +39,48 @@ class CreateProductColor extends Component
     ];
 
 
+
     public function save()
     {
         $this->validate();
-
         try {
             if ($this->edit_mode == false) {
+
                 $color_name = Color::where('id', $this->color)->select(['title_persian', 'code'])->first();
-                ProductColor::create([
-                    'color_id' => $this->color,
-                    'color_name' => $color_name->title_persian,
-                    'color_code' => $color_name->code,
-                    'product_id' => $this->product_id,
-                    'default' => 0,
-                    'price_increase' => $this->price_increase,
-                    'status' => $this->status,
-                    'salable_quantity' => $this->salable_quantity,
-                    'available_in_stock' => $this->available_in_stock,
-                ]);
-                $this->color = '';
-                $this->price_increase = '';
-                $this->status = '';
-                $this->available_in_stock = '';
-                $this->salable_quantity = '';
-                $this->dispatchBrowserEvent('show-result',
-                    ['type' => 'success',
-                        'message' => __('messages.New_record_saved_successfully')]);
+
+                $color_count = ProductColor::where('product_id', $this->product_id)->where('default',1)->count();
+                if ($color_count == 0 ) {
+                    ProductColor::create([
+                        'color_id' => $this->color,
+                        'color_name' => $color_name->title_persian,
+                        'color_code' => $color_name->code,
+                        'product_id' => $this->product_id,
+                        'default' => 1,
+                        'price_increase' => $this->price_increase,
+                        'status' => $this->status,
+                        'salable_quantity' => $this->salable_quantity,
+                        'available_in_stock' => $this->available_in_stock,
+                    ]);
+                    $this->color = '';
+                    $this->price_increase = '';
+                    $this->status = '';
+                    $this->default = '';
+                    $this->available_in_stock = '';
+                    $this->salable_quantity = '';
+                    $this->dispatchBrowserEvent('show-result',
+                        ['type' => 'success',
+                            'message' => __('messages.New_record_saved_successfully')]);
+                } else {
+                    $this->color = '';
+                    $this->price_increase = '';
+                    $this->status = '';
+                    $this->default = '';
+                    $this->available_in_stock = '';
+                    $this->salable_quantity = '';
+                    $this->dispatchBrowserEvent('show-result',
+                        ['type' => 'warning',
+                            'message' => __('messages.the_product_can_only_have_one_default_color')]);
+                }
 
             } elseif ($this->edit_mode == true) {
 
@@ -86,6 +101,7 @@ class CreateProductColor extends Component
                 $this->color = '';
                 $this->price_increase = '';
                 $this->status = '';
+                $this->default = '';
                 $this->salable_quantity = '';
                 $this->available_in_stock = '';
 
@@ -147,9 +163,9 @@ class CreateProductColor extends Component
 
     public function render()
     {
-        return view('livewire.admin.create-product.create-product-color')
+        return view('livewire.admin.create-product.create-product-default-color')
             ->with(['product' => $this->product,
-                'product_colors' => ProductColor::where('product_id', $this->product_id)->where('default', 0)->get(),
-                'colors' => Color::all()]);
+            'product_default_colors' => ProductColor::where('product_id', $this->product_id)->where('default',1)->get(),
+            'colors' => Color::all()]);
     }
 }

@@ -63,13 +63,14 @@ class IndexProduct extends Component
             $this->dispatchBrowserEvent('show-result',
                 ['type' => 'success',
                     'message' => __('messages.The_deletion_was_successful')]);
-//            session()->flash('success', __('messages.The_deletion_was_successful'));
-//            return redirect()->to('admin/product/index');
         } catch (\Exception $ex) {
             return view('errors_custom.model_not_found');
         }
         return null;
     }
+
+    //  session()->flash('success', __('messages.The_deletion_was_successful'));
+    //  return redirect()->to('admin/product/index');
 
     public function render()
     {
