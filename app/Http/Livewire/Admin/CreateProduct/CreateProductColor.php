@@ -181,7 +181,7 @@ class CreateProductColor extends Component
             ->section('dash_main_content')
             ->with(['product' => $this->product,
                 'product_default_colors' => ProductColor::where('product_id', $this->product_id)->where('default',1)->get(),
-                'product_colors' => ProductColor::where('product_id', $this->product_id)->get(),
+                'product_colors' => ProductColor::where('product_id', $this->product_id)->where('default',0)->get(),
                 'colors' => Color::all()]);
     }
 }
