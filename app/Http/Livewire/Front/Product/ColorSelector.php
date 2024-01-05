@@ -29,15 +29,6 @@ class ColorSelector extends Component
         } else {
             $this->defaultColor = false;
         }
-
-        // $hasDefaultColor = collect($this->colors)->where('default', 1);
-        //        if ($hasDefaultColor->isNotEmpty()) {
-        //            $defaultColorName = collect($this->selectedColor)->where('default', 1)->first();
-        //            $this->selectedColorName = $defaultColorName->color_name;
-        //            $this->defaultColor = true;
-        //        } else {
-        //            $this->defaultColor = false;
-        //        }
     }
 
     public function radioClick($color)
@@ -56,15 +47,14 @@ class ColorSelector extends Component
 
         $this->emitTo(AddToCart::class,'selectedColor', $name);
 
-        // dd($name);
         ////// to fire event in parent component //////
         // $this->emitUp('chooseColor',$color);
 
         ////// to fire event on specific component //////
-        // chooseColor is event name
-        // SingleProduct component class name on this way
-        // use SingleProduct::class
-        // $color is parameter
+        // 1: chooseColor is event name
+        // 2: SingleProduct component class name on this way
+        // 3: use SingleProduct::class
+        // 4: $color is parameter
         // $this->emitTo(SingleProduct::class,'chooseColor', $color);
 
 
