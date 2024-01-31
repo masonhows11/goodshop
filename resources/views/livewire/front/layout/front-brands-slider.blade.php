@@ -59,7 +59,11 @@
                             <div class="item">
                                 <a href="{{ route('search.products',['brands[]' => $brand->id] ) }}" class="d-block">
                                     <div class="card border-0 custom-card mt-3">
-                                        <img src="{{ $brand->logo_path ? asset('storage/images/'.$brand->logo_path) : asset('default_image/no-image-icon-23494.png') }}" height="150" width="200" alt="brand-logo" class="brands-pic">
+                                        @if( $brand->logo_path && \Illuminate\Support\Facades\Storage::disk('public')->exists('images/'.$brand->logo_path))
+                                            <img height="150" width="150" alt="brand-logo" class="brands-pic" src="{{  asset('storage/images/'.$brand->logo_path) }}">
+                                        @else
+                                            <img height="150" width="150" class="brands-pic" src="{{  asset('default_image/no-image-icon-23494.png') }}" alt="brand-logo">
+                                        @endif
                                     </div>
                                     <p class="text-center">{{ $brand->title_persian }}</p>
                                 </a>

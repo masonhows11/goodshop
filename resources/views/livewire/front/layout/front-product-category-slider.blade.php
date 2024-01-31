@@ -140,7 +140,7 @@
                                         <div>
                                             <a href="{{ route('product.details',['product' => $product->slug]) }}"
                                                class="d-block w-100">
-                                                @if( $product->thumbnail_image && \Illuminate\Support\Facades\Storage::disk('public')->exists($product->thumbnail_image ) )
+                                                @if( $product->thumbnail_image && \Illuminate\Support\Facades\Storage::disk('public')->exists($product->thumbnail_image))
                                                     <img src="{{ asset('storage/' . $product->thumbnail_image) }}"
                                                          alt="{{  $product->title_persian . '-' . $key }}"
                                                          class="slider-pic">

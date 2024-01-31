@@ -23,7 +23,16 @@
                 @foreach( $categories as $category)
                 <div class="col-4 col-md-3 col-lg text-center">
                     <a href="#">
-                        <img src="{{ $category->image_path ? asset('storage/images/category/'.$category->image_path) : asset('default_image/no-image-icon-23494.png') }}" height="64" width="64"  class="mt-2 mb-2" alt="category-image"><p class="mb-2">{{ $category->title_persian }}</p><p class="text-info">+825000 کالا</p></a>
+                        @if( $category->image_path && \Illuminate\Support\Facades\Storage::disk('public')->exists('images/category/'.$category->image_path ))
+                            <img src="{{ asset('storage/images/category/'.$category->image_path)  }}" height="64" width="64"  class="mt-2 mb-2" alt="category-image">
+                            <p class="mb-2">{{ $category->title_persian }}</p>
+                            <p class="text-info">+825000 کالا</p>
+                        @else
+                            <img src="{{  asset('default_image/no-image-icon-23494.png')  }}" height="64" width="64"  class="mt-2 mb-2" alt="category-image">
+                            <p class="mb-2">{{ $category->title_persian }}</p>
+                            <p class="text-info">+825000 کالا</p>
+                        @endif
+                    </a>
                 </div>
                 @endforeach
              </div>
