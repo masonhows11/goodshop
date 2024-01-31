@@ -56,7 +56,7 @@
                 </div>
             </div>
         </div>
-        <div class="row mt-5 bg-white">
+        <div class="row mt-5 bg-white overflow-auto">
             <div class="my-5 list-colors">
                     <table class="table table-striped">
                         <thead class="border-bottom-3 border-top-3">

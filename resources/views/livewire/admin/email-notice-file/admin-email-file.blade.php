@@ -17,7 +17,7 @@
             </div>
         </div>
 
-        <div class="row  email-notice-list bg-white mb-4" style="height: 320px">
+        <div class="row  email-notice-list bg-white mb-4 overflow-auto" style="height: 320px">
             <div class="my-5">
 
                 <table class="table table-striped">

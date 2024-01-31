@@ -21,7 +21,7 @@
             <div class="col bg-white">
                 <form wire:submit.prevent="save">
                     <div class="row product-warranty">
-                        <div class="col mt-3 mb-3">
+                        <div class="col-sm-4 mt-3 mb-3">
                             <label for="title" class="form-label">{{ __('messages.title') }}</label>
                             <input type="text" class="form-control" id="title" wire:model.defer="title">
                             @error('title')
@@ -30,7 +30,7 @@
                             </div>
                             @enderror
                         </div>
-                        <div class="col mt-3 mb-3">
+                        <div class="col-sm-4 mt-3 mb-3">
                             <label for="price_increase" class="form-label">{{ __('messages.price_increase') }}</label>
                             <input type="text" class="form-control" id="price_increase" wire:model.defer="price_increase">
                             @error('price_increase')
@@ -39,7 +39,7 @@
                             </div>
                             @enderror
                         </div>
-                        <div class="col mt-3 mb-3">
+                        <div class="col-sm-4 mt-3 mb-3">
                             <label for="status" class="form-label">{{ __('messages.status') }}</label>
                             <select class="form-select" id="status" wire:model.defer="status">
                                 <option>{{ __('messages.choose') }}</option>
@@ -67,7 +67,7 @@
         </div>
 
 
-        <div class="row mt-2 warranty-list  bg-white">
+        <div class="row mt-2 warranty-list  bg-white overflow-auto">
             <div class="my-5">
                 <table class="table table-striped">
                     <thead class="border-bottom-3 border-top-3">

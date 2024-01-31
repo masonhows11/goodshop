@@ -33,7 +33,7 @@
 
             <div class="row create-email-notice my-4 bg-white">
                 <input type="hidden" name="notice" value="{{ $notice->id }}">
-                <div class="col mt-2">
+                <div class="col-sm-4 mt-2">
                     <div class="">
                         <label for="subject" class="form-label">{{ __('messages.title') }}</label>
                         <input type="text" id="subject" class="form-control @error('subject') is-invalid @enderror form-control-lg" name="subject" value="{{ $notice->subject }}">
@@ -45,7 +45,7 @@
                     @enderror
                 </div>
 
-                <div class="col mt-2">
+                <div class="col-sm-4 mt-2">
                     <div class="">
                         <label for="status" class="form-label">{{ __('messages.status') }}</label>
                         <select name="status" id="status" class="form-select">
@@ -60,7 +60,7 @@
                     @enderror
                 </div>
 
-                <div class="col  mt-2">
+                <div class="col-sm-4  mt-2">
                     <div class="">
                         <label for="published_at" class="form-label">تاریخ انتشار</label>
                         <input type="text" id="published_at" class="d-none form-control form-control-lg" name="published_at">

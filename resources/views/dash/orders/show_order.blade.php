@@ -28,7 +28,7 @@
 
 
 
-        <div class="row  show-order bg-white" id="printable-section">
+        <div class="row  show-order bg-white overflow-auto" id="printable-section">
             <div class="my-5 d-flex flex-column">
 
                 <div>

@@ -32,7 +32,7 @@
 
                     <div class="row product-color-form">
 
-                        <div class="col mt-4">
+                        <div class="col-sm-2 mt-4">
                             <label for="color" class="form-label">{{ __('messages.product_color') }}</label>
                             <select class="form-control" id="color" wire:model.defer="color">
                                 <option>{{ __('messages.choose') }}</option>
@@ -47,7 +47,7 @@
                             @enderror
                         </div>
 
-                        <div class="col mt-4">
+                        <div class="col-sm-2 mt-4">
                             <label for="price_increase" class="form-label">{{ __('messages.price_increase') }}</label>
                             <input type="text" class="form-control" id="price_increase"
                                    wire:model.defer="price_increase">
@@ -58,7 +58,7 @@
                             @enderror
                         </div>
 
-                        <div class="col mt-4">
+                        <div class="col-sm-2 mt-4">
                             <label for="salable_quantity" class="form-label">{{ __('messages.salable_quantity') }}</label>
                             <input type="text" class="form-control" id="salable_quantity" wire:model.defer="salable_quantity">
                             @error('salable_quantity')
@@ -68,7 +68,7 @@
                             @enderror
                         </div>
 
-                        <div class="col mt-4">
+                        <div class="col-sm-2 mt-4">
                             <label for="available_in_stock" class="form-label">{{ __('messages.available_in_stock') }}</label>
                             <input type="text" class="form-control" id="available_in_stock" wire:model.defer="available_in_stock">
                             @error('available_in_stock')
@@ -78,7 +78,7 @@
                             @enderror
                         </div>
 
-                        <div class="col mt-4">
+                        <div class="col-sm-2 mt-4">
                             <label for="status" class="form-label">{{ __('messages.status') }}</label>
                             <select class="form-select" id="status" wire:model.defer="status">
                                 <option>{{ __('messages.choose') }}</option>
@@ -112,7 +112,7 @@
 
 
         </div>
-        <div class="row mx-2 my-3 product-meta-list bg-white rounded rounded-1">
+        <div class="row mx-2 my-3 product-meta-list bg-white rounded rounded-1 overflow-auto">
             <div class="col">
                 <table class="table ">
                     <thead>

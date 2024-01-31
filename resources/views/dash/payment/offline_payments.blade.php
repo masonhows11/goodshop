@@ -15,7 +15,7 @@
                 </div>
             </div>
         </div>
-        <div class="row product-stock-list ">
+        <div class="row product-stock-list overflow-auto">
             <div class=" my-5">
                 <table class="table table-striped">
                     <thead>

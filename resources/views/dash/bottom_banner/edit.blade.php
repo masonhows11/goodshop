@@ -83,8 +83,8 @@
 
                 <div class="col">
                     {{--  logo section  --}}
-                    <div class="row d-flex flex-column justify-content-center align-content-center">
-                        <div class="col-lg-8 top-banner-section">
+                    <div class="row mt-4 d-flex flex-column justify-content-center align-content-center">
+                        <div class="col-lg-8 d-flex justify-content-center align-content-center top-banner-section">
                             <img src="{{ $banner->image_path ?   $banner->image_path : asset('dash/images/no-image-icon-23494.png') }}"
                                  id="image_view"
                                  class="img-thumbnail" height="250" width="250" alt="image">

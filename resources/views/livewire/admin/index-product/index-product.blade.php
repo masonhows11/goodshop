@@ -20,14 +20,17 @@
         </div>
         <div class="row">
             <div class="col">
+
                <div class="row">
-                   <div class="col">
+
+                   <div class="col-sm-3">
                        <div class="mb-3">
                            <label for="title_search" class="form-label">{{ __('messages.title') }}</label>
                            <input type="text" class="form-control" wire:model.debounce.500ms="search" id="title_search" >
                        </div>
                    </div>
-                   <div class="col">
+
+                   <div class="col-sm-3">
                        <div class="mb-3">
                            <label for="orderBy_filter" class="form-label">{{ __('messages.orderBy') }}</label>
                            <select class="form-control"  wire:model.debounce.500ms="orderBy" id="orderBy_filter">
@@ -38,7 +41,7 @@
                            </select>
                        </div>
                    </div>
-                   <div class="col">
+                   <div class="col-sm-3">
                        <div class="mb-3">
                            <label for="orderAsc_filter" class="form-label">{{ __('messages.orderBy') }}</label>
                            <select class="form-control"  wire:model.debounce.500ms="orderAsc" id="orderAsc_filter">
@@ -48,7 +51,7 @@
                            </select>
                        </div>
                    </div>
-                   <div class="col">
+                   <div class="col-sm-3">
                        <div class="mb-3">
                            <label for="paginate_filter" class="form-label">{{ __('messages.paginate') }}</label>
                            <select class="form-control" wire:model.debounce.500ms="paginate" id="paginate_filter">
@@ -63,7 +66,7 @@
                </div>
             </div>
         </div>
-        <div class="row mt-5 result-search-product list-products">
+        <div class="row mt-5 result-search-product list-products overflow-auto">
             <div class="col">
                 <table class="table table-bordered border-2 rounded-3 bg-white">
                     <thead>
@@ -78,8 +81,7 @@
                         <th>{{ __('messages.product_images') }}</th>
                         <th>{{ __('messages.product_colors') }}</th>
                         <th>{{ __('messages.product_tags') }}</th>
-                        <th>{{ __('messages.edit_model') }}</th>
-                        <th>{{ __('messages.delete_model')}}</th>
+                        <th>{{ __('messages.operation') }}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -129,12 +131,9 @@
                                 <a href="{{ route('admin.product.create.tags',['product' => $product->id ]) }}"><i
                                         class="fa fa-tags mt-3"></i></a>
                             </td>
-                            <td><a class="mt-3"
-                                   href="{{ route('admin.product.edit.basic',['product'=>$product->id]) }}"><i
-                                        class="mt-3 fa fa-edit"></i></a></td>
-                            <td><a class="mt-3" href="javascript:void(0)" wire:click.prevent="deleteConfirmation({{ $product->id }})">
-                                    <i class="mt-3 fa fa-trash"></i>
-                                </a>
+                            <td>
+                                <a class="mt-3" href="{{ route('admin.product.edit.basic',['product'=>$product->id]) }}"><i class="mt-3 fa fa-edit"></i></a>
+                                <a class="mt-3" href="javascript:void(0)" wire:click.prevent="deleteConfirmation({{ $product->id }})"><i class="mt-3 fa fa-trash"></i></a>
                             </td>
                         </tr>
                     @endforeach

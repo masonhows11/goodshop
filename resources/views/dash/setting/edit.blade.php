@@ -25,51 +25,58 @@
 
             <div class="row  setting-edit-form mt-5 py-5 bg-white">
 
-                <div class="col-lg-6">
-                    <div class="col">
-                        <div class="mt-3">
-                            <label for=title" class="form-label">{{ __('messages.title') }}</label>
-                            <input type="text" class="form-control" id="title" name="title"
-                                   value="{{ $setting->title }}">
-                        </div>
-                        @error('title')
-                        <div class="alert alert-danger mt-3">
-                            {{ $message }}
-                        </div>
-                        @enderror
+                <div class="col-sm-6">
+
+                    <div class="row">
+
+
+
+                            <div class="mt-3">
+                                <label for=title" class="form-label">{{ __('messages.title') }}</label>
+                                <input type="text" class="form-control" id="title" name="title"
+                                       value="{{ $setting->title }}">
+                            </div>
+                            @error('title')
+                            <div class="alert alert-danger mt-3">
+                                {{ $message }}
+                            </div>
+                            @enderror
+
+
+
+                            <div class="mt-3">
+                                <label for="description" class="form-label">{{ __('messages.description') }}</label>
+                                <input type="text" class="form-control " id="description" name="description" value=" {{ $setting->description }}">
+                            </div>
+                            @error('description')
+                            <div class="alert alert-danger mt-3">
+                                {{ $message }}
+                            </div>
+                            @enderror
+
+
+
+                            <div class="mt-3">
+                                <label for="keywords" class="form-label">{{ __('messages.keywords') }}</label>
+                                <input type="text" class="form-control " id="keywords" name="keywords" value=" {{ $setting->keywords }}">
+                            </div>
+                            @error('keywords')
+                            <div class="alert alert-danger mt-3">
+                                {{ $message }}
+                            </div>
+                            @enderror
+
                     </div>
 
-                    <div class="col">
-                        <div class="mt-3">
-                            <label for="description" class="form-label">{{ __('messages.description') }}</label>
-                            <input type="text" class="form-control " id="description" name="description" value=" {{ $setting->description }}">
-                        </div>
-                        @error('description')
-                        <div class="alert alert-danger mt-3">
-                            {{ $message }}
-                        </div>
-                        @enderror
-                    </div>
-
-                    <div class="col">
-                        <div class="mt-3">
-                            <label for="keywords" class="form-label">{{ __('messages.keywords') }}</label>
-                            <input type="text" class="form-control " id="keywords" name="keywords" value=" {{ $setting->keywords }}">
-                        </div>
-                        @error('keywords')
-                        <div class="alert alert-danger mt-3">
-                            {{ $message }}
-                        </div>
-                        @enderror
-                    </div>
                 </div>
 
-                <div class="col-lg-6">
+                <div class="col-sm-6">
+
                     <div class="row">
-                        <div class="col">
-                            {{--  logo section  --}}
+
+                        <div class="col-sm-6 mt-4">
                             <div class="row d-flex flex-column justify-content-center align-content-center">
-                                <div class="col-lg-8 logo-section">
+                                <div class="col-lg-8 d-flex justify-content-center align-content-center logo-section">
                                     <img src="{{ $setting->logo ?
                                             asset('storage/'.$setting->logo) :
                                             asset('dash/images/no-image-icon-23494.png') }}"
@@ -93,11 +100,11 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col">
-                            {{-- icon section  --}}
+
+                        <div class="col-sm-6 mt-4">
                             <div
                                 class="row d-flex flex-column justify-content-center align-content-center product-image">
-                                <div class="col-lg-8 icon-section">
+                                <div class="col-lg-8 d-flex justify-content-center align-content-center icon-section">
                                     <img src="{{ $setting->icon ?
                                             asset('storage/'.$setting->icon) :
                                             asset('dash/images/no-image-icon-23494.png') }}"

@@ -34,7 +34,7 @@
             </div>
         </div>
 
-        <div class="row bg-white mb-4 admin-list-roles">
+        <div class="row bg-white mb-4 admin-list-roles overflow-auto">
             <div class="my-5 list-content">
 
                 <table class="table table-striped">

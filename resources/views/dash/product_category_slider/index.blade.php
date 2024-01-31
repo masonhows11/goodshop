@@ -18,7 +18,7 @@
             </div>
         </div>
 
-        <div class="row  delivery-list bg-white">
+        <div class="row  delivery-list bg-white overflow-auto">
             <div class="my-5">
 
                 <table class="table table-striped">

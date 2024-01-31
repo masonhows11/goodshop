@@ -39,7 +39,7 @@
                         </div>
                     </div>
                 </form>
-        <div class="row mt-2">
+        <div class="row mt-2 overflow-auto">
             <div class="col bg-white rounded-3 admin-tag-list">
                 <table class="table">
                     <thead>

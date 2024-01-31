@@ -23,7 +23,7 @@
             </div>
         </div>
 
-        <div class="row admin-list-users bg-white">
+        <div class="row admin-list-users bg-white overflow-auto">
             <div class="my-5">
                 <table class="table">
                     <thead>

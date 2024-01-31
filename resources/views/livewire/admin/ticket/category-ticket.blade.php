@@ -10,7 +10,7 @@
 
 
 
-    <div class="row  delivery-list bg-white">
+    <div class="row  delivery-list bg-white overflow-auto">
         <div class="col-lg-4 col-md-4 col my-4">
             <a href="{{ route('admin.category.ticket.create') }}" class="btn btn-primary">{{ __('messages.new_category_ticket') }}</a>
         </div>

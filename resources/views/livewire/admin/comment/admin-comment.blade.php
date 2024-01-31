@@ -32,7 +32,7 @@
         </div>
     </div>
 
-    <div class="row comments-section ">
+    <div class="row comments-section overflow-auto">
         <div class="col bg-white">
             <table class="table table-bordered">
                 <thead>

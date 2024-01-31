@@ -32,7 +32,7 @@
             <div class="row create-email-notice-file my-4 bg-white">
 
                 <input type="hidden" name="mail" value="{{ $mail_id }}">
-                <div class="col mt-2">
+                <div class="col-sm-6 mt-2">
                     <div class="">
                         <label for="file" class="form-label">{{ __('messages.file') }}</label>
                         <input type="file" id="file"
@@ -46,7 +46,7 @@
                     @enderror
                 </div>
 
-                <div class="col mt-2">
+                <div class="col-sm-6 mt-2">
                     <div class="">
                         <label for="status" class="form-label">{{ __('messages.status') }}</label>
                         <select name="status" id="status" class="form-select">

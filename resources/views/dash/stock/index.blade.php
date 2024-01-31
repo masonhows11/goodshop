@@ -13,7 +13,7 @@
                 <a href="#" class="btn btn-sm btn-primary">{{ __('messages.new_stock') }}</a>
             </div>
         </div>--}}
-        <div class="row product-stock-list bg-white">
+        <div class="row product-stock-list bg-white overflow-auto">
             <div class=" my-5">
                 <table class="table">
                     <thead>
@@ -30,19 +30,27 @@
                     </thead>
                     <tbody>
                     @foreach($products as $product)
-                    <tr class="text-center">
-                        <td>{{ $product->id }}</td>
-                        <td>{{ $product->title_persian }}</td>
-                        <td><img class="img-thumbnail" width="100" height="100" src="{{ $product->thumbnail_image ? asset('storage/'.$product->thumbnail_image) : asset('dash/images/no-image-icon-23494.png') }}" alt=""></td>
-                        <td>{{ $product->available_in_stock }}</td>
-                        <td>{{ $product->number_sold }}</td>
-                        <td>{{ $product->frozen_number }}</td>
-                        <td>{{ $product->salable_quantity }}</td>
-                        <td>
-                            <a href="{{ route('admin.add_to_stock.form',['product'=>$product->id]) }}" class="btn btn-sm btn-success">افزایش موجودی</a>
-                            <a href="{{ route('admin.modify_stock.form',['product'=>$product->id]) }}" class="btn btn-sm btn-info me-2">اصلاح موجودی</a>
-                        </td>
-                    </tr>
+                        <tr class="text-center">
+                            <td>{{ $product->id }}</td>
+                            <td>{{ $product->title_persian }}</td>
+                            <td>
+                                @if( $product->thumbnail_image && \Illuminate\Support\Facades\Storage::disk('public')->exists($product->thumbnail_image )  )
+                                    <img class="img-thumbnail" width="100" height="100" src="{{  asset('storage/'.$product->thumbnail_image)  }}" alt="">
+                                @else
+                                    <img class="img-thumbnail" width="100" height="100" src="{{  asset('dash/images/no-image-icon-23494.png') }}" alt="">
+                                @endif
+                            </td>
+                            <td>{{ $product->available_in_stock }}</td>
+                            <td>{{ $product->number_sold }}</td>
+                            <td>{{ $product->frozen_number }}</td>
+                            <td>{{ $product->salable_quantity }}</td>
+                            <td>
+                                <a href="{{ route('admin.add_to_stock.form',['product'=>$product->id]) }}"
+                                   class="btn btn-sm btn-success">افزایش موجودی</a>
+                                <a href="{{ route('admin.modify_stock.form',['product'=>$product->id]) }}"
+                                   class="btn btn-sm btn-info me-2">اصلاح موجودی</a>
+                            </td>
+                        </tr>
                     @endforeach
                     </tbody>
                 </table>

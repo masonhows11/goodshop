@@ -1,7 +1,7 @@
 <div>
 
-    <div class="row  list-cities bg-white mb-4">
-        <div class="my-5" style="height:320px">
+    <div class="row  list-cities bg-white mb-4 overflow-auto">
+        <div class="my-5">
             <table class="table table-striped">
                 <thead class="border-bottom-3 border-top-3">
                 <tr class="text-center">

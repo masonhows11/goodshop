@@ -60,7 +60,7 @@
         </div>
 
 
-        <div class="row category-attribute mt-5 bg-white">
+        <div class="row category-attribute mt-5 bg-white overflow-auto">
             <div class="my-5">
                     <table class="table table-striped">
                         <thead class="border-bottom-3 border-top-3">

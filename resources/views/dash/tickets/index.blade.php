@@ -17,7 +17,7 @@
             </div>
         </div>
 
-        <div class="row  tickets-list bg-white">
+        <div class="row  tickets-list bg-white overflow-auto">
             <div class="my-5">
 
                 <table class="table table-striped">

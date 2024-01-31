@@ -31,7 +31,7 @@
 
             <div class="row create-email-notice my-4 bg-white">
 
-                <div class="col mt-2">
+                <div class="col-sm-4 mt-2">
                     <div class="">
                         <label for="title" class="form-label">{{ __('messages.title') }}</label>
                         <input type="text" id="title" class="form-control @error('title') is-invalid @enderror form-control-lg" name="title" value="{{ old('title') }}">
@@ -44,7 +44,7 @@
 
                 </div>
 
-                <div class="col mt-2">
+                <div class="col-sm-4 mt-2">
                     <div class="">
                         <label for="status" class="form-label">{{ __('messages.status') }}</label>
                         <select name="status" id="status" class="form-select">
@@ -59,7 +59,7 @@
                     @enderror
                 </div>
 
-                <div class="col  mt-2">
+                <div class="col-sm-4  mt-2">
                     <div class="">
                         <label for="published_at" class="form-label">تاریخ انتشار</label>
                         <input type="text" id="published_at" class="d-none form-control form-control-lg" name="published_at" value="{{ old('published_at') }}">

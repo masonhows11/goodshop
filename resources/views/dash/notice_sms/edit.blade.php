@@ -33,7 +33,7 @@
 
                 <input type="hidden" name="notice" value="{{ $notice->id }}">
 
-                <div class="col mt-2">
+                <div class="col-sm-4 mt-2">
                     <div class="">
                         <label for="title" class="form-label">{{ __('messages.title') }}</label>
                         <input type="text" id="title"
@@ -48,7 +48,7 @@
 
                 </div>
 
-                <div class="col mt-2">
+                <div class="col-sm-4 mt-2">
                     <div class="">
                         <label for="status" class="form-label">{{ __('messages.status') }}</label>
                         <select name="status" id="status" class="form-select">
@@ -63,7 +63,7 @@
                     @enderror
                 </div>
 
-                <div class="col  mt-2">
+                <div class="col-sm-4  mt-2">
                     <div class="">
                         <label for="published_at" class="form-label">تاریخ انتشار</label>
                         <input type="text" id="published_at" class="d-none form-control form-control-lg"

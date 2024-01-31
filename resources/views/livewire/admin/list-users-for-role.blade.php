@@ -15,7 +15,7 @@
             </div>
         </div>
 
-        <div class="row admin-list-users bg-white">
+        <div class="row admin-list-users bg-white overflow-auto">
             <div class="my-2  rounded-3 list-content">
                 <table class="table table-striped">
                     <thead class="border-bottom-3 border-top-3">

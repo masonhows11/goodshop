@@ -15,7 +15,7 @@
             <a href="{{ route('admin.coupons.create') }}" class="btn btn-sm btn-primary">{{ __('messages.new_coupon') }}</a>
         </div>
     </div>
-    <div class="row  common-discount-list bg-white">
+    <div class="row  common-discount-list bg-white overflow-auto">
         <div class=" my-5">
             <table class="table table-striped">
                 <thead class="border-bottom-3 border-top-3">

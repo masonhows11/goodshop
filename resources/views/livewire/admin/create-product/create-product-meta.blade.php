@@ -24,7 +24,7 @@
                 <form wire:submit.prevent="save">
 
                     <div class="row product-meta-form">
-                        <div class="col-4 mt-5 mb-5">
+                        <div class="col-sm-6 mt-5 mb-5">
                             <label for="meta_key" class="form-label">{{ __('messages.product_meta_key') }}</label>
                             <input type="text" class="form-control" id="meta_key" wire:model.defer="meta_key">
                             @error('meta_key')
@@ -33,7 +33,7 @@
                             </div>
                             @enderror
                         </div>
-                        <div class="col-4 mt-5 mb-5">
+                        <div class="col-sm-6 mt-5 mb-5">
                             <label for="meta_value" class="form-label">{{ __('messages.product_meta_value') }}</label>
                             <input type="text" class="form-control" id="meta_value" wire:model.defer="meta_value">
                             @error('meta_value')
@@ -60,7 +60,7 @@
         </div>
 
 
-        <div class="row mx-2 my-3 product-meta-list bg-white">
+        <div class="row mx-2 my-3 product-meta-list bg-white overflow-auto">
            <div class="col">
 
                <table class="table">
