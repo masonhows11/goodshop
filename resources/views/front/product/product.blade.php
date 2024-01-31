@@ -19,10 +19,12 @@
                             <!-- start product icons -->
                             <div class="col-1 text-center product-icons">
                                 <div class="d-flex flex-column product-color">
-                                    @foreach( $colors as $color)
-                                        <div class="mt-2 mb-2  rounded rounded-pill"
-                                             style="background-color:{{ $color->color_code }}"></div>
-                                    @endforeach
+                                    @if($colors != null)
+                                        @foreach( $colors as $color)
+                                            <div class="mt-2 mb-2  rounded rounded-pill"
+                                                 style="background-color:{{ $color->color_code }}"></div>
+                                        @endforeach
+                                    @endif
                                 </div>
                                 <!-- add to Favorites -->
                                 @guest
@@ -160,10 +162,10 @@
                                             @foreach ( $images as $key =>  $slide)
                                                 <div class="carousel-item @if( $loop->first ) active @endif">
                                                     @if( $slide->image_path && \Illuminate\Support\Facades\Storage::disk('public')->exists('images/product/gallery/'. $slide->image_path) )
-                                                    <img
-                                                        src="{{ asset('storage/images/product/gallery/'. $slide->image_path) }}"
-                                                        alt="{{ asset('storage/images/product/gallery/'. $slide->image_path) . '-' . ($key + 1) }}"
-                                                        class="d-block w-100">
+                                                        <img
+                                                            src="{{ asset('storage/images/product/gallery/'. $slide->image_path) }}"
+                                                            alt="{{ asset('storage/images/product/gallery/'. $slide->image_path) . '-' . ($key + 1) }}"
+                                                            class="d-block w-100">
                                                     @else
 
                                                         <img src="{{ asset('default_image/no-image-icon-23494.png') }}"

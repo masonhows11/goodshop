@@ -18,7 +18,7 @@ class ColorSelector extends Component
     {
         $this->selectedColor = ProductColor::where('product_id', $this->product)
             ->where('available_in_stock','>',0)
-            ->where('status',1)->where('default',1)->first();
+            ->where('status',1)->where('default',1)->first() ;
         $this->colors = ProductColor::where('product_id', $this->product)
             ->where('available_in_stock','>',0)
             ->where('status',1)->where('default',0)->get();

@@ -10,7 +10,7 @@
             <form wire:submit.prevent="save">
                 <div class="col">
                     <div class="row">
-                        <div class="col">
+                        <div class="col-sm-4">
                             <div class="mt-3 mb-3">
                                 <label for="title_persian" class="form-label">{{ __('messages.name_persian') }}</label>
                                 <input type="text" class="form-control" id="title_persian"
@@ -22,7 +22,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col">
+                        <div class="col-sm-4">
                             <div class="mt-3 mb-3">
                                 <label for="title_english" class="form-label">{{ __('messages.name_english') }}</label>
                                 <input type="text" class="form-control" id="title_english"
@@ -34,7 +34,7 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col">
+                        <div class="col-sm-4">
                             <div class="mt-3 mt-3">
                                 <label for="color_code" class="form-label">{{ __('messages.color_code') }}</label>
                                 <input wire:model.defer="color_code" id="color_code" class="form-control" data-jscolor="{previewPosition:

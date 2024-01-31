@@ -1,4 +1,5 @@
 <div>
+    @if($selectedColor != null)
     <p class=""> {{ __('messages.select_color') }} : {{ $selectedColorName }}</p>
       <label class="select-color">
         <span class="color-shape" style="background-color:{{ $selectedColor->color_code }};"></span>
@@ -6,6 +7,7 @@
         <span class="color-name {{ $defaultColor == true ? 'active-select-color' : '' }}"
               wire:click="selectColor({{ $selectedColor->color_id }})" >{{ $selectedColor->color_name }}</span>
        </label>
+      @endif
     @if( $colors !== null )
         @foreach( $colors as $color)
                 <label class="select-color">
