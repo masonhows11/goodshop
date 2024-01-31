@@ -39,7 +39,7 @@
             <!-- end ads -->
 
             <!-- start product slider -->
-            <livewire:front.layout.front-category-slider/>
+            <livewire:front.layout.front-product-category-slider/>
             <!-- end product slider -->
 
             <!-- start ads -->
@@ -47,7 +47,7 @@
             <!-- end ads -->
 
             <!-- start category box -->
-            <livewire:front.layout.front-category/>
+            <livewire:front.layout.front-category-slider/>
             <!-- end category box -->
 
             <!-- start our suggestion box -->
