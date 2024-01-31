@@ -1,6 +1,7 @@
 <div>
-    @if($selectedColor != null)
+
     <p class=""> {{ __('messages.select_color') }} : {{ $selectedColorName }}</p>
+    @if($selectedColor != null)
       <label class="select-color">
         <span class="color-shape" style="background-color:{{ $selectedColor->color_code }};"></span>
         <input type="radio" name="color" wire:click="radioClick({{ $selectedColor->color_id  }})" >
