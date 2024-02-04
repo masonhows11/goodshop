@@ -5,7 +5,7 @@
 @section('dash_main_content')
     <div class="container-fluid">
 
-        <livewire:admin.warranty.admin-warranty :product="$product"/>
+        <livewire:admin.create-product.create-product-warranty :product="$product"/>
 
     </div>
 @endsection

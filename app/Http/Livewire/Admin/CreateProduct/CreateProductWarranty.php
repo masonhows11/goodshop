@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Livewire\Admin\Warranty;
+namespace App\Http\Livewire\Admin\CreateProduct;
 
 use App\Models\Product;
 use App\Models\Warranty;
 use Livewire\Component;
 
 
-class AdminWarranty extends Component
+class CreateProductWarranty extends Component
 {
 
 
@@ -127,7 +127,7 @@ class AdminWarranty extends Component
 
     public function render()
     {
-        return view('livewire.admin.warranty.admin-warranty')
+        return view('livewire.admin.create-product.create-product-warranty')
             ->with(['warranties' => Warranty::where('product_id', $this->product_id)->paginate(10) ,
                 'product_name' => $this->product->title_persian]);
     }
