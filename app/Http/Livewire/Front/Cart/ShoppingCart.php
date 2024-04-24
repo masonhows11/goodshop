@@ -32,11 +32,12 @@ class ShoppingCart extends Component
     public function decreaseItem($itemId)
     {
 
-        
+
         $count = CartItems::where('id', $itemId)->where('number', '=', 1)->first();
-        if ($count) {
+        if ($count)
+        {
             $this->disabled = true;
-            die();
+            return null;
         } else {
             CartItems::where('id', $itemId)->decrement('number', 1);
             $this->emitTo(CartHeader::class, 'removeFromCart', $this->cartNumber);
@@ -63,7 +64,10 @@ class ShoppingCart extends Component
         try {
             $model = CartItems::findOrFail($this->item_id);
 
-            if ($model->user_id === Auth::id()) {
+            if ($model->user_id === Auth::id())
+            {
+                $this->cartNumber = $model->number;
+                
                 $model->delete();
 
                 $this->emitTo(CartHeader::class, 'removeFromCart', $this->cartNumber);

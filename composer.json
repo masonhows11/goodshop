@@ -7,7 +7,6 @@
     "require": {
         "php": "^8.1",
         "ext-curl": "*",
-        "alexusmai/laravel-file-manager": "^3.0",
         "biscolab/laravel-recaptcha": "^6.0",
         "diglactic/laravel-breadcrumbs": "^8.1",
         "guzzlehttp/guzzle": "^7.2",

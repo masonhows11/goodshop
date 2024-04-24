@@ -1,11 +1,4 @@
 <?php return array (
-  'alexusmai/laravel-file-manager' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'Alexusmai\\LaravelFileManager\\FileManagerServiceProvider',
-    ),
-  ),
   'barryvdh/laravel-debugbar' => 
   array (
     'providers' => 
