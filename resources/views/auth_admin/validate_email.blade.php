@@ -6,7 +6,7 @@
     <div class="container">
 
         <div class="row d-flex justify-content-center">
-            <div class="col-lg-8 col-md-10 my-2 alert-dive">
+            <div class="col-lg-6 col-md-4 my-2 alert-dive">
                 @include('auth_admin.alert')
             </div>
         </div>
