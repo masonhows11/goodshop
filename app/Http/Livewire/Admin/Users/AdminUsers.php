@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Admin;
+namespace App\Http\Livewire\Admin\Users;
 
 use App\Models\User;
 use Livewire\Component;
@@ -55,7 +55,7 @@ class AdminUsers extends Component
     }
     public function render()
     {
-        return view('livewire.admin.admin-users')
+        return view('livewire.admin.users.admin-users')
             ->extends('dash.include.master_dash')
             ->section('dash_main_content')
             ->with(['users' => User::where('name','like','%'.$this->search.'%')
