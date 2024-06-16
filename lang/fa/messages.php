@@ -304,6 +304,7 @@ return [
     'no_new_notification' => 'اعلان جدیدی وجود ندارد',
     'no_new_messages' => 'پیام جدیدی وجود ندارد ',
 
+    'two_factor_auth' => 'ورود دو مرحله ای',
     'login_user' => 'ورود کاربر',
     'register_user' => 'ثبت نام کاربر',
     'remember_me' => ' مرا به خاطر داشته باش',

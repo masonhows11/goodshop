@@ -22,13 +22,13 @@
                           novalidate="novalidate">
                         @csrf
                         <div class="text-center mb-10">
-                            <h1 class="text-dark mb-3">ورود دو مرحله ای</h1>
-                            <div class="text-muted fw-bold fs-5 mb-5">وارد کردن کد تایید ارسال شده به شماره موبایل</div>
+                            <h1 class="text-dark mb-3">{{ __('messages.two_factor_auth') }}</h1>
+                            <div class="text-muted fw-bold fs-5 mb-5">{{ __('messages.admin_dashboard') }}</div>
                         </div>
 
 
                         <div class="my-6 px-10">
-                            <label for="email" class="form-label fs-6 fw-bolder text-dark">ایمیل</label>
+                            <label for="email" class="form-label fs-6 fw-bolder text-dark">{{ __('messages.email') }}</label>
                             <input class="form-control form-control-lg form-control-solid"
                                    name="email"
                                    id="email"
@@ -45,7 +45,7 @@
                         </div>
 
                         <div class="my-6 px-10">
-                            <label for="code" class="form-label fs-6 fw-bolder text-dark">کد فعال سازی را وارد کنید</label>
+                            <label for="code" class="form-label fs-6 fw-bolder text-dark">{{ __('messages.enter_active_code') }}</label>
                             <input class="form-control form-control-lg form-control-solid"
                                    id="code"
                                    dir="ltr"
