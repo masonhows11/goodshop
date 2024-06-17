@@ -8,8 +8,7 @@ use App\Models\Color;
 use App\Models\Product;
 use App\Models\ProductColor;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use function Ramsey\Collection\Map\get;
+// use Illuminate\Support\Facades\DB;
 
 
 class HomeController extends Controller
@@ -121,6 +120,7 @@ class HomeController extends Controller
 
 
         ////  switch case execute anyway
+
         //// filter sort
         switch ($request->sort) {
 
@@ -189,9 +189,8 @@ class HomeController extends Controller
 
         //// final product  result
         $products = $products->paginate(3);
-        // dd($products);
+        ////
         $products->appends($request->query());
-
         //// get selected brands
         $selectedBrandsArray = [];
         if ($request->brands) {
