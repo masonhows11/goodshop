@@ -12,7 +12,8 @@
                     </a>
                     <div class="offcanvas offcanvas-start" tabindex="-1" data-bs-scroll="true" id="mobile-menu">
                         <div class="offcanvas-header">
-                             <img src="{{ asset('front/images/logo.png') }}">
+                            <h3 class="h3 text-center my-2 fw-semibold  text-danger">{{ __('messages.site_name') }}</h3>
+                             {{-- <img src="{{ asset('front/images/logo.png') }}"> --}}
                             <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
                         </div>
 
