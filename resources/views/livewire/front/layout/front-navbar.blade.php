@@ -180,8 +180,8 @@
                         </li>
                     </ul><!-- end mega menu-->
                 </li>
-                <li><a href="#">تخفیف‌ها و پیشنهادها</a></li>
-                <li class="has-sub-menu"><a href="#">صفحات <i class="fa fa-angle-down"></i></a>
+                <li><a href="{{  route('not_found') }}">تخفیف‌ها و پیشنهادها</a></li>
+                <li class="has-sub-menu"><a href="javascript:void(0)">صفحات <i class="fa fa-angle-down"></i></a>
                     <ul class="sub-menu"><!-- start sub menu-->
                         @guest
                             <li><a href="{{ route('auth.login.form') }}">ثبت نام / ورود</a></li>
