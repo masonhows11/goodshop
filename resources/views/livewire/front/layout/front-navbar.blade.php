@@ -139,39 +139,7 @@
                                     </div>
                                 </div>
 
-                                <div class="row">
-                                    <div class="col-4"><img src="front/images/mobile2.jpg" class="img-fluid img-thumbnail"></div>
-                                    <div class="col-8 d-flex align-items-center">
-                                        <a href="product.html" class="cart-product-title">گوشی موبایل سامسونگ مدل Galaxy A21S SM-A217F/DS</a>
-                                    </div>
-                                </div>
-                                <div class="row my-3 border-bottom">
-                                    <div class="col-6 d-flex">
-                                        <span class="number">1 عدد</span>
-                                        <span class="color" style="background-color:#d4d4d4;"></span>
-                                        <i class="fa fa-trash cart-delete-btn"></i>
-                                    </div>
-                                    <div class="col-6 d-flex justify-content-end">
-                                        <p class="cart-product-price">4,169,000 تومان</p>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-4"><img src="front/images/mobile3.jpg" class="img-fluid img-thumbnail"></div>
-                                    <div class="col-8 d-flex align-items-center">
-                                        <a href="product.html" class="cart-product-title">گوشی موبایل سامسونگ مدل Galaxy A21S SM-A217F/DS</a>
-                                    </div>
-                                </div>
-                                <div class="row my-3 border-bottom">
-                                    <div class="col-6 d-flex">
-                                        <span class="number">1 عدد</span>
-                                        <span class="color" style="background-color:#d4d4d4;"></span>
-                                        <i class="fa fa-trash cart-delete-btn"></i>
-                                    </div>
-                                    <div class="col-6 d-flex justify-content-end">
-                                        <p class="cart-product-price">4,169,000 تومان</p>
-                                    </div>
-                                </div>
+                                
 
                             </div>
 
