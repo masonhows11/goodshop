@@ -209,4 +209,11 @@ class HomeController extends Controller
                 'categories' => $categories,
                 'colors' => $colors]);
     }
+
+
+
+    public function notFound(){
+
+        return view('front.not_found.not_found');
+    }
 }

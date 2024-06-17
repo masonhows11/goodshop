@@ -59,7 +59,6 @@
                 </div>
 
                 @guest
-
                     <div class="col-4 d-flex align-items-center justify-content-end">
                         <a class="text-dark" href="{{ route('auth.login.form') }}">ورود / ثبت نام</a>
                     </div>
@@ -70,10 +69,9 @@
                             <div class="count">0</div>
                         </a>
                     </div>
-
                 @endguest
-                @auth
 
+                @auth
                     <div class="col-4 d-flex align-items-center justify-content-end">
                         <div class="dropdown">
                             <a href="#" data-bs-toggle="dropdown"><i class="fa fa-user-lock signup-login-icon"></i></a>
@@ -107,7 +105,6 @@
                         </div>
                     </div>
 
-
                     <div class="col-1 d-flex align-items-center justify-content-end">
                         <a href="#shopping-cart-responsive" class="position-relative" data-bs-toggle="offcanvas">
                             <img src="front/images/cart.png">
@@ -121,7 +118,6 @@
                             </div>
 
                             <div class="offcanvas-body">
-
                                 <div class="row">
                                     <div class="col-4"><img src="front/images/mobile1.jpg" class="img-fluid img-thumbnail"></div>
                                     <div class="col-8 d-flex align-items-center">
@@ -138,9 +134,6 @@
                                         <p class="cart-product-price">4,169,000 تومان</p>
                                     </div>
                                 </div>
-
-                                
-
                             </div>
 
                             <div class="row cart-footer">
@@ -192,17 +185,12 @@
                     <ul class="sub-menu"><!-- start sub menu-->
                         @guest
                             <li><a href="{{ route('auth.login.form') }}">ثبت نام / ورود</a></li>
+                        @else
+                        <li><a href="{{ route('user.profile') }}">پروفایل کاربر</a></li>
+                        <li><a href="{{ route('cart.check') }}">سبد خرید</a></li>
                         @endguest
-                        <li class="has-sub-menu-level-2"><a href="#">محصولات</a><i class="fa fa-angle-down"></i>
-                            <ul class="sub-menu-level-2"><!-- start sub menu level 2 -->
-                                <li><a href="#">محصول موجود</a></li>
-                                <li><a href="#">محصول ناموجود</a></li>
-                                <li><a href="#">خطای 404</a></li>
-                            </ul><!-- end sub menu level 2 -->
-                        </li>
-                        <li><a href="#">پروفایل کاربر</a></li>
-                        <li><a href="#">وبلاگ</a></li>
-                        <li><a href="#">سبد خرید</a></li>
+                        <li><a href="{{  route('not_found') }}">وبلاگ</a></li>
+
                     </ul><!-- end sub menu-->
                 </li>
                 <li><a href="{{ route('contact_us') }}">تماس با ما</a></li>

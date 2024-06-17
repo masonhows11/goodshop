@@ -128,6 +128,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
 
+Route::get('/not-found',[HomeController::class, 'notFound'])->name('not_found');
+
 Route::get('/sitemap.xml',[\App\Http\Controllers\SiteMapController::class,'index'])->name('sitemap.xml');
 Route::get('/sitemap.xml/products',[\App\Http\Controllers\SiteMapController::class,'products'])->name('sitemap.xml.products');
 Route::get('/sitemap.xml/categories',[\App\Http\Controllers\SiteMapController::class,'categories'])->name('sitemap.xml.categories');
