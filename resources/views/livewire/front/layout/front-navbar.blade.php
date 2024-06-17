@@ -1,24 +1,21 @@
 <div>
+
     <header class="d-lg-none bg-white w-100">
         <div class="container">
             <div class="row py-2">
-    
                 <div class="col-7 d-flex flex-wrap">
-
                     <a href="#mobile-menu" data-bs-toggle="offcanvas">
                         <i class="fa fa-bars mobile-menu-icon mt-2"></i>
                     </a>
-
                     <a class="ms-2" href="{{ route('home') }}">
                         <h3 class="h3 text-center my-2 fw-semibold  text-danger">{{ __('messages.site_name') }}</h3>
                     </a>
-                    
                     <div class="offcanvas offcanvas-start" tabindex="-1" data-bs-scroll="true" id="mobile-menu">
                         <div class="offcanvas-header">
-                             <img src="{{ asset('front/images/logo.png') }}"> 
+                             <img src="{{ asset('front/images/logo.png') }}">
                             <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
                         </div>
-    
+
                         <div class="offcanvas-body px-0">
                             <ul class="mobile-menu-level-1">
                                 <li class="has-mobile-submenu"><a href="javascript:void(0)">دسته بندی محصولات</a>
@@ -40,7 +37,7 @@
                                 </li>
                                 <li><a href="#">تخفیف‌ها و پیشنهادها</a></li>
                                 <li class="has-mobile-submenu"><a href="#">صفحات</a>
-    
+
                                     <ul class="mobile-menu-level-2">
                                         @guest
                                             <li><a href="{{ route('auth.login.form') }}">ثبت نام / ورود</a></li>
@@ -51,24 +48,20 @@
                                         @endauth
                                         <li><a href="#">وبلاگ</a></li>
                                     </ul>
-    
+
                                 </li>
                                 <li><a href="{{ route('contact_us') }}">تماس با ما</a></li>
                                 <li><a href="{{ route('about_us') }}">درباره ما</a></li>
                             </ul>
-    
+
                         </div>
                     </div>
-    
-                   
-                    {{-- <a href="{{ route('home') }}"><img src="{{ asset('front/images/logo.png') }}" class="img-fluid"></a> --}}
                 </div>
-    
-    
+
                 @guest
-                    {{-- <div class="col-4 d-flex align-items-center justify-content-end ">
-                        <a href="{{ route('auth.login.form') }}" class="header-login-btn me-4 "><i class="fa fa-user-lock mb-4"></i>ورود / ثبت نام</a>
-                    </div> --}}
+                    <div class="col-4 d-flex align-items-center justify-content-end ">
+                        <a class="text-dark" href="{{ route('auth.login.form') }}">ورود / ثبت نام</a>
+                    </div>
                 @endguest
                 @auth
                     <div class="col-4 d-flex align-items-center justify-content-end">
@@ -104,11 +97,11 @@
                         </div>
                     </div>
                 @endauth
-    
+
             </div>
         </div>
     </header>
-    
+
     <nav class="d-none d-lg-block navigation">
         <div class="container">
             <ul class="main-menu">
