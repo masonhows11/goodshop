@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Admin;
+namespace App\Http\Livewire\Admin\Discount;
 
 use App\Models\CommonDiscount;
 use Livewire\Component;
@@ -66,7 +66,7 @@ class AdminCommonDiscount extends Component
 
     public function render()
     {
-        return view('livewire.admin.admin-common-discount')
+        return view('livewire.admin.discount.admin-common-discount')
             ->extends('dash.include.master_dash')
             ->section('dash_main_content')
             ->with(['discounts' => CommonDiscount::paginate(10)]);

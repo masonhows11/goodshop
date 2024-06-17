@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Admin;
+namespace App\Http\Livewire\Admin\Category;
 
 use App\Models\Category;
 use Illuminate\Support\Facades\DB;
@@ -125,7 +125,7 @@ class AdminCategoryEdit extends Component
 
     public function render()
     {
-        return view('livewire.admin.admin-category-edit')
+        return view('livewire.admin.category.admin-category-edit')
             ->extends('dash.include.master_dash')
             ->section('dash_main_content')
             ->with(['categories' => Category::all(),

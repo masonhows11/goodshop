@@ -5,7 +5,7 @@
 @section('dash_main_content')
     <div class="container-fluid">
 
-        <livewire:admin.admin-amazing-sale/>
+        <livewire:admin.discount.admin-amazing-sale/>
 
     </div>
 @endsection

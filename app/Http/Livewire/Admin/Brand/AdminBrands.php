@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Admin;
+namespace App\Http\Livewire\Admin\Brand;
 
 use App\Models\Brand;
 use Illuminate\Support\Facades\Storage;
@@ -72,7 +72,7 @@ class AdminBrands extends Component
 
     public function render()
     {
-        return view('livewire.admin.admin-brands')
+        return view('livewire.admin.brand.admin-brands')
             ->extends('dash.include.master_dash')
             ->section('dash_main_content')
             ->with(['brands' => Brand::where('title_persian','like','%'.$this->search.'%')

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Admin;
+namespace App\Http\Livewire\Admin\Permissions;
 
 use App\Models\Admin;
 

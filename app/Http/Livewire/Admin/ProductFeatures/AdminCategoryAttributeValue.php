@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Admin;
+namespace App\Http\Livewire\Admin\ProductFeatures;
 
 use App\Models\CategoryAttribute;
 use App\Models\CategoryAttributeValue;
@@ -139,7 +139,7 @@ class AdminCategoryAttributeValue extends Component
     }
     public function render()
     {
-        return view('livewire.admin.admin-category-attribute-value')
+        return view('livewire.admin.product-features.admin-category-attribute-value')
             ->extends('dash.include.master_dash')
             ->section('dash_main_content')
             ->with(['categoryAttribute' => CategoryAttribute::where('id',$this->cat_attr_id)->first() ]);

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Admin;
+namespace App\Http\Livewire\Admin\Discount;
 
 use App\Models\AmazingSales;
 use App\Models\Coupon;
@@ -66,7 +66,7 @@ class AdminCouponDiscount extends Component
     }
     public function render()
     {
-        return view('livewire.admin.admin-coupon-discount')
+        return view('livewire.admin.discount.admin-coupon-discount')
             ->extends('dash.include.master_dash')
             ->section('dash_main_content')
             ->with(['coupons' => Coupon::paginate(10)]);

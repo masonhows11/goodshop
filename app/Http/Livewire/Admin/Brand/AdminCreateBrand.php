@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Admin;
+namespace App\Http\Livewire\Admin\Brand;
 
 use App\Models\Brand;
 use Livewire\Component;
@@ -88,7 +88,7 @@ class AdminCreateBrand extends Component
 
     public function render()
     {
-        return view('livewire.admin.admin-create-brand')
+        return view('livewire.admin.brand.admin-create-brand')
             ->extends('dash.include.master_dash')
             ->section('dash_main_content');
     }

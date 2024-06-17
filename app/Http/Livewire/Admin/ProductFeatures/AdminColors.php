@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Admin;
+namespace App\Http\Livewire\Admin\ProductFeatures;
 
 use App\Models\Color;
 use Livewire\Component;
@@ -122,7 +122,7 @@ class AdminColors extends Component
 
     public function render()
     {
-        return view('livewire.admin.admin-colors')
+        return view('livewire.admin.product-features.admin-colors')
             ->extends('dash.include.master_dash')
             ->section('dash_main_content')
             ->with('colors', Color::where('code','like','%'.$this->search.'%')

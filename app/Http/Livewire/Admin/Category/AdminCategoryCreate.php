@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Admin;
+namespace App\Http\Livewire\Admin\Category;
 
 
 use App\Models\Category;
@@ -107,7 +107,7 @@ class AdminCategoryCreate extends Component
 
     public function render()
     {
-        return view('livewire.admin.admin-category-create')
+        return view('livewire.admin.category.admin-category-create')
             ->extends('dash.include.master_dash')
             ->section('dash_main_content')
             ->with('categories', Category::all());

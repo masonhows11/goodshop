@@ -34,6 +34,7 @@ use App\Http\Controllers\Dash\Delivery\DeliveryController;
 use App\Http\Controllers\Dash\Product\ProductWarrantyController;
 use App\Http\Controllers\Dash\Setting\SettingController;
 use App\Http\Controllers\Dash\StockProduct\StockController;
+
 //// Admin City & Province Controllers
 // use App\Http\Controllers\Dash\AdminCityController;
 use App\Http\Controllers\Dash\Address\AdminProvinceController;
@@ -47,28 +48,37 @@ use App\Http\Controllers\Front\Profile\FrontAddressController;
 use App\Http\Controllers\Front\Profile\FrontTicketController;
 
 //// Admin Livewire Controllers
-use App\Http\Livewire\Admin\AdminAdmins;
-use App\Http\Livewire\Admin\AdminBrands;
-use App\Http\Livewire\Admin\AdminCategoryAttribute;
-use App\Http\Livewire\Admin\AdminCategoryAttributeValue;
-use App\Http\Livewire\Admin\AdminCategoryCreate;
-use App\Http\Livewire\Admin\AdminCategoryEdit;
-use App\Http\Livewire\Admin\AdminCategoryList;
-use App\Http\Livewire\Admin\AdminColors;
-use App\Http\Livewire\Admin\AdminCreateBrand;
-use App\Http\Livewire\Admin\AdminEditBrand;
-use App\Http\Livewire\Admin\AdminPerms;
-use App\Http\Livewire\Admin\AdminRoles;
-use App\Http\Livewire\Admin\AdminTag;
-use App\Http\Livewire\Admin\AdminUsers;
+use App\Http\Livewire\Admin\Users\AdminUsers;
+use App\Http\Livewire\Admin\Users\AdminAdmins;
+//
+use App\Http\Livewire\Admin\ProductFeatures\AdminCategoryAttribute;
+use App\Http\Livewire\Admin\ProductFeatures\AdminCategoryAttributeValue;
+//
+use App\Http\Livewire\Admin\Category\AdminCategoryCreate;
+use App\Http\Livewire\Admin\Category\AdminCategoryEdit;
+use App\Http\Livewire\Admin\Category\AdminCategoryList;
+//
+use App\Http\Livewire\Admin\ProductFeatures\AdminTag;
+use App\Http\Livewire\Admin\ProductFeatures\AdminColors;
+//
+use App\Http\Livewire\Admin\Brand\AdminBrands;
+use App\Http\Livewire\Admin\Brand\AdminCreateBrand;
+use App\Http\Livewire\Admin\Brand\AdminEditBrand;
+//
+use App\Http\Livewire\Admin\Permissions\AdminPerms;
+use App\Http\Livewire\Admin\Permissions\AdminRoles;
+//
 use App\Http\Livewire\Admin\Banner\AdminAmazingOfferBanner;
 use App\Http\Livewire\Admin\Banner\AdminBottomTwoBanner;
 use App\Http\Livewire\Admin\Banner\AdminMainSlider;
 use App\Http\Livewire\Admin\Banner\AdminTopBanner;
+//
 use App\Http\Livewire\Admin\Comment\AdminSingleComment;
 use App\Http\Livewire\Admin\IndexProduct\IndexProduct;
-use App\Http\Livewire\Admin\ListUsersForPerm;
-use App\Http\Livewire\Admin\ListUsersForRole;
+//
+use App\Http\Livewire\Admin\Permissions\ListUsersForPerm;
+use App\Http\Livewire\Admin\Permissions\ListUsersForRole;
+//
 use App\Http\Livewire\Admin\Orders\AdminAllOrders;
 use App\Http\Livewire\Admin\Delivery\AdminDelivery;
 use App\Http\Livewire\Admin\Setting\AdminSetting;
@@ -332,8 +342,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth:admin', 'verify_admin'
 Route::prefix('admin')->name('admin.')->middleware(['auth:admin', 'verify_admin', 'role:admin|super_admin'])->group(function () {
 
     Route::get('/tag/index', AdminTag::class)->name('tag.index');
-    Route::get('/tag/create', AdminCreateBrand::class)->name('tag.create');
-    Route::get('/tag/edit/{id}', AdminEditBrand::class)->name('tag.edit');
+    // Route::get('/tag/create', AdminCreateBrand::class)->name('tag.create');
+    // Route::get('/tag/edit/{id}', AdminEditBrand::class)->name('tag.edit');
 
 });
 // crud colors

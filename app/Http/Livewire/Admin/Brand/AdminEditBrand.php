@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Admin;
+namespace App\Http\Livewire\Admin\Brand;
 
 use App\Models\Brand;
 use Illuminate\Support\Facades\DB;
@@ -107,7 +107,7 @@ class AdminEditBrand extends Component
 
     public function render()
     {
-        return view('livewire.admin.admin-edit-brand')
+        return view('livewire.admin.brand.admin-edit-brand')
             ->extends('dash.include.master_dash')
             ->section('dash_main_content')
             ->with(['brand_title' => $this->brand_title]);

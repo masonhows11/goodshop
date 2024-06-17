@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Admin;
+namespace App\Http\Livewire\Admin\Category;
 
 use App\Models\Category;
 use Illuminate\Support\Facades\DB;
@@ -99,7 +99,7 @@ class AdminCategoryList extends Component
 
     public function render()
     {
-        return view('livewire.admin.admin-category-list')
+        return view('livewire.admin.category.admin-category-list')
             ->extends('dash.include.master_dash')
             ->section('dash_main_content')
             ->with(['categories' => Category::where('title_persian','like','%'.$this->search.'%')

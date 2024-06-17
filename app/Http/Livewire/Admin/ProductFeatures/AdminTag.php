@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Admin;
+namespace App\Http\Livewire\Admin\ProductFeatures;
 
 use App\Models\Tag;
 use Illuminate\Support\Facades\DB;
@@ -132,7 +132,7 @@ class AdminTag extends Component
 
     public function render()
     {
-        return view('livewire.admin.admin-tag')
+        return view('livewire.admin.product-features.admin-tag')
             ->extends('dash.include.master_dash')
             ->section('dash_main_content')
             ->with(['tags' => Tag::paginate(10)]);

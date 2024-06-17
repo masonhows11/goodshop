@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Admin;
+namespace App\Http\Livewire\Admin\Discount;
 
 use App\Models\AmazingSales;
 use Livewire\Component;
@@ -64,7 +64,7 @@ class AdminAmazingSale extends Component
     }
     public function render()
     {
-        return view('livewire.admin.admin-amazing-sale')
+        return view('livewire.admin.discount.admin-amazing-sale')
             ->extends('dash.include.master_dash')
             ->section('dash_main_content')
             ->with(['amazingSales' => AmazingSales::paginate(10)]);
