@@ -16,8 +16,8 @@
                                 <input type="text" class="form-control" id="title_persian"
                                        wire:model.defer="title_persian">
                                 @error('title_persian')
-                                <div class="alert alert-danger mt-3">
-                                    {{ $message }}
+                                <div class="mt-3">
+                                    <span class="text-danger">{{ $message }}</span>
                                 </div>
                                 @enderror
                             </div>
@@ -28,8 +28,8 @@
                                 <input type="text" class="form-control" id="title_english"
                                        wire:model.defer="title_english">
                                 @error('title_english')
-                                <div class="alert alert-danger mt-3">
-                                    {{ $message }}
+                                <div class="mt-3">
+                                    <span class="text-danger">{{ $message }}</span>
                                 </div>
                                 @enderror
                             </div>
