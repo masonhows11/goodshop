@@ -225,8 +225,7 @@
 
                                 <div class="col mt-5 mb-5">
                                     <label for="origin_price" class="form-label">{{ __('messages.origin_price') }}</label>
-                                    <input type="number" dir="ltr" min="1" class="form-control" id="origin_price"
-                                        name="origin_price" value="{{ $product->origin_price }}">
+                                    <input type="number" dir="ltr" min="1" class="form-control" id="origin_price"  name="origin_price" value="{{ $product->origin_price }}">
                                     @error('origin_price')
                                     <div class="mt-3">
                                         <span class="text-danger">{{ $message }}</span>

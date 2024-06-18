@@ -30,7 +30,7 @@ class CreateProductsTable extends Migration
             $table->decimal('width',10,1)->nullable();
             $table->decimal('height',10,1)->nullable();
 
-            $table->string('origin_price')->nullable();
+            $table->unsignedDecimal('origin_price',10,2)->nullable();
             $table->tinyInteger('marketable')->default(1);
 
             $table->string('tags')->nullable();
