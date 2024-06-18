@@ -81,7 +81,7 @@ return [
     'category_search' => 'جستجو دسته بندی',
     'name_persian' => 'عنوان فارسی',
     'name_english' => 'عنوان انگلیسی',
-    'slug' => 'اسلاگ ( slug )',
+    'slug' => 'اسلاگ ( نامک )',
     'category_parent' => 'دسته بندی والد',
     'main_category' => 'دسته بندی اصلی',
     'category' => 'دسته بندی',
