@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 class ProductCreateController extends Controller
 {
 
-    public ProductBasicRepository $productBasicRepository;
+    public  $productBasicRepository;
 
     public function __construct(ProductBasicRepository $basicRepository)
     {
