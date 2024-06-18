@@ -49,43 +49,51 @@ class AdminTag extends Component
         $this->validate();
         if ($this->edit_mode == false) {
             try {
-                Tag::create([
+                Tag::create(
+                    [
                         'title_persian' => $this->title_persian,
                         'title_english' => $this->title_english,
                     ]
                 );
-                $this->dispatchBrowserEvent('show-result',
-                    ['type' => 'success',
-                        'message' => __('messages.New_record_saved_successfully')]);
+                $this->dispatchBrowserEvent(
+                    'show-result',
+                    [
+                        'type' => 'success',
+                        'message' => __('messages.New_record_saved_successfully')
+                    ]
+                );
                 //
                 $this->title_persian = '';
                 $this->title_english = '';
-
-
             } catch (\Exception $ex) {
                 return view('errors_custom.model_store_error');
             }
         } elseif ($this->edit_mode == true) {
             try {
-                DB::table('tags')
-                    ->where('id', $this->tag_id)
-                    ->update([
-                        'title_persian' => $this->title_persian,
-                        'title_english' => $this->title_english,
 
-                    ]);
-                $this->dispatchBrowserEvent('show-result',
-                    ['type' => 'success',
-                      'message' => __('messages.The_update_was_completed_successfully')]);
-                      
+
+                $tag =  Tag::findOrFail($this->tag_id);
+                $tag->title_persian = $this->title_persian;
+                $tag->title_english = $this->title_english;
+                // add this line for update slug when update model
+                $tag->generateSlug();
+                $tag->save();
+
+        
+                $this->dispatchBrowserEvent(
+                    'show-result',
+                    [
+                        'type' => 'success',
+                        'message' => __('messages.The_update_was_completed_successfully')
+                    ]
+                );
+
                 $this->title_persian = '';
                 $this->title_english = '';
                 $this->edit_mode = false;
-
-            }catch (\Exception $ex){
+            } catch (\Exception $ex) {
                 return view('errors_custom.model_store_error');
             }
-
         }
     }
 
@@ -110,11 +118,14 @@ class AdminTag extends Component
     {
         try {
             Tag::destroy($this->delete_id);
-            $this->dispatchBrowserEvent('show-result',
-                ['type' => 'success',
-                    'message' => __('messages.The_deletion_was_successful')]);
+            $this->dispatchBrowserEvent(
+                'show-result',
+                [
+                    'type' => 'success',
+                    'message' => __('messages.The_deletion_was_successful')
+                ]
+            );
             return null;
-
         } catch (\Exception $ex) {
             return view('errors_custom.model_not_found');
         }
