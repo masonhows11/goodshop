@@ -17,7 +17,9 @@
                             <label for="title" class="form-label">عنوان دسته بندی به فارسی :</label>
                             <input type="text" wire:model.lazy="title_persian" class="form-control" id="title">
                             @error('title_persian')
-                            <div class="alert alert-danger mt-3">{{ $message }}</div>
+                            <div class="mt-3">
+                                <span class="text-danger">{{ $message }}</span>
+                            </div>
                             @enderror
                         </div>
 
@@ -26,7 +28,9 @@
                             <label for="name" class="form-label">عنوان دسته بندی به انگلیسی:</label>
                             <input type="text" wire:model.lazy="title_english" dir="ltr" class="form-control text-left" id="name">
                             @error('title_english')
-                            <div class="alert alert-danger mt-3">{{ $message}}</div>
+                            <div class="mt-3">
+                                <span class="text-danger">{{ $message }}</span>
+                            </div>
                             @enderror
                         </div>
 
@@ -38,7 +42,9 @@
                                 <option value="1">@lang('messages.show')</option>
                             </select>
                             @error('show_in_menu')
-                            <div class="alert alert-danger mt-3">{{ $message }}</div>
+                            <div class="mt-3">
+                                <span class="text-danger">{{ $message }}</span>
+                            </div>
                             @enderror
                         </div>
 
@@ -55,7 +61,9 @@
                         </select>
 
                         @error('status')
-                        <div class="alert alert-danger mt-3">{{ $message}}</div>
+                        <div class="mt-3">
+                            <span class="text-danger">{{ $message }}</span>
+                        </div>
                         @enderror
                     </div>
 
@@ -81,7 +89,9 @@
 
 
                     @error('image_path')
-                    <div class="alert alert-danger">{{ $message}}</div>
+                    <div class="mt-3">
+                        <span class="text-danger">{{ $message }}</span>
+                    </div>
                     @enderror
 
 

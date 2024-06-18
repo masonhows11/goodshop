@@ -8,6 +8,7 @@ use Livewire\WithFileUploads;
 
 class AdminCreateBrand extends Component
 {
+
     use WithFileUploads;
 
     public $logo;
@@ -92,4 +93,5 @@ class AdminCreateBrand extends Component
             ->extends('dash.include.master_dash')
             ->section('dash_main_content');
     }
+    
 }

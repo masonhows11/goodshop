@@ -50,7 +50,7 @@
                     @foreach($brands as $brand)
                         <tr class="text-center">
                             <td>{{ $brand->id }}</td>
-                            <td><img width="120" height="120" src="{{ $brand->logo_path ? asset('storage/images/'.$brand->logo_path) : asset('dash/images/no-image-icon-23494.png') }}" alt=""></td>
+                            <td><img class="img-thumbnail" width="120" height="120" src="{{ $brand->logo_path ? asset('storage/images/'.$brand->logo_path) : asset('dash/images/no-image-icon-23494.png') }}" alt=""></td>
                             <td>{{ $brand->title_persian }}</td>
                             <td>{{ $brand->title_english }}</td>
                             <td><a href="javascript:void(0)" wire:click.prevent="active({{ $brand->id }})" class="btn {{ $brand->is_active  === 1  ? 'btn-success' : 'btn-danger'}}  btn-sm">{{ $brand->is_active === 1  ? __('messages.active') : __('messages.deactivate')}}</a></td>
