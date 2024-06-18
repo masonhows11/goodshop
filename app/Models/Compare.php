@@ -19,7 +19,6 @@ class Compare extends Model
     // many to many with  Product model
     public function products()
     {
-        return
-            $this->belongsToMany(Product::class,'compare_product');
+        return $this->belongsToMany(Product::class,'compare_product');
     }
 }

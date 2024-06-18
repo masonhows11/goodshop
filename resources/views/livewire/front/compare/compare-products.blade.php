@@ -1,5 +1,5 @@
 <div>
-    @if ( $compare_products->count() > 0 )
+    @if ( $compare_products !== null )
         <div class="row row-cols-1  row-cols-md-4 g-2 compare-products-list">
             @foreach( $compare_products as $item)
                 <div class="col">
@@ -63,7 +63,7 @@
     @else
         <div class="row d-flex justify-content-center align-items-center no-compare-products">
             <div class="col d-flex justify-content-center align-items-center" style="height: 300px">
-                <p class="text-center">{{ __('messages.no_product_found') }}</p>
+                <p class="text-center">{{ __('messages.no_products_were_found_to_compare') }}</p>
             </div>
         </div>
     @endif

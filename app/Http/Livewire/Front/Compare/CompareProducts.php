@@ -40,6 +40,6 @@ class CompareProducts extends Component
     public function render()
     {
         return view('livewire.front.compare.compare-products')
-            ->with(['compare_products' => auth()->user()->compare->products]);
+            ->with(['compare_products' => auth()->user()->compare->products ?? null]);
     }
 }

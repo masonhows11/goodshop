@@ -511,5 +511,6 @@ return [
     'new_tag' => 'جدید',
     'edit_mobile' => 'تغییر شماره موبایل',
     'keep_me_update_if_exists' => 'موجود شد خبرم کن',
+    'no_products_were_found_to_compare' => 'محصولی برای مقایسه پیدا نشد',
 
 ];
