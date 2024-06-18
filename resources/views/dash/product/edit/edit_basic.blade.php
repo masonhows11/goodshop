@@ -261,8 +261,8 @@
 
                             <div class="col-sm-4 mt-5 mb-5">
 
-                                <div class="row d-flex flex-column   product-image">
-                                    <div class="col-lg-8 d-flex justify-content-center ">
+                                <div class="row d-flex flex-column justify-content-center align-content-center   product-image">
+                                    <div class="col-lg-8">
                                         @if( $product->thumbnail_image != null && Storage::disk('public')->exists($product->thumbnail_image))
                                         <img src="{{  asset('storage/'.$product->thumbnail_image)  }}" id="image_view" class="img-thumbnail" height="300" width="300" alt="image">
                                     @else
