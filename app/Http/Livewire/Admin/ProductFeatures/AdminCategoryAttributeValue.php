@@ -42,12 +42,13 @@ class AdminCategoryAttributeValue extends Component
 
     public function save()
     {
-       // $this->validate();
+        $this->validate();
 
         try {
             if ($this->edit_mode == false) {
 
-               $model =  CategoryAttributeValue::create([
+                /////
+                CategoryAttributeValue::create([
                     'product_id' => $this->product_id,
                     'category_attribute_id' => $this->cat_attr_id,
                     'value' => $this->value,
@@ -55,33 +56,32 @@ class AdminCategoryAttributeValue extends Component
                     'type' => $this->type,
                 ]);
 
-
-
+                /////
                 $this->product_id = '';
                 $this->value = '';
                 $this->price_increase = '';
                 $this->type = '';
-
-
+                /////
                 $this->dispatchBrowserEvent('show-result',
                     ['type' => 'success',
                         'message' => __('messages.New_record_saved_successfully')]);
 
 
             } elseif ($this->edit_mode == true) {
+               /////
                CategoryAttributeValue::where('id',$this->cat_attr_val_id)
                     ->update(['product_id' => $this->product_id,
                               'category_attribute_id' => $this->cat_attr_id,
                               'value'=>$this->value,
                               'price_increase' => $this->price_increase,
                               'type' => $this->type,]);
-
+                /////
                 $this->product_id = '';
                 $this->value = '';
                 $this->price_increase = '';
                 $this->type = '';
                 $this->edit_mode = true;
-
+                /////
                 $this->dispatchBrowserEvent('show-result',
                     ['type' => 'success',
                         'message' => __('messages.The_update_was_completed_successfully')]);

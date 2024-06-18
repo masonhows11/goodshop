@@ -299,6 +299,7 @@ return [
     'warranty_management' => 'مدیریت گارانتی',
     'warranty' => 'گارانتی',
     'attributes' => 'ویژگی ها',
+    'attributes_list' => 'ویژگی ها لیست',
     'percentage' => 'درصد',
     'no_new_comment' => 'نظر جدیدی وجود ندارد',
 
