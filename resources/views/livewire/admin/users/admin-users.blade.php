@@ -25,7 +25,7 @@
 
         <div class="row users-management bg-white overflow-auto">
             <div class="my-5">
-                <table class="table">
+                <table class="table table-striped">
                     <thead>
                     <tr class="text-center">
                         <th>{{ __('messages.id') }}</th>
