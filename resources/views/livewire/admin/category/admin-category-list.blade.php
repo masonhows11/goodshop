@@ -52,14 +52,14 @@
                             <td>{{ $category->id }}</td>
                             <td>{{ $category->title_persian }}</td>
                             <td>{{ $category->parent_id ? $category->parent->title_persian : __('messages.main_category') }}</td>
-                            <td><img src="{{ $category->image_path ?
+                            <td><img class="img-thumbnail" src="{{ $category->image_path ?
                                               asset('storage/images/category/'.$category->image_path) :
                                               asset('dash/images/no-image-icon-23494.png')  }}"
                                     width="100" height="100" alt="image_category">
                             </td>
                             <td><a href="#" wire:click.prevent="changeState({{ $category->id }})"
-                                   class="mx-4 btn btn-sm {{ $category->is_active === 0 ? 'btn-danger' : 'btn-success' }} ">
-                                    {{ $category->is_active === 0 ? __('messages.deactivate') : __('messages.active') }}
+                                   class="mx-4 btn btn-sm {{ $category->status === 0 ? 'btn-danger' : 'btn-success' }} ">
+                                    {{ $category->status === 0 ? __('messages.deactivate') : __('messages.active') }}
                                 </a>
                             </td>
                             <td><a href="#" wire:click.prevent="detachCategory({{ $category->id }})" class="mx-4">

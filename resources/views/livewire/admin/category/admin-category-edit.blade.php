@@ -9,12 +9,11 @@
 
         <form wire:submit.prevent="updateCategory">
 
-            <div class="row">
-                <div class="col-lg-7 col-md-8 col-sm-6 category-create">
+            <div class="row edit-create">
 
-                    <div class="row">
+                <div class="col-sm-4">
 
-                        <div class=" mb-3 mt-3">
+                        <div class="mb-3 mt-3">
                             <label for="title" class="form-label">عنوان دسته بندی به فارسی :</label>
                             <input type="text" wire:model.lazy="title_persian" class="form-control" id="title">
                             @error('title_persian')
@@ -31,8 +30,6 @@
                             @enderror
                         </div>
 
-
-
                         <div class=" mb-3 mt-3">
                             <label for="show_in_menu" class="form-label">نمایش در منو:</label>
                             <select class="form-control" wire:model.lazy="show_in_menu" id="show_in_menu">
@@ -40,39 +37,59 @@
                                 <option value="0">@lang('messages.not_show')</option>
                                 <option value="1">@lang('messages.show')</option>
                             </select>
-
                             @error('show_in_menu')
                             <div class="alert alert-danger mt-3">{{ $message }}</div>
                             @enderror
                         </div>
 
-                        <div class=" mb-3 mt-3">
-                            <label for="status" class="form-label">وضعیت دسته بندی:</label>
-                            <select class="form-control" wire:model.lazy="status" id="status">
-                                <option>انتخاب کنید</option>
-                                <option value="0">{{ __('messages.deactivate') }}</option>
-                                <option value="1">{{ __('messages.active') }}</option>
-                            </select>
+                </div>
 
-                            @error('status')
-                            <div class="alert alert-danger mt-3">{{ $message}}</div>
-                            @enderror
-                        </div>
+                <div class="col-sm-4">
+
+                    <div class="mb-3 mt-3">
+                        <label for="status" class="form-label">وضعیت دسته بندی:</label>
+                        <select class="form-control" wire:model.lazy="status" id="status">
+                            <option>انتخاب کنید</option>
+                            <option value="0">{{ __('messages.deactivate') }}</option>
+                            <option value="1">{{ __('messages.active') }}</option>
+                        </select>
+
+                        @error('status')
+                        <div class="alert alert-danger mt-3">{{ $message}}</div>
+                        @enderror
+                    </div>
+
+                    <div class="mb-3 mt-3">
+                        <label for="parent" class="form-label">انتخاب دسته بندی والد:</label>
+                        <select class="form-control" wire:model.lazy="parent" id="parent">
+                            <option value="null">فاقد دسته بندی</option>
+                            @foreach($categories as $item)
+                                <option value="{{ $item->id }}">{{ $item->title_persian }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="mb-3 mt-3">
+                        <label for="image_path" class="form-label">تصویر دسته بندی</label>
+                        <input wire:loading.class="d-none" type="file" accept="image/*" class="form-control" wire:model.defer="image_path" id="image_path">
+                    </div>
+
+                    <div wire:loading wire:target="image_path" wire:loading.class="d-flex" class="">
+                        <div class="spinner-border me-2" role="status" aria-hidden="true"></div>
+                        <div><strong>{{ __('messages.uploading') }}</strong></div>
+                    </div>
 
 
-
-                        <div class=" mb-3 mt-3">
-                            <label for="parent" class="form-label">انتخاب دسته بندی والد:</label>
-                            <select class="form-control" wire:model.lazy="parent" id="parent">
-                                <option value="null">فاقد دسته بندی</option>
-                                @foreach($categories as $item)
-                                    <option value="{{ $item->id }}">{{ $item->title_persian }}</option>
-                                @endforeach
-                            </select>
-                        </div>
+                    @error('image_path')
+                    <div class="alert alert-danger">{{ $message}}</div>
+                    @enderror
 
 
-                       {{-- <div class=" mb-3 mt-3">
+                </div>
+
+                <div class="col-sm-4">
+
+                      {{-- <div class=" mb-3 mt-3">
                             <label for="icon" class="form-label">ایکون دسته بندی:</label>
                             <input type="text" wire:model.lazy="icon" dir="ltr"
                                    class="form-control text-left" id="icon">
@@ -80,11 +97,6 @@
                             <div class="alert alert-danger mt-3">{{ $message }}</div>
                             @enderror
                         </div>--}}
-
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-4 col-sm-4">
 
                     <div class="mb-2 mt-5 d-flex justify-content-center">
                         @if($image_path)
@@ -107,15 +119,6 @@
 
                         @endif
                     </div>
-
-                    <div class="mb-3">
-                        <label for="image_path" class="form-label">تصویر دسته بندی</label>
-                        <input type="file" accept="image/*" class="form-control" wire:model.defer="image_path" id="image_path">
-                    </div>
-                    <div wire:loading wire:target="image_path">در حال بارگزاری...</div>
-                    @error('image_path')
-                    <div class="alert alert-danger">{{ $message}}</div>
-                    @enderror
 
                 </div>
 

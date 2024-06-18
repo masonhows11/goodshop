@@ -60,7 +60,7 @@ class AdminCategoryCreate extends Component
 
     public function storeCategory()
     {
-       // $this->validate();
+        $this->validate();
         try {
 
             $this->category = new Category();

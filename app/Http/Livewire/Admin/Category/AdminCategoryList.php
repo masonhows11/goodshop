@@ -3,7 +3,6 @@
 namespace App\Http\Livewire\Admin\Category;
 
 use App\Models\Category;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -78,12 +77,12 @@ class AdminCategoryList extends Component
     {
         try {
             $category = Category::findOrFail($id);
-            if ($category->is_active == 0) {
-                $category->is_active = 1;
-                $this->is_active = 1;
+            if ($category->status == 0) {
+                $category->status = 1;
+                $this->status = 1;
             } else {
-                $category->is_active = 0;
-                $this->is_active = 0;
+                $category->status = 0;
+                $this->status = 0;
             }
             $category->save();
 
@@ -103,7 +102,7 @@ class AdminCategoryList extends Component
             ->extends('dash.include.master_dash')
             ->section('dash_main_content')
             ->with(['categories' => Category::where('title_persian','like','%'.$this->search.'%')
-                ->Orwhere('title_english','like','%'.$this->search.'%')->paginate(10)]);
-        // ->with(['category_tree'=>Category::tree()->get()->toTree()]);
+                ->orWhere('title_english','like','%'.$this->search.'%')->paginate(10)]);
+
     }
 }
