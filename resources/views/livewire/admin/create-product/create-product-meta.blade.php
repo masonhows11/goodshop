@@ -5,12 +5,12 @@
     <div class="container-fluid product-meta-section">
 
         <div class="row ms-2 my-3">
-            <div class="col-lg-3 col-md-3 col title-product">
+            <div class="col-lg-6 col-md-6 col-sm-6 title-product">
                 <div class="alert bg-white text-center">
                     {{ __('messages.product_meta') }}
                 </div>
             </div>
-            <div class="col-lg-3 col-md-3 col title-product">
+            <div class="col-lg-6 col-md-6 col-sm-6 title-product">
                 <div class="alert bg-white text-center">
                     {{ $product->title_persian }}
                 </div>
@@ -28,8 +28,8 @@
                             <label for="meta_key" class="form-label">{{ __('messages.product_meta_key') }}</label>
                             <input type="text" class="form-control" id="meta_key" wire:model.defer="meta_key">
                             @error('meta_key')
-                            <div class="alert alert-danger mt-3">
-                                {{ $message }}
+                            <div class="mt-3">
+                                <span class="text-danger">{{ $message }}</span>
                             </div>
                             @enderror
                         </div>
@@ -37,8 +37,8 @@
                             <label for="meta_value" class="form-label">{{ __('messages.product_meta_value') }}</label>
                             <input type="text" class="form-control" id="meta_value" wire:model.defer="meta_value">
                             @error('meta_value')
-                            <div class="alert alert-danger mt-3">
-                                {{ $message }}
+                            <div class="mt-3">
+                                <span class="text-danger">{{ $message }}</span>
                             </div>
                             @enderror
                         </div>

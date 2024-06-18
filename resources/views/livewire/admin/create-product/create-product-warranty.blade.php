@@ -4,29 +4,29 @@
     @endsection
     <div class="container-fluid">
 
-        <div class="row  my-3">
-            <div class="col-lg-3 col-md-3 col title-product">
+        <div class="row my-3">
+            <div class="col-lg-6 col-md-6 col-sm-6 title-product">
                 <div class="alert bg-white text-center">
                     {{ __('messages.warranty') }}
                 </div>
             </div>
-            <div class="col-lg-3 col-md-3 col title-product">
+            <div class="col-lg-6 col-md-6 col-sm-6 title-product">
                 <div class="alert bg-white text-center">
                     {{ $product->title_persian }}
                 </div>
             </div>
         </div>
 
-        <div class="row  mt-2 ">
-            <div class="col bg-white">
+        <div class="row  mt-2">
+            <div class="col bg-white rounded">
                 <form wire:submit.prevent="save">
                     <div class="row product-warranty">
                         <div class="col-sm-4 mt-3 mb-3">
                             <label for="title" class="form-label">{{ __('messages.title') }}</label>
                             <input type="text" class="form-control" id="title" wire:model.defer="title">
                             @error('title')
-                            <div class="alert alert-danger mt-3">
-                                {{ $message }}
+                            <div class="mt-3">
+                                <span class="text-danger">{{ $message }}</span>
                             </div>
                             @enderror
                         </div>
@@ -34,8 +34,8 @@
                             <label for="price_increase" class="form-label">{{ __('messages.price_increase') }}</label>
                             <input type="text" class="form-control" id="price_increase" wire:model.defer="price_increase">
                             @error('price_increase')
-                            <div class="alert alert-danger mt-3">
-                                {{ $message }}
+                            <div class="mt-3">
+                                <span class="text-danger">{{ $message }}</span>
                             </div>
                             @enderror
                         </div>
@@ -47,8 +47,8 @@
                                 <option value="0">{{ __('messages.deactivate') }}</option>
                             </select>
                             @error('status')
-                            <div class="alert alert-danger mt-3">
-                                {{ $message }}
+                            <div class="mt-3">
+                                <span class="text-danger">{{ $message }}</span>
                             </div>
                             @enderror
                         </div>

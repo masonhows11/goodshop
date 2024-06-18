@@ -10,7 +10,7 @@
     <div class="container-fluid">
 
 
-       
+
             <form action="{{ route('admin.product.update.basic') }}" method="post" enctype="multipart/form-data"  id="product-form">
                 @csrf
 
@@ -63,7 +63,7 @@
                                     </div>
                                     @enderror
                                 </div>
-                
+
                             </div>
 
                             <div class="col-sm-4 mt-5 mb-5">
@@ -90,7 +90,7 @@
                                         <option>انتخاب کنید...</option>
                                         <option value="1" {{ $product->status == 1 ? 'selected' : '' }} >{{ __('messages.published') }}</option>
                                         <option value="0"  {{ $product->status == 0 ? 'selected' : '' }} >{{ __('messages.unpublished') }}</option>
-    
+
                                     </select>
                                     @error('status')
                                     <div class="mt-3">
@@ -99,7 +99,7 @@
                                     @enderror
                                 </div>
 
-                              
+
 
                                 <div class="col mt-5 mb-5">
                                     <label for="available_in_stock" class="form-label">تعداد</label>
@@ -111,12 +111,12 @@
                                     @enderror
                                 </div>
 
-                               
 
-                               
+
+
                             </div>
 
-                           
+
                             <div class="col-sm-4 mt-5 mb-5">
                                 <div class="col mt-5 mb-5">
                                     <label for="product_tags" class="form-label">تگ ها</label>
@@ -184,7 +184,7 @@
                                         </div>
                                         @enderror
                                     </div>
-    
+
                                     <div class="col-12 mt-5 mb-5">
                                         <label for="length" class="form-label">طول</label>
                                         <input type="number" dir="ltr" min="1" class="form-control" id="length" name="length"
@@ -195,7 +195,7 @@
                                         </div>
                                         @enderror
                                     </div>
-    
+
                                     <div class="col-6 mt-5 mb-5">
                                         <label for="width" class="form-label">عرض</label>
                                         <input type="number" dir="ltr" min="1" class="form-control" id="width" name="width"
@@ -206,7 +206,7 @@
                                         </div>
                                         @enderror
                                     </div>
-    
+
                                     <div class="col-6 mt-5 mb-5">
                                         <label for="height" class="form-label">ارتفاع</label>
                                         <input type="number" dir="ltr" min="1" class="form-control" id="height" name="height"
@@ -219,13 +219,13 @@
                                     </div>
                                 </div>
 
-                            </div>    
+                            </div>
 
                             <div class="col-sm-4 mt-5 mb-5">
 
                                 <div class="col mt-5 mb-5">
                                     <label for="origin_price" class="form-label">{{ __('messages.origin_price') }}</label>
-                                    <input type="number" dir="ltr" min="1" class="form-control" id="origin_price"  name="origin_price" value="{{ $product->origin_price }}">
+                                    <input type="text" dir="ltr"  class="form-control" id="origin_price"  name="origin_price" value="{{ $product->origin_price }}">
                                     @error('origin_price')
                                     <div class="mt-3">
                                         <span class="text-danger">{{ $message }}</span>
@@ -256,7 +256,7 @@
                                     </div>
                                     @enderror
                                 </div>
-                            </div>   
+                            </div>
 
                             <div class="col-sm-4 mt-5 mb-5">
 
@@ -270,7 +270,7 @@
                                     </div>
                                 </div>
 
-                            </div>   
+                            </div>
 
                         </div>
 
@@ -325,7 +325,7 @@
                </div>
 
             </form>
-        
+
     </div>
 @endsection
 @push('dash_custom_script')

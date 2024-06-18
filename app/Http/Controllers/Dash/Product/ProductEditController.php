@@ -13,7 +13,7 @@ class ProductEditController extends Controller
 {
 
 
-    protected ProductBasicRepository $productBasicRepository;
+    protected  $productBasicRepository;
 
     public function __construct(ProductBasicRepository $basicRepository)
     {

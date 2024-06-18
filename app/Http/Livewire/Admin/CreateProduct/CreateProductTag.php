@@ -10,23 +10,40 @@ class CreateProductTag extends Component
 {
     public $Product;
     public $productId;
-    public $Tag;
+    public $tag;
     public $tag_id;
 
     public function mount($product_id)
     {
         $this->productId = $product_id;
-        $this->Product = Product::findOrfail($product_id);
+        $this->Product = Product::findOrFail($product_id);
 
     }
 
+
+    protected $rules = [
+        'tag' => ['required'],
+    ];
+
+    protected $messages = [
+
+        'tag.required' => 'فیلد تگ الزامی است',
+
+
+
+    ];
+
     public function save()
     {
-        $this->Product->tags()->toggle($this->Tag);
+
+        $this->validate();
+
+        $this->Product->tags()->toggle($this->tag);
+
         $this->dispatchBrowserEvent('show-result',
             ['type' => 'success',
                 'message' => __('messages.The_changes_were_made_successfully')]);
-        $this->Tag = '';
+        $this->tag = '';
 
     }
     public function deleteConfirmation($id)
@@ -46,7 +63,7 @@ class CreateProductTag extends Component
             $this->dispatchBrowserEvent('show-result',
                 ['type' => 'success',
                     'message' => __('messages.The_deletion_was_successful')]);
-            $this->Tag = '';
+            $this->tag = '';
         } catch (\Exception $ex) {
             return view('errors_custom.model_not_found');
         }

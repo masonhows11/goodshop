@@ -177,7 +177,7 @@
 
 
                         <div class="col-sm-4 mt-5 mb-5">
-                            
+
                             <div class="row">
 
                                 <div class="col-12 mt-5 mb-5">
@@ -190,7 +190,7 @@
                                     </div>
                                     @enderror
                                 </div>
-    
+
                                 <div class="col-12 mt-5 mb-5">
                                     <label for="length" class="form-label">طول</label>
                                     <input type="number" dir="ltr" min="1" class="form-control" id="length" name="length"
@@ -201,7 +201,7 @@
                                     </div>
                                     @enderror
                                 </div>
-    
+
                                 <div class="col-6 mt-5 mb-5">
                                     <label for="width" class="form-label">عرض</label>
                                     <input type="number" dir="ltr" min="1" class="form-control" id="width" name="width"
@@ -212,7 +212,7 @@
                                     </div>
                                     @enderror
                                 </div>
-    
+
                                 <div class="col-6 mt-5 mb-5">
                                     <label for="height" class="form-label">ارتفاع</label>
                                     <input type="number" dir="ltr" min="1" class="form-control" id="height" name="height"
@@ -224,8 +224,8 @@
                                     @enderror
                                 </div>
                             </div>
-                            
-                            
+
+
 
                         </div>
 
@@ -234,7 +234,7 @@
 
                             <div class="col mt-5 mb-5">
                                 <label for="origin_price" class="form-label">{{ __('messages.origin_price') }}</label>
-                                <input type="number" dir="ltr" min="1" class="form-control" id="origin_price"
+                                <input type="text" dir="ltr"  class="form-control" id="origin_price"
                                     name="origin_price" value="{{ old('origin_price') }}">
                                 @error('origin_price')
                                 <div class="mt-3">

@@ -4,13 +4,13 @@
     @endsection
     <div class="container-fluid product-color-section">
 
-        <div class="row ms-2 my-3">
-            <div class="col-lg-3 col-md-3 col title-product">
+        <div class="row  my-3">
+            <div class="col-lg-6 col-md-6 col-sm-6 title-product">
                 <div class="alert bg-white text-center">
                     {{ __('messages.tags_management') }}
                 </div>
             </div>
-            <div class="col-lg-3 col-md-3 col title-product">
+            <div class="col-lg-6 col-md-6 col-sm-6 title-product">
                 <div class="alert bg-white text-center">
                     {{ $product->title_persian }}
                 </div>
@@ -23,15 +23,15 @@
                     <div class="row product-tag-form">
                         <div class="col mt-4">
                             <label for="color" class="form-label">{{ __('messages.new_tag') }}</label>
-                            <select class="form-control" id="color" wire:model.defer="Tag">
+                            <select class="form-control" id="color" wire:model.defer="tag">
                                 <option>{{ __('messages.choose') }}</option>
                                 @foreach( $tags as $tag )
                                     <option value="{{ $tag->id}}">{{ $tag->title_persian }}</option>
                                 @endforeach
                             </select>
-                            @error('tags')
-                            <div class="alert alert-danger mt-3">
-                                {{ $message }}
+                            @error('tag')
+                            <div class="mt-3">
+                                <span class="text-danger">{{ $message }}</span>
                             </div>
                             @enderror
                         </div>

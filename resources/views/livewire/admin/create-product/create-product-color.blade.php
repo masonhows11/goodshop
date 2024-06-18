@@ -4,8 +4,8 @@
     @endsection
     <div class="container-fluid my-3 product-color-section">
 
-        <div class="row  mx-2">
-            <div class="col-lg-3 col-md-3 col title-product">
+        <div class="row  mx-1">
+            <div class="col-lg-12 col-md-12 col title-product">
                 <div class="alert bg-white text-center">
                     <h6>{{ __('messages.product_other_color') }}</h6>
                 </div>
@@ -28,36 +28,19 @@
                                 @endforeach
                             </select>
                             @error('color')
-                            <div class="alert alert-danger mt-3">
-                                {{ $message }}
+                            <div class="mt-3">
+                                <span class="text-danger">{{ $message }}</span>
                             </div>
                             @enderror
                         </div>
-
-                       {{-- <div class="col mt-4">
-                            <label for="default" class="form-label">{{ __('messages.default_color') }}</label>
-                            <select class="form-control" id="default" wire:model.defer="default">
-                                <option>{{ __('messages.choose') }}</option>
-                                <option value="1">{{ __('messages.yes') }}</option>
-                                <option value="0">{{ __('messages.no') }}</option>
-
-                            </select>
-                            @error('default')
-                            <div class="alert alert-danger mt-3">
-                                {{ $message }}
-                            </div>
-                            @enderror
-                        </div>--}}
-
-
 
                         <div class="col-sm-2 mt-4">
                             <label for="price_increase" class="form-label">{{ __('messages.price_increase') }}</label>
                             <input type="text" class="form-control" id="price_increase"
                                    wire:model.defer="price_increase">
                             @error('price_increase')
-                            <div class="alert alert-danger mt-3">
-                                {{ $message }}
+                            <div class="mt-3">
+                                <span class="text-danger">{{ $message }}</span>
                             </div>
                             @enderror
                         </div>
@@ -67,8 +50,8 @@
                             <label for="salable_quantity" class="form-label">{{ __('messages.salable_quantity') }}</label>
                             <input type="text" class="form-control" id="salable_quantity" wire:model.defer="salable_quantity">
                             @error('salable_quantity')
-                            <div class="alert alert-danger mt-3">
-                                {{ $message }}
+                            <div class="mt-3">
+                                <span class="text-danger">{{ $message }}</span>
                             </div>
                             @enderror
                         </div>
@@ -77,13 +60,13 @@
                             <label for="available_in_stock" class="form-label">{{ __('messages.available_in_stock') }}</label>
                             <input type="text" class="form-control" id="available_in_stock" wire:model.defer="available_in_stock">
                             @error('available_in_stock')
-                            <div class="alert alert-danger mt-3">
-                                {{ $message }}
+                            <div class="mt-3">
+                                <span class="text-danger">{{ $message }}</span>
                             </div>
                             @enderror
                         </div>
 
-                        <div class="col-sm-2 mt-4">
+                        <div class="col-sm-4 mt-4">
                             <label for="status" class="form-label">{{ __('messages.status') }}</label>
                             <select class="form-select" id="status" wire:model.defer="status">
                                 <option>{{ __('messages.choose') }}</option>
@@ -91,8 +74,8 @@
                                 <option value="0">{{ __('messages.deactivate') }}</option>
                             </select>
                             @error('status')
-                            <div class="alert alert-danger mt-3">
-                                {{ $message }}
+                            <div class="mt-3">
+                                <span class="text-danger">{{ $message }}</span>
                             </div>
                             @enderror
                         </div>
@@ -100,16 +83,16 @@
                     </div>
 
                     <div class="row my-4">
-                        <div class="col">
-                            <button type="submit" id="add_attribute"
-                                    class="btn btn-success btn-sm">{{ __('messages.save') }}</button>
-                            <a href="{{ route('admin.product.create.images',['product'=>$product->id]) }}"
-                               class="btn btn-primary btn-sm">{{ __('messages.product_images') }}</a>
+                        <div class="col-sm-6 mt-2">
+                            <button type="submit" id="add_attribute"  class="btn btn-success btn-sm">{{ __('messages.save') }}</button>
+                            <a href="{{ route('admin.product.create.images',['product'=>$product->id]) }}" class="btn btn-primary btn-sm">
+                                {{ __('messages.product_images') }}
+                            </a>
+                            <a href="{{ route('admin.product.index') }}" class="btn btn-secondary btn-sm">
+                                {{ __('messages.product_list') }}
+                            </a>
                         </div>
-                        <div class="col d-flex justify-content-end">
-                            <a href="{{ route('admin.product.index') }}"
-                               class="btn btn-secondary btn-sm">{{ __('messages.product_list') }}</a>
-                        </div>
+
                     </div>
                 </form>
 
