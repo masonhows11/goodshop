@@ -30,9 +30,6 @@ class AdminCouponDiscount extends Component
         }
         $this->coupon->save();
 
-        // session()->flash('success', __('messages.The_changes_were_made_successfully'));
-        // return redirect()->route('admin.common.amazingSale.index');
-
         $this->dispatchBrowserEvent('show-result',
             ['type' => 'success',
                 'message' => __('messages.The_changes_were_made_successfully')]);

@@ -27,13 +27,13 @@ class AdminAmazingSale extends Component
             $this->amazingSale->status = 1;
         }
         $this->amazingSale->save();
+        $this->dispatchBrowserEvent('show-result',
+            ['type' => 'success',
+                'message' => __('messages.The_changes_were_made_successfully')]);
 
         // session()->flash('success', __('messages.The_changes_were_made_successfully'));
         // return redirect()->route('admin.common.amazingSale.index');
 
-        $this->dispatchBrowserEvent('show-result',
-            ['type' => 'success',
-                'message' => __('messages.The_changes_were_made_successfully')]);
     }
 
     public function deleteConfirmation($id)

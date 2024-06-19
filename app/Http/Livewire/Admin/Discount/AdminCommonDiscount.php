@@ -28,13 +28,12 @@ class AdminCommonDiscount extends Component
            $this->discount->status = 1;
        }
        $this->discount->save();
-
-       // session()->flash('success', __('messages.The_changes_were_made_successfully'));
-       // return redirect()->route('admin.common.discount.index');
-
        $this->dispatchBrowserEvent('show-result',
             ['type' => 'success',
                 'message' => __('messages.The_changes_were_made_successfully')]);
+
+
+      
     }
 
     public function deleteConfirmation($id)
@@ -51,7 +50,6 @@ class AdminCommonDiscount extends Component
     public function deleteModel()
     {
         try {
-
 
             $model = CommonDiscount::findOrFail($this->discount_id);
             $model->delete();
