@@ -12,9 +12,12 @@
         </div>
     @else
 
+        @if( $amazingSale != null)
         <p class="text-danger text-center">
-            {{ $product->activeAmazingSale() ? __('messages.amazing_sale') . ' ' . $product->activeAmazingSale()->percentage . '%' : '' }}
+            {{  __('messages.amazing_sale') . ' ' . $amazingSale->percentage . '%' .' '. __('messages.discount')  }}
         </p>
+        @endif
+
 
         <div class="add-cart-box">
 
@@ -23,7 +26,7 @@
                 <span>{{ __('messages.site_name') }}</span>
             </div>
 
-            {{-- availble stock from product table --}}
+            <!-- availble stock from product table -->
             <div class="product-seller-row">
                 <span>{{ __('messages.status') }} :</span>
                 @if( $product->available_in_stock >= 3 )
@@ -35,12 +38,12 @@
                 @endif
             </div>
 
-            {{-------------------------------}}
-            {{---- default price section ----}}
+
+            <!-- default price section -->
             @if( $changePrice == false)
 
                 @if( $defaultPriceByColor != null )
-                    {{-- default price +  color if product has default color  --}}
+                   <!-- default price +  color if product has default color -->
                     <div class="product-seller-row">
                         <span>{{ __('messages.price') }}</span>
                         <span class="text-danger">{{ priceFormat($defaultPriceByColor) }} {{ __('messages.toman') }} </span>
@@ -53,7 +56,7 @@
                 @endif
 
             @else
-                {{--change price when change color of product --}}
+                 <!-- change price when change color of product -->
                 <div class="product-seller-row">
                     <span>{{ __('messages.price') }}</span>
                     <span class="text-danger">{{ priceFormat($newPriceByColor) }} {{ __('messages.toman') }} </span>
@@ -62,8 +65,8 @@
 
 
 
-            {{--------------------------}}
-            {{---- discount section ----}}
+
+            <!-- discount section -->
             @if( $amazingSale != null && $defaultPriceByColor != null )
                 <div class="product-seller-row">
                     <span>{{ __('messages.cart_discount') }}:</span>
@@ -89,8 +92,8 @@
             @endif
 
 
-            {{--------------------------}}
-            {{---- warranty section ----}}
+
+            <!-- warranty section ---->
             @if( $hasWarranty == false )
             @else
                 <div class="product-seller-row">
@@ -101,9 +104,7 @@
 
 
 
-
-            {{-- final price section --}}
-
+            <!-- final price section -->
             @if( $changePrice == false)
 
                 @if( $amazingSale != null && $defaultPriceByColor == null )

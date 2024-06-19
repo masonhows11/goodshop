@@ -62,7 +62,7 @@ return [
     'An_error_occurred' => 'خطایی رخ داده',
     'origin_price' => 'قیمت اصلی ',
     'sales_price' => 'قیمت با تخفیف',
-    'discount' => 'در صد تخفیف',
+    'discount' => 'تخفیف',
     'maximum_orders' => 'حداکثر تعداد سفارش',
     'thumbnail_image' => 'تصویر شاخص',
     'in_stock' => 'تعداد در انبار',
