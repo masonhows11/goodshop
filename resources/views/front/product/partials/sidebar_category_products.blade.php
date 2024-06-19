@@ -55,8 +55,19 @@
                     : {{ priceFormat($max_price) .' ' . __('messages.toman') }} </div>
             </div>
             <div class="d-flex flex-column mt-2">
-                <div class="mt-1"><input type="number" value="{{ request()->min_price }}" min="{{ $min_price }}" name="min_price" class="form-control" placeholder="از قیمت..."></div>
-                <div class="mt-1"><input type="number" value="{{ request()->max_price }}" min="{{ $min_price }}" max="{{ $max_price}}" name="max_price" class="form-control" placeholder="تا قیمت..."></div>
+                <div class="mt-1">
+                    <input type="number"
+                     value="{{ request()->min_price }}"
+                     max="{{ $min_price }}"
+                     name="min_price" class="form-control" placeholder="از قیمت...">
+                </div>
+                <div class="mt-1">
+                    <input type="number"
+                    value="{{ request()->max_price }}"
+                    min="{{ $min_price }}"
+                    max="{{ $max_price}}"
+                    name="max_price" class="form-control" placeholder="تا قیمت...">
+                </div>
             </div>
 
         </div>

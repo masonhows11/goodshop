@@ -69,7 +69,8 @@
                                      {{ request()->categoies }}
                                  </span>
                              </span>
-                             @endif--}}
+                             @endif
+                             --}}
 
                             @if( request()->min_price )
                                 <span class="d-inline-block border p-1 rounded bg-light">
@@ -115,9 +116,8 @@
                                     <a href="{{ route('product.details',$product->slug) }}" class="d-block">
                                         <div class="card custom-card mt-3">
 
-
-                                            <!-- image & color section in product card -->
-
+                                           <!------------------------------------------->
+                                           <!-- image & color section in product card -->
                                            <div class="d-flex">
                                                 <div class="d-flex flex-column product-color">
                                                    @foreach( $product->colors as $color)
@@ -131,6 +131,7 @@
                                                    <img class="img-thumbnail" width="200" height="200" src="{{ asset('dash/images/no-image-icon-23494.png') }}" alt="product_image">
                                                @endif
                                             </div>
+                                            <!------------------------------------------->
                                             <!-- description section in product card -->
                                             <div class="card-body">
                                                 <a href="{{ route('product.details',$product->slug) }}"

@@ -173,7 +173,6 @@ class HomeController extends Controller
                 $query->get();
             });
 
-
         //// request brands
         //// filter by brand
         $products = $products->when($request->brands, function () use ($request, $products) {
