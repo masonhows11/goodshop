@@ -185,8 +185,6 @@ class HomeController extends Controller
         $products = $request->colors ?
             Product::whereIn('id',ProductColor::whereIn('color_id',$request->colors)->select('product_id')->get()->toArray())  : $products;
 
-
-
         //// final product  result
         $products = $products->paginate(3);
         ////
