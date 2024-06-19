@@ -37,8 +37,8 @@
                     <tr class="text-center">
                         <td>{{ $coupon->id }}</td>
                         <td>{{ $coupon->code }}</td>
-                        <td>{{$coupon->amount_type == 0 ? $coupon->amount . '%' : number_format($coupon->amount) }}</td>
-                        <td>{{ $coupon->discount_ceiling != null ? number_format($coupon->discount_ceiling) : '_'   }}</td>
+                        <td>{{$coupon->amount_type == 0 ? $coupon->amount . '%' : number_format($coupon->amount) . ' ' . __('messages.toman') }}</td>
+                        <td>{{ $coupon->discount_ceiling != null ? number_format($coupon->discount_ceiling) . ' ' . __('messages.toman') : '_'   }}</td>
                         <td>{{ $coupon->type == 0 ? __('messages.public_coupon') : __('messages.private_coupon')}}</td>
                         <td>{{ $coupon->amount_type == 0 ? __('messages.percentage_type') : __('messages.numeric_type') }}</td>
                         <td><a href="javascript:void(0)"  wire:click.prevent="changeStatus({{ $coupon->id }})"

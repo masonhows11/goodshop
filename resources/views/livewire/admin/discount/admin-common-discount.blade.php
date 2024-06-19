@@ -37,9 +37,9 @@
                         <tr class="text-center">
                             <td>{{ $discount->id }}</td>
                             <td>{{ $discount->percentage }} %</td>
-                            <td>{{ number_format( $discount->discount_ceiling)  }}</td>
+                            <td>{{ number_format( $discount->discount_ceiling) . ' ' . __('messages.toman')  }}</td>
                             <td>{{ $discount->title }}</td>
-                            <td>{{ number_format($discount->minimal_order_amount) }}</td>
+                            <td>{{ number_format($discount->minimal_order_amount) . ' ' . __('messages.toman') }}</td>
                             <td><a href="javascript:void(0)"  wire:click.prevent="changeStatus({{ $discount->id }})" class="btn btn-sm {{ $discount->status  == 1 ? 'btn-success' : 'btn-danger' }}">
                                     {{ $discount->status ==  1 ? __('messages.active') : __('messages.deactivate') }}</a></td>
                             <td>{{  jdate($discount->start_date)->format('%B %d، %Y')  }}</td>
