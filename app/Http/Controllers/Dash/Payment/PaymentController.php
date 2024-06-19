@@ -45,7 +45,7 @@ class PaymentController extends Controller
         return redirect()->route('admin.payments.all.index');
     }
 
-    public function retuned(Payment $payment)
+    public function returned(Payment $payment)
     {
         $payment->status = 3;
         $payment->save();

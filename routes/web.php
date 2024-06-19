@@ -408,7 +408,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth:admin', 'verify_admin'
     Route::get('/payments-cash/index', [PaymentController::class, 'cash'])->name('payments.cash.index');
 
     Route::get('/payment-canceled/{payment}', [PaymentController::class, 'canceled'])->name('payment.canceled');
-    Route::get('/payment-returned/{payment}', [PaymentController::class, 'retuned'])->name('payment.returned');
+    Route::get('/payment-returned/{payment}', [PaymentController::class, 'returned'])->name('payment.returned');
 
     Route::get('/payment-show/{payment}', [PaymentController::class, 'show'])->name('payment.show');
 
