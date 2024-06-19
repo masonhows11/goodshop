@@ -261,7 +261,7 @@ return [
     'new_delivery' => 'ایجاد روش ارسال جدید',
     'edit_delivery' => 'ویرایش روش ارسال',
     'delivery_title' => 'نام روش ارسال',
-    'delivery_amount' => 'هزینه ارسال :',
+    'delivery_amount' => 'هزینه ارسال',
     'delivery_time' => 'مدت زمان ارسال',
     'delivery_time_unit' => 'واحد زمان ارسال',
     'delivery_date' => 'تاریخ ارسال',

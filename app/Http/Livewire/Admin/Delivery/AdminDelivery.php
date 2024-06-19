@@ -25,13 +25,14 @@ class AdminDelivery extends Component
 
         }
         $delivery->save();
+        $this->dispatchBrowserEvent('show-result',
+            ['type' => 'success',
+                'message' => __('messages.The_changes_were_made_successfully')]);
+
 
         //session()->flash('success', __('messages.The_changes_were_made_successfully'));
         //return redirect()->to('admin/delivery/index');
 
-        $this->dispatchBrowserEvent('show-result',
-            ['type' => 'success',
-                'message' => __('messages.The_changes_were_made_successfully')]);
     }
 
     public function deleteConfirmation($id)

@@ -24,7 +24,7 @@ class ShipmentRequest extends FormRequest
         return [
             'title' => 'required|min:2|max:125',
             'delivery_amount' => 'required|min:1|max:1000000000000|numeric',
-            'delivery_time' => 'required|min:1|max:3|numeric',
+            'delivery_time' => 'required|min:1|max:10|numeric',
             'delivery_time_unit' => 'required|min:2|max:125'
         ];
     }
