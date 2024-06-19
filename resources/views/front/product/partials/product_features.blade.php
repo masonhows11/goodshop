@@ -1,3 +1,4 @@
+@if($product->values()->count() > 0)
 <p class="mt-4">ویژگی های محصول :</p>
 <ul class="font-13 ps-1">
     @foreach( $product->values()->get() as $value )
@@ -11,3 +12,4 @@
         </li>
     @endforeach
 </ul>
+@endif

@@ -66,7 +66,7 @@
 
                     <div class="col-2 d-flex align-items-center justify-content-end">
                         <a href="{{ route('auth.login.form') }}" class="position-relative">
-                            <img src="front/images/cart.png">
+                            <img src="{{ asset('front/images/cart.png') }}">
                             <div class="count">0</div>
                         </a>
                     </div>
