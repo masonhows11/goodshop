@@ -147,7 +147,7 @@
                     @endif
                 </div>
             @endif
-            
+
             <button type="button" wire:click="addToCart({{ $product->id }})"
                     class="btn btn-danger add-cart-btn {{ $product->available_in_stock == 0 ? 'disabled' : '' }}">
                {{ __('messages.add_to_cart') }}

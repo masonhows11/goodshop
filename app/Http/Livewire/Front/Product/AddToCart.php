@@ -123,6 +123,7 @@ class AddToCart extends Component
     public function render()
     {
         return view('livewire.front.product.add-to-cart')
-            ->with(['product' => $this->product , 'amazingSale' => $this->product->activeAmazingSale()]);
+            ->with(['product' => $this->product ,
+                    'amazingSale' => $this->product->activeAmazingSale()]);
     }
 }
