@@ -21,6 +21,7 @@ class AddToCart extends Component
     public $changePrice = false;
     public $hasWarranty = false;
     public $warrantyPrice;
+
     // properties for add to cart
     public $final_product_id;
     public $final_color_id_for_cart;
@@ -35,7 +36,8 @@ class AddToCart extends Component
         $this->colors = ProductColor::where('product_id', $productId)->where('status', 1)->where('available_in_stock','>',0)->get();
         $hasDefaultColor = collect($this->colors)->where('default', 1);
 
-        if ($hasDefaultColor->isNotEmpty()) {
+        if ($hasDefaultColor->isNotEmpty())
+        {
             $colorPrice = collect($this->colors)->where('default', 1)->first();
             $this->defaultPriceByColor = $colorPrice->price_increase + $this->product->origin_price;
             // for add to cart
@@ -59,7 +61,7 @@ class AddToCart extends Component
         $priceColor = collect($name); // convert to collection
         $this->price = $priceColor['price_increase']; // this is collection
         $this->newPriceByColor = $this->price + $this->product->origin_price;
-        // for add to cart
+        //// for add to cart ////
         $this->final_product_id = $this->product->id;
         $this->final_color_id_for_cart = $priceColor->get('id');
 
@@ -73,7 +75,7 @@ class AddToCart extends Component
             ->where('id', $warrantyId)
             ->select(['id', 'price_increase'])->first();
         $this->warrantyPrice = $warrantyPrice->price_increase;
-        // for add to cart
+        //// for add to cart ////
         $this->warranty_id_for_cart = collect($warrantyPrice)->get('id');
     }
 

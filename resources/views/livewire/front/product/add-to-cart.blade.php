@@ -114,7 +114,9 @@
                     </div>
                 @elseif( $defaultPriceByColor != null )
                     <div class="product-seller-row">
+
                         <span> {{ __('messages.final_price') }}</span>
+
                         @if( $amazingSale != null && $hasWarranty == false )
                             <span class="text-danger">
                                 {{  priceFormat($product->AmazingSaleOnDefaultColorPrice($defaultPriceByColor))   }} {{ __('messages.toman') }}
@@ -128,6 +130,7 @@
                                 {{  $warrantyPrice != null ? priceFormat($defaultPriceByColor + $warrantyPrice) : priceFormat($defaultPriceByColor) }} {{ __('messages.toman') }}
                             </span>
                         @endif
+
                     </div>
                 @else
                     <div class="product-seller-row">
