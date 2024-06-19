@@ -16,7 +16,7 @@ class AdminAllOrders extends Component
 
     public function changeDeliveryStatus($id)
     {
-        $order = Order::findOrfail($id);
+        $order = Order::findOrFail($id);
         switch ($order->delivery_status){
             case 0:
                 $order->delivery_status = 1;
@@ -40,7 +40,7 @@ class AdminAllOrders extends Component
 
     public function changeOrderStatus($id)
     {
-        $order = Order::findOrfail($id);
+        $order = Order::findOrFail($id);
         switch ($order->order_status){
             case 0:
                 $order->order_status = 1;
@@ -66,7 +66,7 @@ class AdminAllOrders extends Component
 
     public function cancelOrder($id)
     {
-        $order = Order::findOrfail($id);
+        $order = Order::findOrFail($id);
         $order->order_status = 4;
         $order->save();
 

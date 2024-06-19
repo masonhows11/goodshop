@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Dash\Order;
 
 use App\Http\Controllers\Controller;
 use App\Models\Order;
-use Illuminate\Http\Request;
+// use Illuminate\Http\Request;
 
 class AdminOrderController extends Controller
 {
@@ -52,7 +52,7 @@ class AdminOrderController extends Controller
         $page_title = __('messages.orders_canceled');
         $body_title = __('messages.orders_canceled');
         $breadcrumbs = 'admin.orders.canceled';
-        $orders = Order::where('order_status',4)->paginate(20);
+        $orders = Order::where('order_status',3)->paginate(20);
         return view('dash.orders.index')->with(['orders' => $orders ,
             'page_title' => $page_title ,
             'body_title' => $body_title,
@@ -65,7 +65,7 @@ class AdminOrderController extends Controller
         $page_title = __('messages.orders_returned');
         $body_title = __('messages.orders_returned');
         $breadcrumbs = 'admin.orders.returned';
-        $orders = Order::where('order_status',5)->paginate(20);
+        $orders = Order::where('order_status',4)->paginate(20);
         return view('dash.orders.index')->with(['orders' => $orders ,
             'page_title' => $page_title ,
             'body_title' => $body_title,

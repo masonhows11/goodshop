@@ -8,7 +8,7 @@
     <div class="container-fluid">
 
         <div class="row d-flex justify-content-start my-4 bg-white">
-            <div class="col-lg-4 col-md-4 col  my-5  border-bottom title-add-to-stock">
+            <div class="col-lg-4 col-md-4 col  my-5 title-add-to-stock">
                 <div class="alert my-4">
                     <h3> {{ __('messages.all_orders') }}</h3>
                 </div>
