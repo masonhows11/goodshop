@@ -10,7 +10,7 @@
 
         <div class="row d-flex justify-content-start my-4">
             <div class="col-lg-4 col-md-4 col  my-5  border-bottom title-add-to-stock">
-                <div class="alert my-4 text-center">
+                <div class="alert my-4">
                     <h3> {{ __('messages.online_payments') }}</h3>
                 </div>
             </div>
