@@ -68,15 +68,19 @@ class AdminComment extends Component
 
             $model = Comment::findOrFail($this->comment_id);
             $model->delete();
-            // session()->flash('success', __('messages.The_deletion_was_successful'));
-            // return redirect()->to('admin/comments/index/product/'.$this->product_id);
+          
             $this->dispatchBrowserEvent('show-result',
                 ['type' => 'success',
-                    'message' => __('messages.The_deletion_was_successful')]);
+                  'message' => __('messages.The_deletion_was_successful')]);
+
+
+            // session()->flash('success', __('messages.The_deletion_was_successful'));
+            // return redirect()->to('admin/comments/index/product/'.$this->product_id);
+
         } catch (\Exception $ex) {
             return view('errors_custom.model_not_found');
         }
-        // return null;
+      
     }
 
     public function render()

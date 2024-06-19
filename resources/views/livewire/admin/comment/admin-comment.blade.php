@@ -3,18 +3,17 @@
         {{ Breadcrumbs::render('admin.product.comments.list',$product->title_persian) }}
     @endsection
     <div class="row product-section">
-
-        <div class="col">
-            <div class="card mb-3" style="max-width:800px;">
-                <div class="row g-0">
-                    <div class="col-md-4 d-flex justify-content-center mt-2 mb-2">
+            <div class="card mb-1 h-75" style="">
+                <div class="row">
+                    <div class="col-md-3 d-flex justify-content-start  p-4">
                         @if( $product->thumbnail_image != null && \Illuminate\Support\Facades\Storage::disk('public')->exists($product->thumbnail_image ) )
-                        <img src="{{ asset('storage/'.$product->thumbnail_image) }}" class="img-fluid rounded-start" alt="product_image">
+                            <img src="{{ asset('storage/'.$product->thumbnail_image) }}" style="height:350px" class="img-fluid  rounded" alt="product_image">
                         @else
-                            <img src="{{ asset('dash/images/no-image-icon-23494.png') }}" class="img-fluid rounded-start" alt="product_image">
+                            <img src="{{ asset('dash/images/no-image-icon-23494.png') }}"  style="height:350px" class="img-fluid  rounded" alt="product_image">
                         @endif
                     </div>
-                    <div class="col-md-8 d-flex justify-content-center align-items-center">
+
+                    <div class="col-md-8 d-flex justify-content-center align-items-center ">
                         <div class="card-body my-5">
                             <h5 class="card-title">{{ $product->title_persian }}</h5>
                             <p class="card-text">{!! $product->short_description !!}</p>
@@ -25,11 +24,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div class="col mb-3 bg-white rounded-3 d-none d-md-block d-lg-block d-xl-block ">
-
-        </div>
     </div>
 
     <div class="row comments-section overflow-auto">
