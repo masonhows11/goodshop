@@ -11,7 +11,7 @@
 
 
         <div class="row d-flex justify-content-start my-4 bg-white">
-            <div class="col-lg-4 col-md-4 col  my-5  border-bottom title-add-to-stock">
+            <div class="col-lg-12 col-md-12 col  my-5  title-add-to-stock">
                 <div class="alert my-4">
                     <h3>{{ __('messages.addresses') }} / {{ __('messages.city_management') }} / {{ __('messages.add_city') }}</h3>
                 </div>
@@ -22,7 +22,7 @@
         </div>
 
         <div class="row d-flex  create-city my-5 bg-white">
-            <div class="col-lg-5">
+            <div class="col-lg-12">
                 <form action="{{ route('admin.city.store') }}" method="post">
                     @csrf
 

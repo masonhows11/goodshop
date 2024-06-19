@@ -11,7 +11,7 @@
 
 
         <div class="row d-flex justify-content-start my-4 bg-white">
-            <div class="col-lg-4 col-md-4 col  my-5  border-bottom title-add-to-stock">
+            <div class="col-lg-12 col-md-12 col my-5 title-add-to-stock">
                 <div class="alert my-4">
                     <h3>{{ __('messages.addresses') }} / {{ __('messages.province_management') }}</h3>
                 </div>
@@ -20,7 +20,7 @@
 
         <div class="row create-province my-4 bg-white">
 
-            <div class="col-lg-5 mb-3 mt-3">
+            <div class="col-lg-12 mb-3 mt-3">
                 <form action="{{ route('admin.province.store') }}" method="post">
                     @csrf
 

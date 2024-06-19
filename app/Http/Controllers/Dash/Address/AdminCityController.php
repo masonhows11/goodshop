@@ -17,7 +17,7 @@ class AdminCityController extends Controller
         try {
             $province  = Province::findOrFail($request->id);
             $provinceId = $province->id;
-            return view('dash.address_city.create', ['province' => $province ,'provinceId' => $provinceId]);
+            return view('dash.address_city.create', ['province' => $province, 'provinceId' => $provinceId]);
         } catch (\Exception $ex) {
             return view('errors_custom.model_not_found')
                 ->with(['error' => $ex->getMessage()]);
@@ -30,13 +30,16 @@ class AdminCityController extends Controller
         $request->validate([
             'name' => ['required', 'min:1', 'max:64', 'string']
         ]);
+
         try {
-            City::create([
-                'province_id' => $request->province,
-                'name' => $request->name,
-            ]);
+
+
+            $city = new City();
+            $city->create($request->province, $request->name);
+
+
             session()->flash('success', __('messages.New_record_saved_successfully'));
-            return redirect()->route('admin.city.create',['id' => $request->province]);
+            return redirect()->route('admin.city.create', ['id' => $request->province]);
 
         } catch (\Exception $ex) {
             return view('errors_custom.model_store_error')->with(['error' => $ex->getMessage()]);
@@ -47,7 +50,7 @@ class AdminCityController extends Controller
     {
 
         try {
-            return view('dash.address_city.edit',['city' => $city]);
+            return view('dash.address_city.edit', ['city' => $city]);
         } catch (\Exception $ex) {
             return view('errors_custom.model_not_found')->with(['error' => $ex->getMessage()]);
         }
@@ -61,24 +64,27 @@ class AdminCityController extends Controller
         ]);
 
         try {
-            City::where('id',$request->id)->update([
-                'name' => $request->name,
-            ]);
+
+            $city = City::findOrFail($request->id);
+            $city->updateModel($request->name);
+
+            
+
             session()->flash('success', __('messages.The_update_was_completed_successfully'));
-            return redirect()->route('admin.city.create',['id' => $request->province]);
+            return redirect()->route('admin.city.create', ['id' => $request->province]);
         } catch (\Exception $ex) {
             return view('errors_custom.model_store_error')
                 ->with(['error' => $ex->getMessage()]);
         }
     }
 
-    public function delete(City $city,Request $request)
+    public function delete(City $city, Request $request)
     {
         try {
-            $province = $request->province ;
+            $province = $request->province;
             $city->delete();
             session()->flash('success', __('messages.The_deletion_was_successful'));
-            return redirect()->route('admin.city.create',['id' => $province]);
+            return redirect()->route('admin.city.create', ['id' => $province]);
         } catch (\Exception $ex) {
             return view('errors_custom.general_error')->with(['error' => $ex->getMessage()]);
         }

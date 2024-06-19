@@ -23,4 +23,22 @@ class City extends Model
         return $this->hasMany(Address::class);
     }
 
+
+    public  function create($province,$name){
+
+        $this->name = $name;
+        $this->province_id = $province;
+        $this->save();
+
+    }
+
+
+    public  function updateModel($name){
+
+        $this->name = $name;
+        $this->save();
+
+    }
+
+
 }
