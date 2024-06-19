@@ -78,7 +78,7 @@
                             @enderror
                         </div>
 
-                        <div class="col-sm-2 mt-4">
+                        <div class="col-sm-4 mt-4">
                             <label for="status" class="form-label">{{ __('messages.status') }}</label>
                             <select class="form-select" id="status" wire:model.defer="status">
                                 <option>{{ __('messages.choose') }}</option>
