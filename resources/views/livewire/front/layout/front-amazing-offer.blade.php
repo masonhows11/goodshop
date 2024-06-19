@@ -16,13 +16,13 @@
                                    class="d-block">
                                     <div class="card border-0 custom-card">
                                         <img src="{{ asset('storage/' . $sale->product->thumbnail_image) }}"
-                                             class="slider-pic">
+                                             class="slider-pic rounded">
                                         <div class="card-body">
                                             <p class="font-14 text-dark text-center mt-2">{{ $sale->product->title_persian }}</p>
                                             <div class="d-flex justify-content-between px-3">
                                                 <span class="badge bg-danger text-white rounded-pill font-13">{{ $sale->percentage }} % </span>
                                                 @php
-                                                    $final_price = $sale->product->origin_price - (( $sale->product->origin_price *  20) / 100)
+                                                    $final_price = $sale->product->origin_price - (( $sale->product->origin_price *  $sale->percentage) / 100)
                                                 @endphp
                                                 <span class="font-13"> تومان {{ priceFormat( $final_price )  }}</span>
                                             </div>
