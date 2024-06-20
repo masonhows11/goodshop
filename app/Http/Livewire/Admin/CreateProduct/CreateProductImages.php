@@ -12,9 +12,7 @@ use Livewire\WithFileUploads;
 class CreateProductImages extends Component
 {
 
-    //  $this->dispatchBrowserEvent('show-result',
-    //  ['type' => 'success',
-    //   'message' => __('messages.New_record_saved_successfully')]);
+
 
     use WithFileUploads;
 
@@ -33,7 +31,7 @@ class CreateProductImages extends Component
         $this->product_id = $product;
     }
 
-    
+
     protected $rules = [
         'photo' => ['required', 'image', 'mimes:png,jpg,jpeg,webp', 'max:2000'],
     ];
@@ -66,7 +64,6 @@ class CreateProductImages extends Component
             return view('errors_custom.general_error');
         }
         return null;
-
     }
 
     public function deleteConfirmation($id)
@@ -86,9 +83,13 @@ class CreateProductImages extends Component
             $image = ProductImage::findOrFail($this->delete_id);
             Storage::disk('public')->delete('/images/product/gallery/' . $image->image_path);
             $image->delete();
-            $this->dispatchBrowserEvent('show-result',
-                ['type' => 'success',
-                    'message' => __('messages.The_deletion_was_successful')]);
+            $this->dispatchBrowserEvent(
+                'show-result',
+                [
+                    'type' => 'success',
+                    'message' => __('messages.The_deletion_was_successful')
+                ]
+            );
         } catch (\Exception $ex) {
             return view('errors_custom.model_not_found');
         }
@@ -101,9 +102,13 @@ class CreateProductImages extends Component
 
 
         if (ProductImage::where('product_id', $this->product_id)->count() == 4) {
-            $this->dispatchBrowserEvent('show-result',
-                ['type' => 'success',
-                    'message' => __('messages.You_can_choose_up_to_4_images')]);
+            $this->dispatchBrowserEvent(
+                'show-result',
+                [
+                    'type' => 'success',
+                    'message' => __('messages.You_can_choose_up_to_4_images')
+                ]
+            );
         } else {
             try {
 
@@ -117,9 +122,20 @@ class CreateProductImages extends Component
                         'image_path' => $this->image_path,
                         'is_active' => 1,
                     ]);
-                    $this->photo = null;
+
+
+
                     session()->flash('success', __('messages.New_record_saved_successfully'));
                     return redirect()->route('admin.product.create.images', $this->product_id);
+
+                    // $this->dispatchBrowserEvent(
+                    //     'show-result',
+                    //     [
+                    //         'type' => 'success',
+                    //         'message' => __('messages.New_record_saved_successfully')
+                    //     ]
+                    // );
+
 
                 }
             } catch (\Exception $ex) {
@@ -127,19 +143,15 @@ class CreateProductImages extends Component
             }
             return null;
         }
-
-
     }
 
     public function render()
     {
         return view('livewire.admin.create-product.create-product-images')
-            ->with(['images' => ProductImage::where('product_id', $this->product_id)->get(),
-                    'product' => $this->product_id,
-                    'title'=> Product::where('id',$this->product_id)->select('title_persian')->first()]);
-
+            ->with([
+                'images' => ProductImage::where('product_id', $this->product_id)->get(),
+                'product' => $this->product_id,
+                'title' => Product::where('id', $this->product_id)->select('title_persian')->first()
+            ]);
     }
-
-
-
 }

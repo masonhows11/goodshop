@@ -3,13 +3,12 @@
      {{ Breadcrumbs::render('admin.create.product.images',$title->title_persian) }}
     @endsection
     <div class="container-fluid">
-
         <div class="row mt-5 create-product-image bg-white py-5">
 
 
             <div class="col-sm-4 create-product-gallery-form">
-
                 <form wire:submit.prevent="save">
+                     <!--------------->
                     <div class="mb-3 d-flex justify-content-center">
                         @if($photo)
                             <img src="{{ $photo->temporaryUrl() }}"
@@ -23,14 +22,22 @@
                                  class="rounded border border-2 image-product-gallery-preview">
                         @endif
                     </div>
+                      <!--------------->
                     <div class="mb-3">
                         <label for="photo" class="form-label">انتخاب تصویر</label>
                         <input type="file" accept="image/*" class="form-control" wire:model.defer="photo" id="photo">
                     </div>
-                    <div wire:loading wire:target="photo">در حال بارگزاری...</div>
+                      <!--------------->
+                    <div class="spinner-border" wire:loading wire:target="photo" role="status">
+                        <span class="visually-hidden"></span>
+                    </div>
+                    <!--------------->
                     @error('photo')
-                    <div class="alert alert-danger">{{ $message}}</div>
+                    <div class="mt-3">
+                          <span class="text-danger">{{ $message }}</span>
+                    </div>
                     @enderror
+                    <!--------------->
                     <div class="col mt-3 d-flex justify-content-between">
                         <div>
                             <button type="submit" class="btn btn-success btn-sm">{{ __('messages.save') }}</button>
@@ -44,16 +51,18 @@
                 </form>
             </div>
 
-            <div class="col-sm-8 list-product-image mt-4">
+            <div class="col-sm-8 list-product-image mt-1">
                 <div class="row row-cols-1 row-cols-md-4 g-4">
                     @if($images)
                         @foreach( $images as $image)
                             <div class="col ">
                                 <div class="card border border-2 border-active-secondary">
                                     @if ( $image->image_path != null && \Illuminate\Support\Facades\Storage::disk('public')->exists('images/product/gallery/'.$image->image_path) )
-                                    <img src="{{ asset('storage/images/product/gallery/'.$image->image_path) }}" class="card-img-top " alt="image-product">
+                                        <img src="{{ asset('storage/images/product/gallery/'.$image->image_path) }}"
+                                        class="card-img-top"  height="237" width="300" alt="image-product">
                                     @else
-                                        <img src="{{ asset('dash/images/no-image-icon-23494.png') }}"  id="image_view" class="img-thumbnail" height="300" width="300" alt="image">
+                                        <img src="{{ asset('dash/images/no-image-icon-23494.png') }}"
+                                        id="image_view" class="img-thumbnail" height="300" width="300" alt="image">
                                     @endif
                                     <div class="card-footer">
                                         <div class="d-flex justify-content-between">
@@ -70,7 +79,6 @@
                         @endforeach
                     @endif
                 </div>
-
             </div>
 
 
