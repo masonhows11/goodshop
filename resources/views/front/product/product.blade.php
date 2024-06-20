@@ -148,7 +148,7 @@
                                                         <img
                                                             src="{{ asset('storage/images/product/gallery/'. $slide->image_path) }}"
                                                             alt="{{ asset('storage/images/product/gallery/'. $slide->image_path). '-' .( $key + 1) }}"
-                                                            class="d-block w-100">
+                                                            class="d-block w-100 img-thumbnail">
                                                     @else
 
                                                         <img src="{{ asset('default_image/no-image-icon-23494.png') }}"
@@ -165,7 +165,7 @@
                                                         <img
                                                             src="{{ asset('storage/images/product/gallery/'. $slide->image_path) }}"
                                                             alt="{{ asset('storage/images/product/gallery/'. $slide->image_path) . '-' . ($key + 1) }}"
-                                                            class="d-block w-100">
+                                                            class="d-block w-100 img-thumbnail">
                                                     @else
 
                                                         <img src="{{ asset('default_image/no-image-icon-23494.png') }}"
