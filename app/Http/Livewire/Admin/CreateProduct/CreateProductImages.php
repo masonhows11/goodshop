@@ -30,13 +30,12 @@ class CreateProductImages extends Component
 
     public function mount($product)
     {
-
         $this->product_id = $product;
-
     }
 
+    
     protected $rules = [
-        'photo' => ['required', 'image', 'mimes:png,jpg,jpeg,webp', 'max:2000'],//, 'dimensions:min_width=300,min_height=300'],
+        'photo' => ['required', 'image', 'mimes:png,jpg,jpeg,webp', 'max:2000'],
     ];
 
 
