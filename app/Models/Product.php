@@ -142,14 +142,18 @@ class Product extends Model
         return $this->origin_price - ($this->origin_price * ($this->activeAmazingSale()->percentage / 100));
     }
 
-    public function AmazingSaleOnDefaultColorPrice($price)
+    public function AmazingSaleOnDefaultColorPrice($price , $percentage)
     {
-        return $price - ($price * ($this->activeAmazingSale()->percentage / 100));
+        return $price - ($price * ($percentage / 100));
+
+       // return $price - ($price * ($this->activeAmazingSale()->percentage / 100));
     }
 
-    public function AmazingSaleOnChangeColorPrice($price)
+    public function AmazingSaleOnChangeColorPrice($price ,  $percentage)
     {
-        return $price - ($price * ($this->activeAmazingSale()->percentage / 100));
+        return $price - ($price * ($percentage / 100));
+        
+       // return $price - ($price * ($this->activeAmazingSale()->percentage / 100));
     }
 
     // one product belongs to many  users

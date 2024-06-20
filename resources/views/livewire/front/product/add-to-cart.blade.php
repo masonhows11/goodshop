@@ -119,11 +119,12 @@
 
                         @if( $amazingSale != null && $hasWarranty == false )
                             <span class="text-danger">
-                                {{  priceFormat($product->AmazingSaleOnDefaultColorPrice($defaultPriceByColor))   }} {{ __('messages.toman') }}
+                                {{  priceFormat($product->AmazingSaleOnDefaultColorPrice($defaultPriceByColor , $amazingSale->percentage ))   }} {{ __('messages.toman') }}
                             </span>
                         @elseif( $amazingSale != null && $hasWarranty == true )
+
                             <span class="text-danger">
-                                {{   priceFormat( $product->AmazingSaleOnDefaultColorPrice($defaultPriceByColor) + $warrantyPrice )  }} {{ __('messages.toman') }}
+                                {{   priceFormat( $product->AmazingSaleOnDefaultColorPrice($defaultPriceByColor ) + $warrantyPrice )  }} {{ __('messages.toman') }}
                             </span>
                         @else
                             <span class="text-danger">
@@ -143,9 +144,9 @@
                 <div class="product-seller-row">
                     <span>{{ __('messages.final_price') }}</span>
                     @if( $amazingSale != null && $hasWarranty == false )
-                        <span class="text-danger">{{  priceFormat( $product->AmazingSaleOnChangeColorPrice($newPriceByColor)) }} {{ __('messages.toman') }} </span>
+                        <span class="text-danger">{{  priceFormat( $product->AmazingSaleOnChangeColorPrice($newPriceByColor , $amazingSale->percentage)) }} {{ __('messages.toman') }} </span>
                     @elseif (  $amazingSale != null && $hasWarranty == true )
-                        <span class="text-danger">{{   priceFormat( $product->AmazingSaleOnChangeColorPrice($newPriceByColor) + $warrantyPrice)  }} {{ __('messages.toman') }} </span>
+                        <span class="text-danger">{{   priceFormat( $product->AmazingSaleOnChangeColorPrice($newPriceByColor , $amazingSale->percentage) + $warrantyPrice)  }} {{ __('messages.toman') }} </span>
                     @else
                         <span class="text-danger">{{ $warrantyPrice != null ?  priceFormat($newPriceByColor + $warrantyPrice) : priceFormat($newPriceByColor) }} {{ __('messages.toman') }} </span>
                     @endif
