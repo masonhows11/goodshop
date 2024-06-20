@@ -25,8 +25,9 @@ class CreateProductDefaultColor extends Component
 
     public function mount($product)
     {
-        $this->product_id = $product;
-        $this->product = Product::where('id', $product)->select(['id', 'title_persian'])->first();
+        $this->product_id = $product->id;
+        $this->product = $product;
+       
 
     }
 
@@ -49,6 +50,7 @@ class CreateProductDefaultColor extends Component
                 $color_name = Color::where('id', $this->color)->select(['title_persian', 'code'])->first();
 
                 $color_count = ProductColor::where('product_id', $this->product_id)->where('default',1)->count();
+
                 if ($color_count == 0 ) {
                     ProductColor::create([
                         'color_id' => $this->color,

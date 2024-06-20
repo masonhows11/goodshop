@@ -26,8 +26,9 @@ class CreateProductColor extends Component
 
     public function mount($product)
     {
-        $this->product_id = $product;
-        $this->product = Product::where('id', $product)->select(['id', 'title_persian'])->first();
+        $this->product_id = $product->id;
+        $this->product = $product;
+       
 
     }
 
