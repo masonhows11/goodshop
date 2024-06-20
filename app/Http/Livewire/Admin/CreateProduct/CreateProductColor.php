@@ -31,6 +31,7 @@ class CreateProductColor extends Component
         $this->colors = $colors;
 
 
+
     }
 
     protected $rules = [
@@ -49,25 +50,42 @@ class CreateProductColor extends Component
         try {
             if ($this->edit_mode == false) {
                 $color_name = Color::where('id', $this->color)->select(['title_persian', 'code'])->first();
-                ProductColor::create([
-                    'color_id' => $this->color,
-                    'color_name' => $color_name->title_persian,
-                    'color_code' => $color_name->code,
-                    'product_id' => $this->product_id,
-                    'default' => 0,
-                    'price_increase' => $this->price_increase,
-                    'status' => $this->status,
-                    'salable_quantity' => $this->salable_quantity,
-                    'available_in_stock' => $this->available_in_stock,
-                ]);
-                $this->color = '';
-                $this->price_increase = '';
-                $this->status = '';
-                $this->available_in_stock = '';
-                $this->salable_quantity = '';
-                $this->dispatchBrowserEvent('show-result',
-                    ['type' => 'success',
-                        'message' => __('messages.New_record_saved_successfully')]);
+                $exitsAsDefault = ProductColor::where('color_id',$this->color)->exists();
+                if($exitsAsDefault){
+
+                    $this->color = '';
+                    $this->price_increase = '';
+                    $this->status = '';
+                    $this->available_in_stock = '';
+                    $this->salable_quantity = '';
+
+                    $this->dispatchBrowserEvent('show-result',
+                    ['type' => 'warning',
+                        'message' => __('messages.this_is_a_duplicate_item')]);
+
+                }else{
+                    ProductColor::create([
+                        'color_id' => $this->color,
+                        'color_name' => $color_name->title_persian,
+                        'color_code' => $color_name->code,
+                        'product_id' => $this->product_id,
+                        'default' => 0,
+                        'price_increase' => $this->price_increase,
+                        'status' => $this->status,
+                        'salable_quantity' => $this->salable_quantity,
+                        'available_in_stock' => $this->available_in_stock,
+                    ]);
+
+                    $this->color = '';
+                    $this->price_increase = '';
+                    $this->status = '';
+                    $this->available_in_stock = '';
+                    $this->salable_quantity = '';
+                    $this->dispatchBrowserEvent('show-result',
+                        ['type' => 'success',
+                            'message' => __('messages.New_record_saved_successfully')]);
+                }
+
 
             } elseif ($this->edit_mode == true) {
 
