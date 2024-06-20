@@ -12,10 +12,10 @@ class CreateProductColor extends Component
 
     public $product;
     public $product_id;
+    public $colors;
     public $color_id;
     public $edit_mode = false;
 
-    // product color fields
     public $color;
     public $default;
     public $price_increase;
@@ -24,11 +24,12 @@ class CreateProductColor extends Component
     public $salable_quantity;
 
 
-    public function mount($product)
+    public function mount($product,$colors)
     {
         $this->product_id = $product->id;
         $this->product = $product;
-       
+        $this->colors = $colors;
+
 
     }
 
@@ -151,6 +152,6 @@ class CreateProductColor extends Component
         return view('livewire.admin.create-product.create-product-color')
             ->with(['product' => $this->product,
                 'product_colors' => ProductColor::where('product_id', $this->product_id)->where('default', 0)->get(),
-                'colors' => Color::all()]);
+                'colors' => $this->colors ]);
     }
 }

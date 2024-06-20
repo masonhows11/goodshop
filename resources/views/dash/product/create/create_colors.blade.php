@@ -5,9 +5,9 @@
 @section('dash_main_content')
     <div class="container-fluid">
 
-        <livewire:admin.create-product.create-product-default-color :product="$product"/>
+        <livewire:admin.create-product.create-product-default-color :product="$product" :colors="$colors"/>
 
-        <livewire:admin.create-product.create-product-color :product="$product"/>
+        <livewire:admin.create-product.create-product-color :product="$product" :colors="$colors"/>
 
     </div>
 @endsection
